@@ -1,0 +1,82 @@
+{
+  "features": [
+    {
+      "name": "404",
+      "streamId": "404",
+      "templateType": "JS",
+      "entityPageSet": {
+        "plugin": {}
+      }
+    },
+    {
+      "name": "location",
+      "streamId": "locations",
+      "templateType": "JS",
+      "entityPageSet": {
+        "plugin": {}
+      }
+    },
+    {
+      "name": "locator",
+      "templateType": "JS",
+      "staticPage": {
+        "plugin": {}
+      }
+    },
+    {
+      "name": "robots",
+      "templateType": "JS",
+      "staticPage": {
+        "plugin": {}
+      }
+    }
+  ],
+  "streams": [
+    {
+      "$id": "404",
+      "fields": [
+        "name"
+      ],
+      "filter": {
+        "entityIds": [
+          "global-data"
+        ]
+      },
+      "localization": {
+        "locales": [
+          "en_GB"
+        ],
+        "primary": false
+      }
+    },
+    {
+      "$id": "locations",
+      "fields": [
+        "id",
+        "uid",
+        "meta",
+        "name",
+        "address",
+        "mainPhone",
+        "hours",
+        "slug",
+        "timezone",
+        "yextDisplayCoordinate",
+        "displayCoordinate",
+        "cityCoordinate",
+        "c_bannerImage"
+      ],
+      "filter": {
+        "entityTypes": [
+          "location"
+        ]
+      },
+      "localization": {
+        "locales": [
+          "en"
+        ],
+        "primary": false
+      }
+    }
+  ]
+}

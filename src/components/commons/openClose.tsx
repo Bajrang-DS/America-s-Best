@@ -2,7 +2,7 @@ import * as React from "react";
 import { useEffect } from "react";
 import { StaticData } from "../../../sites-global/staticData";
 import Timer from "../locationDetail/countdown";
-// import OpenCloseBlock from "./OpenCloseBlock";
+
 
 export const OpenStausFunctions = {
   formatOpenNowString: (hoursData: any, timeZone: any) => {
@@ -202,7 +202,7 @@ export const OpenStausFunctions = {
            
             <div className="hours-info ">
               {" "}
-              <span className="font-second-main-font "> Open now - </span>
+              <span className="font-second-main-font text-[#337aff] "> Open now - </span>
               <span className="lowercase">
                 {OpenStausFunctions.formatTime(currentInterval.start).replace(
                   ":00",
@@ -229,7 +229,7 @@ export const OpenStausFunctions = {
             <div className="red-dot">
             
               <div className="hours-info ">
-                <span className="font-second-main-font "> Closed - </span>
+                <span className="font-second-main-font text-[#FF3342] "> Closed - </span>
                 {"Opens at "}
                 <span className="lowercase">
                   {OpenStausFunctions.formatTime(nextInterval.start).replace(
@@ -248,7 +248,7 @@ export const OpenStausFunctions = {
             <div className="red-dot">
              
               <div className="hours-info ">
-                <span className="font-second-main-font">Closed - </span>
+                <span className="font-second-main-font text-[#FF3342]">Closed - </span>
                 {"Opens at "}
                 <span className="lowercase">
                   {OpenStausFunctions.formatTime(nextInterval.start).replace(
@@ -266,7 +266,7 @@ export const OpenStausFunctions = {
         <div className="closeddot 2">
           <div className="red-dot">
            
-            <div className="hours-info ">Closed</div>{" "}
+            <div className="hours-info text-[#FF3342] ">Closed</div>{" "}
           </div>
         </div>
       );
@@ -303,7 +303,7 @@ export const OpenStausFunctions = {
     const minutes = parseInt(parts[1].replace(/\u200E/g, ""), 10);
     return hours + minutes / 60;
   },
-  getIntervalOnDate: (date, hoursData) => {
+  getIntervalOnDate: (date:any, hoursData:any) => {
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
@@ -351,7 +351,7 @@ export const OpenStausFunctions = {
       return null;
     }
   },
-  formatTime: (time) => {
+  formatTime: (time:any) => {
     const tempDate = new Date("January 1, 2020 " + time);
     const localeString = "en-US";
 
@@ -361,7 +361,7 @@ export const OpenStausFunctions = {
       hour12: true,
     });
   },
-  getUtcOffsetFromTimeZone: (timeZone, date = new Date()) => {
+  getUtcOffsetFromTimeZone: (timeZone : any, date = new Date()) => {
     const tz = date
       .toLocaleString("en-gb", { timeZone, timeStyle: "long" })
       .split(" ")
@@ -371,7 +371,7 @@ export const OpenStausFunctions = {
       Date.parse(`${dateString} UTC`) - Date.parse(`${dateString} ${tz}`);
     return OpenStausFunctions.msToTime(offset);
   },
-  msToTime: (duration) => {
+  msToTime: (duration:any) => {
     let milliseconds = Math.floor((duration % 1000) / 100),
       seconds = Math.floor((duration / 1000) % 60),
       minutes = Math.floor((duration / (1000 * 60)) % 60),
@@ -435,7 +435,7 @@ export default function OpenClose(props: any) {
                 fill="#ad1e1f"
               />
             </svg>
-            <div className="hours-info font-second-main-font ">Closed</div>{" "}
+            <div className="hours-info font-second-main-font text-[#FF3342] ">Closed</div>{" "}
           </div>
         </div>
       )}

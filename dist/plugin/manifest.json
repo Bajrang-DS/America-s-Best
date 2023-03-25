@@ -1,9 +1,9 @@
 {
   "bundlePaths": {
-    "404": "assets/server/404.cad32f33.js",
-    "location": "assets/server/location.3de39d9a.js",
-    "locator": "assets/server/locator.a4c63c53.js",
-    "robots": "assets/server/robots.18c076b6.js"
+    "404": "assets/server/404.63aca1af.js",
+    "location": "assets/server/location.f0307b2e.js",
+    "locator": "assets/server/locator.a4cfdc40.js",
+    "robots": "assets/server/robots.2d288a18.js"
   },
   "projectFilepaths": {
     "templatesRoot": "src/templates",
@@ -31,24 +31,24 @@
       "src": "src/images/map.svg"
     },
     "src/images/MGMpin.svg": {
-      "file": "assets/static/MGMpin-0521d029.svg",
+      "file": "assets/static/MGMpin-0004315e.svg",
       "src": "src/images/MGMpin.svg"
-    },
-    "src/images/red-map.svg": {
-      "file": "assets/static/red-map-55834b8a.svg",
-      "src": "src/images/red-map.svg"
     },
     "src/images/watch-icn.svg": {
       "file": "assets/static/watch-icn-12e4a5d9.svg",
       "src": "src/images/watch-icn.svg"
     },
-    "src/images/map-center.svg": {
-      "file": "assets/static/map-center-30f9adc5.svg",
-      "src": "src/images/map-center.svg"
+    "src/images/red-map.svg": {
+      "file": "assets/static/red-map-358c08d3.svg",
+      "src": "src/images/red-map.svg"
     },
     "src/images/MGMhover1.svg": {
-      "file": "assets/static/MGMhover1-bbbef0ea.svg",
+      "file": "assets/static/MGMhover1-d5a74a2b.svg",
       "src": "src/images/MGMhover1.svg"
+    },
+    "src/images/map-center.svg": {
+      "file": "assets/static/map-center-990b96bc.svg",
+      "src": "src/images/map-center.svg"
     },
     "src/images/dots.svg": {
       "file": "assets/static/dots-c532748f.svg",
@@ -58,10 +58,6 @@
       "file": "assets/static/minus-sym-f0f517fd.svg",
       "src": "src/images/minus-sym.svg"
     },
-    "src/images/shape-t.svg": {
-      "file": "assets/static/shape-t-4e865b2a.svg",
-      "src": "src/images/shape-t.svg"
-    },
     "src/images/shape-b.svg": {
       "file": "assets/static/shape-b-bdecdd2a.svg",
       "src": "src/images/shape-b.svg"
@@ -70,60 +66,64 @@
       "file": "assets/static/plus-sym-e2bf518e.svg",
       "src": "src/images/plus-sym.svg"
     },
+    "src/images/shape-t.svg": {
+      "file": "assets/static/shape-t-4e865b2a.svg",
+      "src": "src/images/shape-t.svg"
+    },
     "src/images/newsletter-bg.png": {
       "file": "assets/static/newsletter-bg-6b390772.png",
       "src": "src/images/newsletter-bg.png"
     },
     "dist/hydration_templates/404.tsx": {
-      "file": "assets/hydrate/404.661cb791.js",
+      "file": "assets/hydrate/404.67ea81f1.js",
       "src": "dist/hydration_templates/404.tsx",
       "isEntry": true,
       "imports": [
         "_index-c5286410.js",
         "src/templates/404.tsx",
-        "_PageLayout-dcd00cd4.js",
+        "_PageLayout-229fcdf9.js",
         "_index-56529fb8.js",
-        "_global-54a9aa8c.js"
+        "_global-664e2dd6.js"
       ]
     },
     "src/templates/404.tsx": {
-      "file": "assets/server/404.cad32f33.js",
+      "file": "assets/server/404.63aca1af.js",
       "src": "src/templates/404.tsx",
       "isEntry": true,
       "imports": [
-        "_global-54a9aa8c.js",
-        "_PageLayout-dcd00cd4.js",
+        "_global-664e2dd6.js",
+        "_PageLayout-229fcdf9.js",
         "_index-56529fb8.js"
       ]
     },
     "dist/hydration_templates/location.tsx": {
-      "file": "assets/hydrate/location.f9e76051.js",
+      "file": "assets/hydrate/location.57b62cbb.js",
       "src": "dist/hydration_templates/location.tsx",
       "isEntry": true,
       "imports": [
         "_index-c5286410.js",
         "src/templates/location.tsx",
-        "_PageLayout-dcd00cd4.js",
+        "_PageLayout-229fcdf9.js",
         "_index-56529fb8.js",
-        "_answersHeadlessConfig-d835558d.js",
-        "_global-54a9aa8c.js",
+        "_answersHeadlessConfig-23218783.js",
+        "_global-664e2dd6.js",
         "_preload-helper-094304c8.js"
       ]
     },
     "src/templates/location.tsx": {
-      "file": "assets/server/location.3de39d9a.js",
+      "file": "assets/server/location.f0307b2e.js",
       "src": "src/templates/location.tsx",
       "isEntry": true,
       "imports": [
         "_index-56529fb8.js",
-        "_PageLayout-dcd00cd4.js",
-        "_answersHeadlessConfig-d835558d.js",
+        "_PageLayout-229fcdf9.js",
+        "_answersHeadlessConfig-23218783.js",
         "_index-c5286410.js",
-        "_global-54a9aa8c.js",
+        "_global-664e2dd6.js",
         "_preload-helper-094304c8.js"
       ],
       "dynamicImports": [
-        "_answersHeadlessConfig-d835558d.js"
+        "_answersHeadlessConfig-23218783.js"
       ],
       "assets": [
         "assets/static/map-05379a2e.svg",
@@ -131,46 +131,46 @@
       ]
     },
     "dist/hydration_templates/locator.tsx": {
-      "file": "assets/hydrate/locator.324c32ba.js",
+      "file": "assets/hydrate/locator.b8a891a3.js",
       "src": "dist/hydration_templates/locator.tsx",
       "isEntry": true,
       "imports": [
         "_index-c5286410.js",
         "src/templates/locator.tsx",
-        "_PageLayout-dcd00cd4.js",
+        "_PageLayout-229fcdf9.js",
         "_index-56529fb8.js",
-        "_answersHeadlessConfig-d835558d.js",
-        "_global-54a9aa8c.js",
+        "_answersHeadlessConfig-23218783.js",
+        "_global-664e2dd6.js",
         "_server.browser-02c4b164.js"
       ]
     },
     "src/templates/locator.tsx": {
-      "file": "assets/server/locator.a4c63c53.js",
+      "file": "assets/server/locator.a4cfdc40.js",
       "src": "src/templates/locator.tsx",
       "isEntry": true,
       "imports": [
-        "_answersHeadlessConfig-d835558d.js",
+        "_answersHeadlessConfig-23218783.js",
         "_index-56529fb8.js",
-        "_PageLayout-dcd00cd4.js",
+        "_PageLayout-229fcdf9.js",
         "_server.browser-02c4b164.js",
-        "_global-54a9aa8c.js"
+        "_global-664e2dd6.js"
       ],
       "css": [
         "assets/static/locator-7e1d7cb8.css"
       ],
       "assets": [
-        "assets/static/red-map-55834b8a.svg",
+        "assets/static/red-map-358c08d3.svg",
         "assets/static/watch-icn-12e4a5d9.svg",
-        "assets/static/MGMhover1-bbbef0ea.svg",
-        "assets/static/map-center-30f9adc5.svg"
+        "assets/static/MGMhover1-d5a74a2b.svg",
+        "assets/static/map-center-990b96bc.svg"
       ]
     },
     "src/templates/robots.ts": {
-      "file": "assets/server/robots.18c076b6.js",
+      "file": "assets/server/robots.2d288a18.js",
       "src": "src/templates/robots.ts",
       "isEntry": true,
       "imports": [
-        "_global-54a9aa8c.js"
+        "_global-664e2dd6.js"
       ]
     },
     "_preload-helper-094304c8.js": {
@@ -191,28 +191,28 @@
         "_index-56529fb8.js"
       ]
     },
-    "_PageLayout-dcd00cd4.js": {
-      "file": "assets/static/PageLayout-dcd00cd4.js",
+    "_PageLayout-229fcdf9.js": {
+      "file": "assets/static/PageLayout-229fcdf9.js",
       "imports": [
         "_index-56529fb8.js"
       ]
     },
-    "_global-54a9aa8c.js": {
-      "file": "assets/static/global-54a9aa8c.js"
+    "_global-664e2dd6.js": {
+      "file": "assets/static/global-664e2dd6.js"
     },
-    "_answersHeadlessConfig-d835558d.js": {
-      "file": "assets/static/answersHeadlessConfig-d835558d.js",
+    "_answersHeadlessConfig-23218783.js": {
+      "file": "assets/static/answersHeadlessConfig-23218783.js",
       "isDynamicEntry": true,
       "imports": [
-        "_PageLayout-dcd00cd4.js",
+        "_PageLayout-229fcdf9.js",
         "_index-56529fb8.js",
-        "_global-54a9aa8c.js"
+        "_global-664e2dd6.js"
       ],
       "css": [
-        "assets/static/answersHeadlessConfig-c1c61cca.css"
+        "assets/static/answersHeadlessConfig-afaa473c.css"
       ],
       "assets": [
-        "assets/static/MGMpin-0521d029.svg",
+        "assets/static/MGMpin-0004315e.svg",
         "assets/static/dots-c532748f.svg",
         "assets/static/plus-sym-e2bf518e.svg",
         "assets/static/minus-sym-f0f517fd.svg",
@@ -226,7 +226,7 @@
       "src": "src/templates/locator.css"
     },
     "answersHeadlessConfig.css": {
-      "file": "assets/static/answersHeadlessConfig-c1c61cca.css",
+      "file": "assets/static/answersHeadlessConfig-afaa473c.css",
       "src": "answersHeadlessConfig.css"
     }
   }

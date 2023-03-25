@@ -4,7 +4,7 @@ export const cookieText =
 export const cookiesUrl = "https://www.matalan.co.uk/corporate/cookies";
 export const baseuRL = "https://liveapi-sandbox.yext.com/v2/accounts/me/entities/geosearch?radius=500"
 export const apikey_for_entity = "ea7ea73738da090eba9cafbc45220b0b"
-export const favicon="https://a.mktgcdn.com/p-sandbox/JPBowt854rpiZHUkXeMpcoAAma6yNy_ph09d3CDaFxY/304x154.png";
+export const favicon="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAe1BMVEX///+rGi0AVrisHjC2HDCzGy/+/P28SFcFWbrMdoH7/P4AXMV0o9gAWsCMs98yd8b36uyxKz3ZmKDJbXq/UV+vJTe0MULAHTMJXLuwJzk2escjbcK4PU0AYM28Sll2pNnWkJnHZnPDXGlqnNWErt2/1e3isLfRgo3Pe4YDZWYVAAABbElEQVR4nO3c21bCMBBG4YltoILFA1Soh4J4fP8nVK+s3Gknf43s/QL51lxmsmJGRMfWZGzAsTTxyc6TdnO7sNkXennXTR2yOm33j310t44OBdtUKdvU2z56FQuHGqtOUlbNzw7QYXgFaNCgQYMGDRo0aNCgQYMGDRo0aNCgQf8bdJPfVe90HcvhRS1697D0SIv2Sor22m4xadCgQYMGDRo0aNCgQYMGDRr0X0Nz76FCX/ikRe+LS4+06K50uFOPQb4J8Ij1BWjQoEGDBg0aNGjQoEGDBg0aNGjQoEF/Q4u/yvB5P13PU3bwKYnX++lF2p6erdfL7sojy7JZ6vqHee0RiYiIiIiIiIiIhrX3+BBa28ra0uNLaGVlsOvgcM0tLbQf6OxqPic9NuKngVYFWhVoVaBVZYvOrmwnDVoRaFWgVYFWBVoVaFWgVYFWlS86t1prHB40iwv2eppdb2OvfH6X05NmaWPPjIhy7R2p5OY6tDdp3wAAAABJRU5ErkJggg==";
 export const apiKey = "f5db9f723a7d2fd5badfb2d57d1ab853";
 export const googleApikey = "AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18";
 export const regionNames = new Intl.DisplayNames(['en'], { type: 'region' })

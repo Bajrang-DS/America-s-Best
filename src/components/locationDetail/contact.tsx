@@ -98,9 +98,6 @@ const Contact = (props: any) => {
                 ""
               )}
 
-              {/* <div className="title-with-link-1">
-        <h4 className="box-title">{"Store Hours"}</h4>        
-      </div> */}
               {hours && (
                 <Hours
                   title={"Store Opening Hours"}

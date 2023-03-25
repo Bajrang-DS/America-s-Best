@@ -34,7 +34,7 @@
 	html {@apply  text-[100%]	}
 }
 a{ @apply focus:outline-none focus-visible:outline-none}
-body{ @apply font-main-font text-sm md:text-base text-gray}
+body{ @apply text-sm md:text-base text-gray}
 h1 {@apply text-4xl font-normal;}
 h2 {  @apply text-2xl font-normal;}
 .centered-container {  @apply mx-auto px-5 md:px-14 max-w-screen-xl;}
@@ -362,8 +362,8 @@ body.menu-opened{ @apply overflow-hidden lg:overflow-auto;}
 /* banner sec */
 .banner-sec{ @apply bg-gray-light py-16 mt-4}
 .banner-sec h1{ @apply text-3xl text-center uppercase }
-.locator-main{ @apply  mt-10  align-bottom w-full max-w-[87.5rem] mx-auto px-0 md:px-4 lg:px-6 xl:px-0}
-.left-listing{ @apply w-full md:w-[30rem] lg:w-[33.6875rem] float-left }
+.locator-main{ @apply  mt-10  align-bottom w-full max-w-[99.5rem] mx-auto px-0 md:px-4 lg:px-6 xl:px-0}
+.left-listing{ @apply w-full md:w-[30rem] lg:w-[33.6875rem] }
 .map-section{@apply w-full md:w-[calc(100%_-_30rem)] lg:w-[calc(100%_-_33.6875rem)]  md:pl-8 float-right}
 .locator-map-block{  @apply w-full  h-[80vh] md:h-screen top-0 order-1 lg:order-none z-[99];}
 .hero-section .hero-content .banner-text.banner-dark-bg{ @apply  border-l-0 inline-block flex flex-col items-center p-4      rounded-lg backdrop-blur-sm bg-Dark-red mx-auto w-[340px] sm:w-[500px] px-2.5 text-center}
@@ -401,16 +401,20 @@ body.mapView .mobile-btns .btn.mapBtn{  @apply text-Dark-red border-t-0 border-l
 .location.fixed-hover .result-inner .svg-map-icn svg{@apply fill-red }
 
    
-.location .button-bx{  @apply max-w-lg justify-start xl:mx-auto pl-2 flex-row lg:pl-7}
+.location .button-bx{  @apply max-w-lg justify-start xl:mx-auto pl-2 flex-row lg:pl-[19.75rem]}
 .result-list .location{ @apply first:mt-0}
-.location .button-bx .btn{@apply w-[9.75rem] bg-Dark-red font-second-main-font text-lg  border-none text-white    }
+.location .button-bx .btn{@apply w-[9.75rem]  border-none text-[#024b86]    }
+.location .button-bx .btn{
+  border: 0.125rem solid;
+  border-color: #024b86;
+}
 .location .button-bx .btn.notHighligh{@apply w-full md:w-[48%] bg-transparent justify-start mt-0  border-none text-black underline  }
 .location .button-bx .btn + .btn{  @apply mt-2 ml-2 md:mt-0 hover:no-underline   w-auto }
 .location .button-bx .btn:hover svg{@apply !fill-red }
 .map-count{ @apply absolute text-white left-1/2 -translate-x-1/2 top-2 md:top-1 2xl:top-1 font-second-main-font text-xs }
 #result-1 .result-inner{ @apply pt-0 md:pt-4}
 #result-1 .result-inner .availablity-content{@apply mt-2}
-.location-phn{ @apply underline hover:!no-underline text-lg }
+/* .location-phn{ @apply  hover:!no-underline text-lg } */
 .fliter-sec{ @apply mt-2 flex items-start sm:items-center justify-start sm:justify-between  flex-col sm:flex-row}
 .location .result-inner .green-dot, .location .result-inner .red-dot{ @apply  flex  }
 .location .result-inner .green-dot svg, .location .result-inner .red-dot svg{ @apply  ml-1 mt-1 }
@@ -493,7 +497,7 @@ table.day-hrs .time-b{  @apply text-lg md:text-lg  w-auto leading-[1.875rem] rou
   @apply relative pr-0 md:pr-[6.25rem] leading-5 mb-2.5 flex !flex-row justify-between items-center md:flex-col 
 }
 .location-name-miles h2{  @apply text-3xl md:text-lg leading-[1.375rem] text-red md:leading-tight}
-.location-name-miles h2 a{ @apply text-[1.375rem] text-gray font-second-main-font}
+.location-name-miles h2 a{ @apply text-[1.375rem] text-[#024b86]  font-[700]}
 
 .location-name-miles .distance{
   @apply sm:absolute sm:-top-0.5 right-0 text-base md:text-lg mt-1 sm:mt-0
@@ -568,7 +572,7 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 /* locator page start  */
 
 /* breadcrumb */
-.breadcrumb{@apply mt-2 text-nav-link py-2}
+.breadcrumb{@apply mt-2 text-nav-link py-2 w-[92%]}
 .breadcrumb ul{
   @apply flex flex-wrap items-center
 }
@@ -705,7 +709,7 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 .view-more{  @apply text-center mt-5}
 
 /* near by */
-.nearby-sec{@apply bg-transparent md:bg-light-grey w-full pt-7 pb-0 md:py-[3.75rem] }
+.nearby-sec{@apply bg-transparent md:bg-light-grey w-full pt-7 pb-0 md:pb-[3.75rem] pt-[10rem] }
 .nearby-sec-inner{@apply sm:mx-auto sm:max-w-[33.5rem] lg:mx-auto lg:max-w-none flex flex-col lg:flex-row gap-4 justify-center pb-0 xl:pb-0 }
 .nearby-sec .splide__slide{@apply xl:px-4}
 .nearby-card{@apply w-full bg-white overflow-hidden  z-10 relative shadow-sm last:mb-0 lg:last:mb-6  mb-6 lg:mt-6  lg:relative p-3 md:p-5 border border-box-border
@@ -935,17 +939,20 @@ a.Link.btn.notHighligh {
 /* hero banner */
 .hero-banner {
   background-color: #e7ecef;
+  height: 48.3rem;
+    padding-top: 0.1px;
 }
 .location-information{
   background: white;
   width: 69%;
-  float: left;
-  margin-top: 50px;
+  /* float: left; */
+  margin-top: 70px;
   margin-left: 20px;
   margin-bottom: 50px;
   padding-left: 40px;
   position: relative;
   z-index: 99;
+  height: 79%;
 }
 .hero-container {
   display: flex;
@@ -962,10 +969,10 @@ a.Link.btn.notHighligh {
 .ObjectFit-image {
   display: block;
   
-  height: 86.3%;
+  height: 100%;
   width: 100%;
 }
-.ObjectFit-container {
+.hero-image2 {
   display: inline-block;
   max-width: 100%;
   max-height: 100%;
@@ -996,6 +1003,23 @@ h1.entity-name{
   border-radius: 125rem;
   letter-spacing: .03125rem;
 }
+.locator-button-box{
+
+    font-size: .75rem;
+    line-height: 2.08;
+    background-color: #fff !important;
+    color: #024b86 !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.2rem 0.875rem;
+    height: 1.8rem;
+    width: 9.5rem;
+    border: 1px solid #024b86;
+    border-radius: 125rem;
+    letter-spacing: .03125rem;
+    text-align: center;
+
+}
 .Hero-ctaWrapper--eyeexam {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1024,5 +1048,31 @@ h1.entity-name{
 .Hero-cta--copyright {
   max-width: 31.25rem;
   
+}
+.Hero-ctaWrapper--locator {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  /* margin-top: 2.5rem; */
+  padding-right: 10px;
+}
+.Hero-cta--locator {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  background-color: #a6182e;
+  color: #fff;
+  padding: 0.5rem 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: 0.125rem solid;
+  border-color: #a6182e;
 }
 

@@ -74,7 +74,7 @@ const Contact = (props: any) => {
           <CustomMap prop={yextDisplayCoordinate} />
         </div>
         <div className="Hero-ctaWrapper Hero-ctaWrapper--eyeexam">
-                <a className="Hero-cta Hero-cta--eyeexam" href="https://www.americasbest.com/scheduler/storeid/5186" data-ya-track="cta">Schedule an Eye Exam</a>
+                <a className="Hero-cta Hero-cta--eyeexam" href="#" data-ya-track="cta">Schedule an Eye Exam</a>
                 </div>
 
       </div>

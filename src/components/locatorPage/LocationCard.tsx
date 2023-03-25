@@ -115,7 +115,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                       {mainPhone}
                     </a>
                     <div style={{float:"right"}} className="Hero-ctaWrapper Hero-ctaWrapper--locator">
-                <a className="Hero-cta Hero-cta--locator" href="https://www.americasbest.com/scheduler/storeid/5186" data-ya-track="cta">Schedule Exam</a>
+                <a className="Hero-cta Hero-cta--locator" href="#" data-ya-track="cta">Schedule Exam</a>
                 </div>
                   </div>
                  

@@ -76,8 +76,8 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   document,
 }): HeadConfig => {
 
-  let metaDescription = "Find your nearest Whitbread store and which services are available." + document.name;
-  let metaTitle = `Whitbread Store in ${document.name} | Find a Local Store`;
+  let metaDescription = "Find your nearest America's Best store and which services are available." + document.name;
+  let metaTitle = `America's Best Store in ${document.name} | Find a Local Store`;
   let canonicalURL = document._site ? document._site + document.slug + ".html" : stagingBaseurl + document.slug + ".html"
   let ogmetaImage = document._site.url ? document._site.url : "https://cdn.Whitbread.co.uk/en/assets/images/large/IMG_10480.jpg"
   return {
@@ -112,7 +112,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           name: "author",
-          content: " Whitbread",
+          content: " America's Best",
         },
       },
 

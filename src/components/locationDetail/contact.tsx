@@ -42,14 +42,14 @@ const Contact = (props: any) => {
           </div>
         </div>
         <ul className="">
-          <li className="getdirection-button-box">
+          {/* <li className="getdirection-button-box"> */}
             <GetDirection
               buttonText={c_getDirectionsCTAText?c_getDirectionsCTAText:StaticData.getDirection}
               address={address}
               latitude={latitude}
               longitude={longitude}
             />
-          </li>
+          {/* </li> */}
         </ul>
 
 

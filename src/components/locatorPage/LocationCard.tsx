@@ -73,7 +73,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                 </div>
                 : ''}
             </div>
-            <div style={{ float: "right" }} className="locator-button-box">
+            <div style={{ float: "right" }} className="">
               {result.rawData.displayCoordinate ?
                 <GetDirection buttonText={StaticData.getDirection} address={address} latitude={result.rawData.displayCoordinate?.latitude} longitude={result.rawData.displayCoordinate?.longitude} />
                 : <GetDirection buttonText={StaticData.getDirection} address={address} latitude={result.rawData.yextDisplayCoordinate?.latitude} longitude={result.rawData.yextDisplayCoordinate?.longitude} />}

@@ -1,59 +1,46 @@
 import { Link } from "@yext/pages/components";
 import * as React from "react";
-import abbanner from "../../images/ab-banner.jpg"
-import dt12 from "../../images/dtl2.jpg"
-import PhotoSlider from "./PhotoSlider"
-import RtfConverter from "@yext/rtf-converter";
+import CustomMap from "./CustomMap";
 
-export default function About(props: any) {
-  function convertToRtf(rtf:any) {
-    rtf = rtf.replace(/\\par[d]?/g, "");
-    rtf = rtf.replace(/\{\*?\\[^{}]+}|[{}]|\\\n?[A-Za-z]+\n?(?:-?\d+)?[ ]?/g, "")
-    rtf=rtf.replace('/','');
-    rtf=rtf.replace(';','');
-    rtf=rtf.replace('-','');
-    return rtf.replace(/\\'[0-9a-zA-Z]{2}/g, "").trim();
-}
+
+const About = (props: any) => {
+  const { yextDisplayCoordinate, c_aboutheading, c_aboutdatas } = props;
   return (
     <>
-      <div className="about-sec ">
-      <div className="container-custom">
-        <div className="about-inner-sec">
-        <h2 className="for-mob">{props.name}</h2>
+      <div className="About Anchor js-about">
+        <div className="About-container">
+          <div className="About-mapContainer">
+            <div className="location-map-wrapper js-location-map-wrapper">
 
-          <div className="w-full lg:w-2/5 xl:w-[47%] relative  left-0">
-              <div className="lg:h-full">
-              {props.photoGallery ?
-                    props.photoGallery.map((element:any) => (   
+              <CustomMap prop={yextDisplayCoordinate} />
 
-                        <img height={518} width={658} src={element.url} alt="photo" />
-                  
-                      ))
-                    : ''}
-              </div>
+            </div>
+
           </div>
-          <div className="about-content">
-            <div className="mb-4">
-              <h2>{props.name}</h2>
-              <div className="">
-              <div class="about-content-inner" dangerouslySetInnerHTML={{__html: convertToRtf(props.description)}}/>
-              </div>
-              {props.c_viewMore.link&&props.c_viewMore.label?
-              <div className="content-center w-full ">
-                <Link href={props.c_viewMore.link} className="button-red"
-                 data-ya-track={`about-button`}
-                 eventName={`about-button`}
-                 rel="noopener noreferrer"
-                >{props.c_viewMore.label}</Link>
-              </div>
-              :''}
+          <div className="About-infoContainer">
+            <h2 className="About-title">{props.c_aboutheading.heading}</h2>
+            <div className="About-description">
+              {props.c_aboutdatas.map((item: any) =>
+
+                <p>
+                  <strong>
+                    {item.strongtext}
+                  </strong><br />
+                  {item.destext}
+                </p>
+              )}
+
+            </div>
+            <div className="About-ctaWrapper">
+              <a className="About-cta" href="#" data-ya-track="cta">{props.c_aboutheading.cta.label}</a>
             </div>
           </div>
-        </div>
+
         </div>
       </div>
     </>
   )
 
 
-}
+};
+export default About;

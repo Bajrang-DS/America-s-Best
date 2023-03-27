@@ -171,6 +171,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
 }
+.Header-submit:hover, .Header-submit:active, .Header-submit:focus {
+  background-color: #fff;
+  color: #024b86;
+  border-color: #024b86;
+}
 .Header-linkWrapper--ctas {
   margin-left: 1.25rem;
 }
@@ -192,6 +197,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
     padding-bottom: 0.625rem;
     height: 50px;
 
+}
+.Header-link--ctas:hover, .Header-link--ctas:active, .Header-link--ctas:focus {
+  background-color: #fff;
+  color: #a6182e;
+  border-color: #a6182e;
 }
 a.Header-searchLabelText {
   height: 41px;
@@ -364,7 +374,7 @@ body.menu-opened{ @apply overflow-hidden lg:overflow-auto;}
 .banner-sec h1{ @apply text-3xl text-center uppercase }
 .locator-main{ @apply  mt-10  align-bottom w-full max-w-[99.5rem] mx-auto px-0 md:px-4 lg:px-6 xl:px-0}
 .left-listing{ @apply w-full md:w-[30rem] lg:w-[33.6875rem] }
-.map-section{@apply w-full md:w-[calc(100%_-_30rem)] lg:w-[calc(100%_-_33.6875rem)]  md:pl-8 float-right}
+.map-section{@apply w-full md:w-[calc(100%_-_30rem)] lg:w-[calc(100%_-_33.6875rem)]  md:pl-4 float-right}
 .locator-map-block{  @apply w-full  h-[80vh] md:h-screen top-0 order-1 lg:order-none z-[99];}
 .hero-section .hero-content .banner-text.banner-dark-bg{ @apply  border-l-0 inline-block flex flex-col items-center p-4      rounded-lg backdrop-blur-sm bg-Dark-red mx-auto w-[340px] sm:w-[500px] px-2.5 text-center}
 .hero-section .hero-content .banner-text.banner-dark-bg h1{  @apply text-2xl md:text-[1.75rem] mb-1.5 font-normal}
@@ -384,14 +394,14 @@ body:not(.mapView) .mobile-btns .btn.listBtn{  @apply text-Dark-red border-t-0 b
 body.mapView .mobile-btns .btn.mapBtn{  @apply text-Dark-red border-t-0 border-l-0 border-r-0 !border-b-2 !border-red  text-lg font-second-main-font !capitalize hover:bg-transparent  }
 
 /* left listing */
-.search-bx{@apply  mb-0  z-20 px-4 md:px-0  pt-0 pb-6 text-gray-dark float-left w-full md:w-[30rem] lg:w-[33.6875rem] border-b border-[#d8d8d8] }
+.search-bx{@apply  mb-0  z-20 px-4 md:pl-3  pt-0 pb-6 text-gray-dark float-left w-full md:w-[30rem] lg:w-[33.6875rem] border-b border-[#d8d8d8] bg-[#f5f8fa]}
 .search-bx button{ @apply float-left mr-0 relative text-white text-xs sm:text-sm }
 .search-bx button.useMyLocation {@apply text-dark-gray flex items-center font-second-main-font text-lg}
 .search-bx button.useMyLocation .icon{@apply mr-1.5}
 .search-field{@apply flex relative  }
-.search-bx .search-btn{@apply absolute top-0 rounded-none right-0  text-white p-2 w-12 h-12 text-center bg-red hover:bg-hover-btn}  
+.search-bx .search-btn{@apply absolute top-0 rounded-none right-0  text-white p-2 w-12 h-12 text-center bg-[#024b86] }  
 .search-bx .search-btn svg{ @apply mx-auto}
-.search-field input{@apply  w-full bg-white h-12 text-dark-gray placeholder:text-dark-gray  py-2 pr-20 sm:py-4 sm:pr-40 pl-4 leading-7  text-[1.0625rem] font-main-font  border border-[#8c8c8c] rounded-none }
+.search-field input{@apply  w-full bg-white h-12 text-dark-gray placeholder:text-dark-gray  py-2 pr-20 sm:py-4 sm:pr-40 pl-4 leading-7  text-[1.0625rem] font-main-font  border border-[#8c8c8c] rounded-none border-none}
 .location p{ @apply mr-2 absolute rounded-lg -left-4 top-[0px] sm:top-[2px] xl:top-1}
 .search-bx .whitespace-nowrap{  @apply text-white !font-normal py-0 }
 .location{ @apply  border-b border-[#d8d8d8]  mt-0 }
@@ -401,7 +411,7 @@ body.mapView .mobile-btns .btn.mapBtn{  @apply text-Dark-red border-t-0 border-l
 .location.fixed-hover .result-inner .svg-map-icn svg{@apply fill-red }
 
    
-.location .button-bx{  @apply max-w-lg justify-start xl:mx-auto pl-2 flex-row lg:pl-[19.75rem]}
+.location .button-bx{  @apply max-w-lg justify-start xl:mr-[8px] pl-2 flex-row  justify-end}
 .result-list .location{ @apply first:mt-0}
 .location .button-bx .btn{@apply w-[9.75rem]  border-none text-[#024b86]    }
 .location .button-bx .btn{
@@ -410,7 +420,7 @@ body.mapView .mobile-btns .btn.mapBtn{  @apply text-Dark-red border-t-0 border-l
 }
 .location .button-bx .btn.notHighligh{@apply w-full md:w-[48%] bg-transparent justify-start mt-0  border-none text-black underline  }
 .location .button-bx .btn + .btn{  @apply mt-2 ml-2 md:mt-0 hover:no-underline   w-auto }
-.location .button-bx .btn:hover svg{@apply !fill-red }
+.location .button-bx .btn:hover svg{@apply !fill-[] }
 .map-count{ @apply absolute text-white left-1/2 -translate-x-1/2 top-2 md:top-1 2xl:top-1 font-second-main-font text-xs }
 #result-1 .result-inner{ @apply pt-0 md:pt-4}
 #result-1 .result-inner .availablity-content{@apply mt-2}
@@ -419,12 +429,12 @@ body.mapView .mobile-btns .btn.mapBtn{  @apply text-Dark-red border-t-0 border-l
 .location .result-inner .green-dot, .location .result-inner .red-dot{ @apply  flex  }
 .location .result-inner .green-dot svg, .location .result-inner .red-dot svg{ @apply  ml-1 mt-1 }
 .location-with-filter{ @apply mb-6 flex items-center justify-between text-sm leading-5}
-.location-with-filter h1{@apply text-lg font-normal text-dark-gray my-0 font-second-main-font text-[1.75rem]}
+.location-with-filter h1{@apply text-lg font-[600] text-[#024b86] my-0 font-[system-ui] text-[2rem]}
 .list-count{ @apply border-b border-gray-light mb-4 p-2 flex  flex-row items-center}
 .result-inner{@apply p-4 }
 .button-bx{@apply flex flex-col sm:flex-row mt-2.5 justify-around  ml-6}
 .button-bx .btn{@apply py-1.5 md:py-2  text-center cursor-pointer leading-4 sm:leading-[1.375rem] w-full sm:w-[48%]  
-   px-2 transition-all duration-300 hover:bg-hover-btn text-gray-dark
+   px-2 transition-all duration-300 hover:bg-[#024b86] text-gray-dark
     hover:text-white   hover:border-transparent  bg-white text-sm md:text-base font-medium flex items-center justify-center  }
 .button-bx .btn + .btn{  @apply mt-2 sm:mt-0}     
 .button-bx .btn:hover svg{@apply fill-white  }
@@ -502,8 +512,8 @@ table.day-hrs .time-b{  @apply text-lg md:text-lg  w-auto leading-[1.875rem] rou
 .location-name-miles .distance{
   @apply sm:absolute sm:-top-0.5 right-0 text-base md:text-lg mt-1 sm:mt-0
 }
-.icon-row a{
-  @apply hover:underline
+.icon-row a:hover{
+  @apply bg-[#fff] text-[#a6182e] border-[#a6182e]
 }
 
 .icon-row{
@@ -572,15 +582,20 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 /* locator page start  */
 
 /* breadcrumb */
-.breadcrumb{@apply mt-2 text-nav-link py-2 w-[92%]}
+.breadcrumb{@apply text-nav-link pt-[1.5rem] pb-[0.5rem] w-[97%] h-20}
 .breadcrumb ul{
   @apply flex flex-wrap items-center
 }
 .breadcrumb ul li{
-  @apply md:mr-2.5 font-second-main-font text-dark-gray flex items-center text-base md:text-base
+  @apply md:mr-2.5 font-second-main-font text-dark-gray flex items-center 
 }
 .breadcrumb ul li .home{
   @apply underline
+}
+.breadcrumb ul li {
+  /* margin-right: 0.625rem; */
+  font-size: 1.2rem;
+  line-height: 1.5rem;
 }
 
 .breadcrumb ul li{
@@ -709,10 +724,10 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 .view-more{  @apply text-center mt-5}
 
 /* near by */
-.nearby-sec{@apply bg-transparent md:bg-light-grey w-full pt-7 pb-0 md:pb-[3.75rem] pt-[10rem] }
+.nearby-sec{@apply bg-transparent md:bg-light-grey w-full pt-7 pb-0 md:pb-[3.75rem] pt-[4rem] }
 .nearby-sec-inner{@apply sm:mx-auto sm:max-w-[33.5rem] lg:mx-auto lg:max-w-none flex flex-col lg:flex-row gap-4 justify-center pb-0 xl:pb-0 }
 .nearby-sec .splide__slide{@apply xl:px-4}
-.nearby-card{@apply w-full bg-white overflow-hidden  z-10 relative shadow-sm last:mb-0 lg:last:mb-6  mb-6 lg:mt-6  lg:relative p-3 md:p-5 border border-box-border
+.nearby-card{@apply  bg-white overflow-hidden  z-10 relative shadow-sm last:mb-0 lg:last:mb-6  mb-6 lg:mt-6  lg:relative p-3 md:p-5 border border-box-border
 }
 .nearby-card .red-dot{ @apply !justify-start}
 .nearby-card .icon-row{ @apply pl-0}
@@ -758,6 +773,11 @@ a.Link.btn.notHighligh {
   padding-left: 0;
   margin-left: 0px !important;
   text-decoration-line: none !important;
+}
+a.Link.btn.notHighligh:hover > .locator-button-box{
+  background-color: #024b86;
+  color: #fff;
+  border-color: #024b86;
 }
 
 /* newsletter sec */
@@ -946,7 +966,7 @@ a.Link.btn.notHighligh {
   background: white;
   width: 69%;
   /* float: left; */
-  margin-top: 70px;
+  /* margin-top: 70px; */
   margin-left: 20px;
   margin-bottom: 50px;
   padding-left: 40px;
@@ -1011,8 +1031,8 @@ h1.entity-name{
     color: #024b86 !important;
     font-weight: 700;
     text-transform: uppercase;
-    padding: 0.2rem 0.875rem;
-    height: 1.8rem;
+    /* padding: 0.2rem 0.875rem; */
+    height: 1.6rem;
     width: 9.5rem;
     border: 1px solid #024b86;
     border-radius: 125rem;
@@ -1045,6 +1065,11 @@ h1.entity-name{
   border: 0.125rem solid;
   border-color: #a6182e;
 }
+.Hero-cta--eyeexam:hover, .Hero-cta--eyeexam:active, .Hero-cta--eyeexam:focus {
+  background-color: #fff;
+  color: #a6182e;
+  border-color: #a6182e;
+}
 .Hero-cta--copyright {
   max-width: 31.25rem;
   
@@ -1069,10 +1094,232 @@ h1.entity-name{
   text-align: center;
   background-color: #a6182e;
   color: #fff;
-  padding: 0.5rem 0.7rem;
+  padding: 0.5rem 0.77rem;
   font-weight: 500;
   text-transform: uppercase;
   border: 0.125rem solid;
   border-color: #a6182e;
 }
+.splide-slide{
+  display: flex;
+    gap: 2rem;
+    /* justify-content: center; */
 
+}
+ 
+/* sticky header */
+
+.StickyNav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: #f5f8fa;
+  border: 2px solid #0a3360;
+  padding: 1.875rem 0;
+  z-index: 99;
+}
+.StickyNav-container {
+  width: 83.75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: #0a3360;
+    font-weight: 500;
+}
+.StickyNav-title {
+  font-family: "Lato",Helvetica,Arial,sans-serif;
+  /* color: #000; */
+  font-size: 1.525rem;
+  line-height: 1.56;
+  letter-spacing: .02188rem;
+  color: #0a3360;
+  margin-right: 6.25rem;
+}
+.StickyNav-list{
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  margin: 0 -2.8125rem;
+}
+.StickyNav-link {
+  text-decoration: none;
+  padding: 0 2.8125rem;
+  font-size: 1.325rem;
+}
+.StickyNav-link:active, .StickyNav-link:focus, .StickyNav-link:hover {
+  text-decoration: underline;
+}
+
+/* photogallery section */
+
+.Anchor {
+  position: relative;
+}
+.Categories {
+  padding: 4.125rem 0;
+}
+.Anchor-position {
+  position: absolute;
+  top: -5.75rem;
+}
+.Categories-container {
+  width: 97%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.Categories-title {
+  font-size: 2rem;
+  line-height: 1.19;
+  letter-spacing: .01563rem;
+  font-weight: 700;
+  color: #024b86;
+  margin-bottom: 1.875rem;
+  text-align: center;
+}
+.Categories-list {
+  margin: -1.5625rem;
+  flex-wrap: wrap;
+  display: flex;
+}
+.Categories-listItem {
+  padding: 1.5625rem;
+  width: 25%;
+}
+.Category-name {
+  font-size: 1.5rem;
+  line-height: 1.17;
+  letter-spacing: .02188rem;
+  font-weight: 700;
+  margin-top: auto;
+  padding-bottom: 1.25rem;
+  display: block;
+  text-align: center;
+}
+.Categories-ctaWrapper{
+  justify-content: center;
+    margin-top: 1.25rem;
+    display: flex;
+    -webkit-box-pack: center;
+}
+.Categories-cta{
+  display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: center;
+    background-color: #0078b4;
+    color: #fff;
+    padding: 0.75rem 1.5625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 0.125rem solid;
+    border-color: #0078b4;
+}
+.Categories-cta:hover, .Categories-cta:active, .Categories-cta:focus {
+  background-color: #fff;
+  color: #0078b4;
+  border-color: #0078b4;
+}
+.Category-link:hover .Category-name {
+  text-decoration: underline;
+}
+.shop-gallery{
+  width: 100%;
+  height: 14rem;
+}
+
+/* about section */
+
+.Anchor {
+  position: relative;
+  padding: 3.125rem 0;
+}
+.About-container {
+  min-height: 39.6875rem;
+  width: 97%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    display: flex;
+    -webkit-box-align: start;
+    align-items: flex-start;
+}
+.About-mapContainer {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  /* -ms-flex-negative: 0; */
+  flex-shrink: 0;
+  width: 41.6666666667%;
+  height: 39.6875rem;
+}
+.About-mapContainer .location-map-wrapper {
+  height: 100%;
+}
+.About-infoContainer {
+  position: relative;
+  padding: 3.75rem;
+  padding-bottom: 1.875rem;
+  background-color: #f5f8fa;
+  margin-top: 4.125rem;
+  margin-left: calc(41.6666666667% - 4.125rem);
+}
+.About-title {
+  font-size: 2rem;
+  line-height: 1.19;
+  letter-spacing: .01563rem;
+    font-weight: 700;
+    color: #024b86;
+    margin-bottom: 1.875rem;
+}
+.About-description p:not(:last-child) {
+  margin-bottom: 1.25rem;
+}
+.About-description b, .About-description strong {
+  font-weight: 700;
+}
+.About-ctaWrapper {
+  -webkit-transform: translateY(calc(50% + 1.875rem));
+  transform: translateY(calc(50% + 1.875rem));
+}
+.About-ctaWrapper {
+  position: relative;
+
+  display: flex;
+}
+.About-cta{
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  text-align: center;
+  background-color: #0078b4;
+  color: #fff;
+  padding: 0.75rem 1.5625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 0.125rem solid;
+  border-color: #0078b4;
+  position: relative;
+  padding-left: 1.1875rem;
+  border-radius: 0.125rem;
+}
+.About-cta:hover, .About-cta:active, .About-cta:focus {
+  background-color: #fff;
+  color: #0078b4;
+  border-color: #0078b4;
+}

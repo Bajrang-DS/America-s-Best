@@ -1,32 +1,37 @@
 import * as React from "react";
-import gallerybg from "../../images/bg-service.jpg"
+// import gallerybg from "../../images/bg-service.jpg"
 
 const PhotoGallery = (props: any) => {
+  const { c_galleryitems, c_galleryimage } = props;
 
-   const photos = props.photos.map((element:any) => {
-    const {height,url, width}=element;
-    return (<div className="image-frame">
-      <img   height={height}   
-      src={url} // use normal <img> attributes as props
-        width={width}      
-        className="image  "
-       alt="photogallery"
-      >
-      </img>
-    </div>)
-});
-
+  // console.log(props.c_galleryimage,"bajrang")
 
   return (
     <>
-    
-      <div className="space-y-5 container mx-auto">
-     <div className="gallery-bg"> <img className=" " src={gallerybg} width="38" height="35" alt="gallerybg"/></div> 
-        <div className="text-xl font-semibold text-center">
-         <h1 className="text-red-eb pt-8"> Photos</h1>
-          </div>
-        <div className="photos-row">
-            {photos}
+
+      <div className="Categories Anchor">
+        <div className="Categories-container">
+          <h2 className="Categories-title">{props.c_galleryitems?.title}</h2>
+          <ul className="Categories-list l-row">
+            {props.c_galleryimage.map((items: any) => {
+              return (
+                <>
+                  <li className="Categories-listItem l-col-sm-6-down l-col-md-3-up">
+                    <div className="Category">
+                      <a className="Category-link" href="#">
+                        <div className="Category-imageWrapper">
+                          <img className="shop-gallery" src={items.image?.url} alt="" />
+                        </div>
+                        <span className="Category-name">{items.cta?.label}</span>
+                      </a>
+                    </div>
+                  </li>
+                </>
+              )
+            }
+            )}
+          </ul>
+          <div className="Categories-ctaWrapper"><a className="Categories-cta" href="#" data-ya-track="cta">{props.c_galleryitems?.shopcta?.label}</a></div>
         </div>
       </div>
     </>

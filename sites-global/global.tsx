@@ -4,7 +4,7 @@ export const cookieText =
 export const cookiesUrl = "https://www.matalan.co.uk/corporate/cookies";
 export const baseuRL = "https://liveapi-sandbox.yext.com/v2/accounts/me/entities/geosearch?radius=500"
 export const apikey_for_entity = "ea7ea73738da090eba9cafbc45220b0b"
-export const favicon="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAe1BMVEX///+rGi0AVrisHjC2HDCzGy/+/P28SFcFWbrMdoH7/P4AXMV0o9gAWsCMs98yd8b36uyxKz3ZmKDJbXq/UV+vJTe0MULAHTMJXLuwJzk2escjbcK4PU0AYM28Sll2pNnWkJnHZnPDXGlqnNWErt2/1e3isLfRgo3Pe4YDZWYVAAABbElEQVR4nO3c21bCMBBG4YltoILFA1Soh4J4fP8nVK+s3Gknf43s/QL51lxmsmJGRMfWZGzAsTTxyc6TdnO7sNkXennXTR2yOm33j310t44OBdtUKdvU2z56FQuHGqtOUlbNzw7QYXgFaNCgQYMGDRo0aNCgQYMGDRo0aNCgQf8bdJPfVe90HcvhRS1697D0SIv2Sor22m4xadCgQYMGDRo0aNCgQYMGDRr0X0Nz76FCX/ikRe+LS4+06K50uFOPQb4J8Ij1BWjQoEGDBg0aNGjQoEGDBg0aNGjQoEF/Q4u/yvB5P13PU3bwKYnX++lF2p6erdfL7sojy7JZ6vqHee0RiYiIiIiIiIiIhrX3+BBa28ra0uNLaGVlsOvgcM0tLbQf6OxqPic9NuKngVYFWhVoVaBVZYvOrmwnDVoRaFWgVYFWBVoVaFWgVYFWlS86t1prHB40iwv2eppdb2OvfH6X05NmaWPPjIhy7R2p5OY6tDdp3wAAAABJRU5ErkJggg==";
+export const favicon="https://i.insider.com/55a40a08eab8eacf01028ac8?width=750&format=jpeg&auto=webp";
 export const apiKey = "f5db9f723a7d2fd5badfb2d57d1ab853";
 export const googleApikey = "AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18";
 export const regionNames = new Intl.DisplayNames(['en'], { type: 'region' })
@@ -19,8 +19,8 @@ export const conversionDetailsPhone = {
   cid: "",
   cv: "2",
 };
-export const center_latitude=51.5095146286;
-export const center_longitude=-0.1244828354;
+export const center_latitude=38.889248;
+export const center_longitude=-77.050636;
 
 
 
@@ -36,7 +36,7 @@ xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" >
   
   d="M8.5,5.955A2.545,2.545,0,1,0,11.045,8.5,2.545,2.545,0,0,0,8.5,5.955Zm5.689,1.909A5.724,5.724,0,0,0,9.136,2.811V1.5H7.864V2.811A5.724,5.724,0,0,0,2.811,7.864H1.5V9.136H2.811a5.724,5.724,0,0,0,5.053,5.053V15.5H9.136V14.189a5.724,5.724,0,0,0,5.053-5.053H15.5V7.864ZM8.5,12.955A4.455,4.455,0,1,1,12.955,8.5,4.451,4.451,0,0,1,8.5,12.955Z"
   transform="translate(-1.5 -1.5)"
-  fill="#fff"
+  fill="black"
 />
 </svg>`;
 export const mobilesvg = `<svg xmlns="http://www.w3.org/2000/svg" width="14.35" height="22.96" viewBox="0 0 14.35 22.96">

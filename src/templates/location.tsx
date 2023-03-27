@@ -48,6 +48,7 @@ import FeaturesBrand from "../components/locationDetail/FeaturesBrand";
 import { Fade, Slide } from "react-awesome-reveal";
 import MgmTimber from "../components/locationDetail/MgmTimber";
 import { AnswerExperienceConfig } from "../config/answersHeadlessConfig";
+import StickHeader from "../components/locationDetail/StickHeader";
 
 /**
  * Required when Knowledge Graph data is used for a template.
@@ -70,7 +71,16 @@ export const config: TemplateConfig = {
       "yextDisplayCoordinate",
       "displayCoordinate",
       "cityCoordinate",
-      "c_bannerImage"
+      "c_bannerImage",
+      "dm_directoryParents.name",
+      "dm_directoryParents.slug",
+      "dm_directoryParents.dm_baseEntityCount",
+      "dm_directoryParents.meta.entityType",
+      "c_galleryimage",
+      "c_galleryitems",
+      "c_aboutheading",
+      "c_aboutdatas"
+
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
@@ -275,7 +285,12 @@ const Location: Template<ExternalApiRenderData> = ({
     displayCoordinate,
     cityCoordinate,
     name,
-    c_bannerImage
+    c_bannerImage,
+    dm_directoryParents,
+    c_galleryitems,
+    c_galleryimage,
+    c_aboutheading,
+    c_aboutdatas
   } = document;
 
   let templateData = { document: document, __meta: __meta };
@@ -449,6 +464,12 @@ const Location: Template<ExternalApiRenderData> = ({
               <div className="hero-image hero-image2">
                 <img className="ObjectFit-image" src={c_bannerImage?.url} alt="" />
               </div>
+              <BreadCrumbs
+                name={name}
+                parents={dm_directoryParents}
+                baseUrl={relativePrefixToRoot}
+                address={{}}
+              ></BreadCrumbs>
               <div className="location-information">
                 <div className="container">
                   <div className='banner-text banner-dark-bg justify-center text-left'>
@@ -464,9 +485,18 @@ const Location: Template<ExternalApiRenderData> = ({
                     yextDisplayCoordinate={yextDisplayCoordinate} longitude={yextDisplayCoordinate ? yextDisplayCoordinate.longitude : displayCoordinate?.longitude} hours={hours} additionalHoursText={additionalHoursText} ></Contact>
 
                 </div>
-               
+
               </div>
-              
+
+            </div>
+
+            <StickHeader _site={_site} />
+            <PhotoGallery c_galleryitems={c_galleryitems} c_galleryimage={c_galleryimage} />
+            <div>
+              <About
+                c_aboutheading={c_aboutheading} c_aboutdatas={c_aboutdatas} latitude={yextDisplayCoordinate ? yextDisplayCoordinate.latitude : displayCoordinate?.latitude}
+                longitude={yextDisplayCoordinate ? yextDisplayCoordinate.longitude : displayCoordinate?.longitude} yextDisplayCoordinate={yextDisplayCoordinate} />
+
             </div>
 
             <div className="nearby-sec">

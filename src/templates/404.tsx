@@ -22,11 +22,11 @@ export const config: TemplateConfig = {
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
-      entityIds: ["global-data"]
+      entityIds: ["globaldata"]
     },
     // The entity language profiles that documents will be generated for.
     localization: {
-      locales: ["en_GB"],
+      locales: ["en"],
       primary: false,
     },
   },
@@ -62,7 +62,7 @@ const FourOhFour: Template<TemplateRenderProps> = ({
   } = document;
   return (
     <>
-      <PageLayout global={_site}>
+      <PageLayout _site={_site}>
         <div className="content-list">
           <div className="container">
             <div className="sec-title text-center">

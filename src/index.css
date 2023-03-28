@@ -622,7 +622,12 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
   font-size: 1.2rem;
   line-height: 1.5rem;
 }
-
+.city-breadcrumb {
+  background: #e7ecef;
+}
+.storelocation-category {
+  text-align: center;
+}
 .breadcrumb ul li{
   @apply after:content-[''] last:after:content-none after:w-1.5 after:h-1.5 md:after:w-2 md:after:h-2 after:border-r after:border-b after:border-nav-link after:transform after:-rotate-45 after:mx-1.5 md:after:mx-1.5
 }

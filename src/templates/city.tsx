@@ -48,8 +48,8 @@ export const config: TemplateConfig = {
       "dm_directoryChildren.name",
       "dm_directoryChildren.slug",
       "dm_directoryChildren.id",
-       "dm_directoryParents.dm_baseEntityCount",
-       "dm_directoryChildren.dm_baseEntityCount",
+      "dm_directoryParents.dm_baseEntityCount",
+      "dm_directoryChildren.dm_baseEntityCount",
       "dm_directoryChildren.address",
       "dm_directoryChildren.hours",
       "dm_directoryChildren.mainPhone",
@@ -311,48 +311,48 @@ const City: Template<TemplateRenderProps> = ({
 
 
         {/* <SplideSlide > */}
-              <div style={{width:"23rem"}} className="nearby-card">
-                <div className="location-name-miles icon-row">
-                  <h2><Link className="inline-block notHighlight" href={`/${entity.id}`}
-                    data-ya-track={`${entity.name}`}
-                    eventName={`${entity.name}`}
-                    rel="noopener noreferrer"><b> {entity.name}</b></Link></h2>
+        <div style={{ width: "23rem" }} className="nearby-card">
+          <div className="location-name-miles icon-row">
+            <h2><Link className="inline-block notHighlight" href={`/${detailPageUrl}`}
+              data-ya-track={`${entity.name}`}
+              eventName={`${entity.name}`}
+              rel="noopener noreferrer"><b> {entity.name}</b></Link></h2>
 
-                </div>
-               
-                <div className="icon-row closeing-div">
-                  {entity.hours ?
-                    <div className="flex open-now-string items-center " data-id={`main-shop-${entity.id}`} >
-                      <OpenClose timezone={entity.timezone} hours={entity.hours} deliveryHours={entity.hours}></OpenClose>
-                    </div> :
-                    <div className="closeddot notHighlight red-dot">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8">
-                        <circle id="Ellipse_5" data-name="Ellipse 5" cx="4" cy="4" r="4" fill="#ad1e1f" />
-                      </svg>
-                      <div className="hours-info text-lg font-second-main-font closeddot">
-                        Closed
-                      </div>
-                    </div>
-                  }
-                </div>
-                <div className="icon-row content-col">
-                  <Address address={entity.address} />
-                </div>
-                <div className="button-bx direction">
-                <GetDirection buttonText={document.c_getDirectionsCTAText ? document.c_getDirectionsCTAText : "Get directions"} address={entity.address} latitude={entity.displayCoordinate ? entity.displayCoordinate.latitude : entity.yextDisplayCoordinate.latitude} longitude={entity.displayCoordinate ? entity.displayCoordinate.longitude : entity.yextDisplayCoordinate.longitude} />
-                </div>
-                <div className="button-bx">
-                  <Link className="btn hover:border-[1px]" href="#"
-                    data-ya-track={`viewstore-${entity.name}`}
-                    eventName={`viewstore-${entity.name}`}
-                    rel="noopener noreferrer">
-                    {/* <div dangerouslySetInnerHTML={{__html: View_Store}}/> */}
-                    SCHEDULE EXAM</Link>
-                  
+          </div>
 
+          <div className="icon-row closeing-div">
+            {entity.hours ?
+              <div className="flex open-now-string items-center " data-id={`main-shop-${entity.id}`} >
+                <OpenClose timezone={entity.timezone} hours={entity.hours} deliveryHours={entity.hours}></OpenClose>
+              </div> :
+              <div className="closeddot notHighlight red-dot">
+                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8">
+                  <circle id="Ellipse_5" data-name="Ellipse 5" cx="4" cy="4" r="4" fill="#ad1e1f" />
+                </svg>
+                <div className="hours-info text-lg font-second-main-font closeddot">
+                  Closed
                 </div>
               </div>
-              {/* </SplideSlide> */}
+            }
+          </div>
+          <div className="icon-row content-col">
+            <Address address={entity.address} />
+          </div>
+          <div className="button-bx direction">
+            <GetDirection buttonText={document.c_getDirectionsCTAText ? document.c_getDirectionsCTAText : "Get directions"} address={entity.address} latitude={entity.displayCoordinate ? entity.displayCoordinate.latitude : entity.yextDisplayCoordinate.latitude} longitude={entity.displayCoordinate ? entity.displayCoordinate.longitude : entity.yextDisplayCoordinate.longitude} />
+          </div>
+          <div className="button-bx">
+            <Link className="btn hover:border-[1px]" href="#"
+              data-ya-track={`viewstore-${entity.name}`}
+              eventName={`viewstore-${entity.name}`}
+              rel="noopener noreferrer">
+              {/* <div dangerouslySetInnerHTML={{__html: View_Store}}/> */}
+              SCHEDULE EXAM</Link>
+
+
+          </div>
+        </div>
+        {/* </SplideSlide> */}
 
 
       </>
@@ -439,15 +439,16 @@ const City: Template<TemplateRenderProps> = ({
         <AnalyticsScopeProvider name={""}>
 
           <Header _site={_site} />
-
-          <BreadCrumbs
-            name={name}
-            parents={dm_directoryParents}
-            baseUrl={relativePrefixToRoot}
-            address={{}}
-          ></BreadCrumbs>
+          <div className="city-breadcrumb">
+            <BreadCrumbs
+              name={name}
+              parents={dm_directoryParents}
+              baseUrl={relativePrefixToRoot}
+              address={{}}
+            ></BreadCrumbs>
+          </div>
           {/* <PhotoSlider _site={_site} /> */}
-          <h1 className="sec_heading mt-12" style={{ textAlign: "center", color: "Highlight" }}>
+          <h1 className="sec_heading m-4" style={{ textAlign: "center", color: "Highlight" }}>
             Available Stores in {name}, {document.dm_directoryParents[2].name},{" "}
             {document.dm_directoryParents[1].name}{" "}
           </h1>

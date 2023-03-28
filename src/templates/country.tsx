@@ -267,17 +267,19 @@ const Country: Template<TemplateRenderProps> = ({
       >
         <AnalyticsScopeProvider name={""}>
           <Header _site={_site} />
+          <div className="city-breadcrumb">
           <BreadCrumbs
             name={name}
             parents={dm_directoryParents}
             baseUrl={relativePrefixToRoot}
             address={{}}
           ></BreadCrumbs>
+          </div>
           {/* <PhotoSlider _site={_site} /> */}
-          <h1 className="sec_heading mt-12" style={{ textAlign: "center", color: "Highlight" }}>
+          <h1 className="sec_heading m-4" style={{ textAlign: "center", color: "Highlight" }}>
             All Regions of {name}{" "}
           </h1>
-          <div className="directory-country py-5 lg:py-[60px]">
+          <div className="directory-country nearby-sec py-5 lg:py-[60px]">
             <div className="container">
               <div className="flex flex-wrap justify-center -mx-4">
                 {childrenDivs}

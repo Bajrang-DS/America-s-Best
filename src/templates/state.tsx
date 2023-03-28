@@ -359,6 +359,7 @@ const State: Template<TemplateRenderProps> = ({
       >
         <AnalyticsScopeProvider name={""}>
           <Header _site={_site} />
+          <div className="city-breadcrumb">
           <BreadCrumbs
             name={name}
             parents={dm_directoryParents}
@@ -366,9 +367,10 @@ const State: Template<TemplateRenderProps> = ({
             address={{}}
 
           ></BreadCrumbs>
+          </div>
           {/* <PhotoSlider _site={_site} /> */}
 
-          <h1 className="sec_heading mt-12" style={{ textAlign: "center", color: "Highlight" }}>
+          <h1 className="sec_heading m-4" style={{ textAlign: "center", color: "Highlight" }}>
             Cities in {name}, {document.dm_directoryParents[1].name}{" "}
           </h1>
           <div className="directory-country nearby-sec">

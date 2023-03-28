@@ -71,12 +71,12 @@
       ],
       "filter": {
         "entityIds": [
-          "global-data"
+          "globaldata"
         ]
       },
       "localization": {
         "locales": [
-          "en_GB"
+          "en"
         ],
         "primary": false
       }

@@ -181,11 +181,11 @@ const renderHours = (week: Week, c_specific_day: any) => {
     i++;
   }
 
-  dayDom.sort(function sortByDay(a: any, b: any) {
-    const day1 = a.key?.toLowerCase();
-    const day2 = b.key?.toLowerCase();
-    return weekDays[day1] - weekDays[day2];
-  });
+  // dayDom.sort(function sortByDay(a: any, b: any) {
+  //   const day1 = a.key?.toLowerCase();
+  //   const day2 = b.key?.toLowerCase();
+  //   return weekDays[day1] - weekDays[day2];
+  // });
   return <tbody key={i}>{dayDom}</tbody>;
 };
 
@@ -327,7 +327,7 @@ const DayRow = (props: DayRow) => {
                     <>
                       {openint.isClosed ? (
                         <div className="time-group" key={index}>
-                          <span className="time-b closeddot">Closed</span>
+                          <span  className="time-b closeddot">Closed</span>
                         </div>
                       ) : (
                         openint?.openIntervals &&

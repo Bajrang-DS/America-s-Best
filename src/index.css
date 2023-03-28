@@ -372,7 +372,7 @@ body.menu-opened{ @apply overflow-hidden lg:overflow-auto;}
 /* banner sec */
 .banner-sec{ @apply bg-gray-light py-16 mt-4}
 .banner-sec h1{ @apply text-3xl text-center uppercase }
-.locator-main{ @apply  mt-10  align-bottom w-full max-w-[99.5rem] mx-auto px-0 md:px-4 lg:px-6 xl:px-0}
+.locator-main{ @apply  mt-10  align-bottom w-[97%] max-w-[99.5rem] mx-auto px-0 md:px-4 lg:px-6 xl:px-0}
 .left-listing{ @apply w-full md:w-[30rem] lg:w-[33.6875rem] }
 .map-section{@apply w-full md:w-[calc(100%_-_30rem)] lg:w-[calc(100%_-_33.6875rem)]  md:pl-4 float-right}
 .locator-map-block{  @apply w-full  h-[80vh] md:h-screen top-0 order-1 lg:order-none z-[99];}
@@ -409,11 +409,16 @@ body.mapView .mobile-btns .btn.mapBtn{  @apply text-Dark-red border-t-0 border-l
 
 .location .result-inner .svg-map-icn svg{@apply fill-gray }
 .location.fixed-hover .result-inner .svg-map-icn svg{@apply fill-red }
-
+.location.fixed-hover.active{
+  background-color: #dbe6ed;
+}
+.location.active{
+  background-color: #f7f7f7;
+}
    
-.location .button-bx{  @apply max-w-lg justify-start xl:mr-[8px] pl-2 flex-row  justify-end}
+.location .button-bx{  @apply max-w-lg justify-start xl:mr-[8px] flex-row  justify-end}
 .result-list .location{ @apply first:mt-0}
-.location .button-bx .btn{@apply w-[9.75rem]  border-none text-[#024b86]    }
+.location .button-bx .btn{@apply w-[12.85rem]  border-none text-[#024b86]    }
 .location .button-bx .btn{
   border: 0.125rem solid;
   border-color: #024b86;
@@ -421,7 +426,23 @@ body.mapView .mobile-btns .btn.mapBtn{  @apply text-Dark-red border-t-0 border-l
 .location .button-bx .btn.notHighligh{@apply w-full md:w-[48%] bg-transparent justify-start mt-0  border-none text-black underline  }
 .location .button-bx .btn + .btn{  @apply mt-2 ml-2 md:mt-0 hover:no-underline   w-auto }
 .location .button-bx .btn:hover svg{@apply !fill-[] }
-.map-count{ @apply absolute text-white left-1/2 -translate-x-1/2 top-2 md:top-1 2xl:top-1 font-second-main-font text-xs }
+.map-count{ 
+  content: counter(resultCount,decimal);
+  position: absolute;
+  /* left: 2rem; */
+  /* background: #0078b4; */
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  /* -webkit-box-pack: center; */
+  justify-content: center;
+  /* -webkit-box-align: center; */
+  align-items: center;
+  color: #fff;
+  background-color: #024b86;
+}
+
 #result-1 .result-inner{ @apply pt-0 md:pt-4}
 #result-1 .result-inner .availablity-content{@apply mt-2}
 /* .location-phn{ @apply  hover:!no-underline text-lg } */
@@ -432,7 +453,7 @@ body.mapView .mobile-btns .btn.mapBtn{  @apply text-Dark-red border-t-0 border-l
 .location-with-filter h1{@apply text-lg font-[600] text-[#024b86] my-0 font-[system-ui] text-[2rem]}
 .list-count{ @apply border-b border-gray-light mb-4 p-2 flex  flex-row items-center}
 .result-inner{@apply p-4 }
-.button-bx{@apply flex flex-col sm:flex-row mt-2.5 justify-around  ml-6}
+.button-bx{@apply flex flex-col sm:flex-row mt-2.5 justify-around }
 .button-bx .btn{@apply py-1.5 md:py-2  text-center cursor-pointer leading-4 sm:leading-[1.375rem] w-full sm:w-[48%]  
    px-2 transition-all duration-300 hover:bg-[#024b86] text-gray-dark
     hover:text-white   hover:border-transparent  bg-white text-sm md:text-base font-medium flex items-center justify-center  }
@@ -445,14 +466,16 @@ body .ps__rail-y{ @apply opacity-100 mt-4 !bg-gray-light w-4}
 body .ps__thumb-y{ @apply bg-gray-dark opacity-100 right-1 w-2}
 body .ps__rail-y:hover .ps__thumb-y{ @apply w-2 bg-gray-dark}
 table.day-hrs{  @apply border-none w-[106%] mb-4}
-table.day-hrs td{ @apply   text-right  }
+table.day-hrs td{ @apply   text-center  }
 .storelocation-openCloseTime table.day-hrs{  @apply bg-white xl:max-w-md 2xl:max-w-lg border   mx-auto xl:right-3.5 relative}
 .storelocation-openCloseTime table.day-hrs .dayName{  @apply w-auto}
 .storelocation-openCloseTime table.day-hrs .time-group{  @apply w-full justify-between }
 .storelocation-openCloseTime .day-hrs td{  @apply px-2.5}
 .storelocation-openCloseTime .day-hrs td.dayName{  @apply pl-8}
 .storelocation-openCloseTime table.day-hrs .currentDay .dayName .checked{  @apply left-2.5}
-
+span.time-b.closeddot {
+  padding-right: 6rem;
+}
 /* .storelocation-openCloseTime table.day-hrs .time-b{
   @apply bg-location-bg
 } */
@@ -512,7 +535,7 @@ table.day-hrs .time-b{  @apply text-lg md:text-lg  w-auto leading-[1.875rem] rou
 .location-name-miles .distance{
   @apply sm:absolute sm:-top-0.5 right-0 text-base md:text-lg mt-1 sm:mt-0
 }
-.icon-row a:hover{
+.Hero-cta--locator:hover{
   @apply bg-[#fff] text-[#a6182e] border-[#a6182e]
 }
 
@@ -554,7 +577,7 @@ table.day-hrs .time-b{  @apply text-lg md:text-lg  w-auto leading-[1.875rem] rou
 
 .banner-dark-bg .closeing-div .opendot{ @apply  font-main-font text-xl text-gray relative before:hidden after:hidden }
 .banner-dark-bg .closeing-div .closeddot{ @apply  font-main-font text-xl text-gray relative before:hidden after:hidden   }
-.detail-page .notHighlight{ @apply  text-2xl}
+.detail-page .notHighlight{ @apply  text-2xl p-3}
 .green-dot, .red-dot{ @apply  flex  }
 .green-dot svg, .red-dot svg{ @apply  mr-1  }
 
@@ -566,8 +589,8 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 .pagination-conatiner{ @apply mt-4}
 .nearby-btn .btn{ @apply !w-full}
 .nearby-card .button-bx{@apply ml-0 lg:ml-0 flex-row justify-start }
-.nearby-card .button-bx .btn{@apply w-[18.75rem] bg-[#a6182e]  hover:bg-white hover:text-[#a6182e] font-second-main-font py-2.5  hover:border-[#a6182e]  text-white   }
-.nearby-card .button-bx .btn.notHighligh{@apply w-full  ml-2 bg-white justify-start  border-none text-black underline  }
+.nearby-card .button-bx .btn{@apply w-[18.75rem] bg-[#a6182e]  hover:bg-white hover:text-[#a6182e]  py-2.5  border-[1px]  text-white   }
+.nearby-card .button-bx .btn.notHighligh{@apply w-[57%] bg-white justify-start  border-none text-[#024b86] text-[13px] font-[revert]}
 .nearby-card .button-bx .btn + .btn{@apply mt-2 md:mt-0 w-auto hover:no-underline}
 .nearby-card .button-bx .btn:hover svg{@apply !fill-red }
 .map-section .button-bx .btn{@apply w-[11.25rem] md:w-[9.25rem] lg:w-[11.25rem]  bg-Dark-red hover:bg-hover-btn font-second-main-font  border-none text-white  }
@@ -576,13 +599,15 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 .map-section .button-bx .btn:hover svg{@apply !fill-red }
 
 .nearby-card .green-dot svg, .nearby-card .red-dot svg{@apply order-2 ml-1 mt-1 }
-
+.nearby-card .button-bx .btn{
+  border: 1px solid;
+}
 
 
 /* locator page start  */
 
 /* breadcrumb */
-.breadcrumb{@apply text-nav-link pt-[1.5rem] pb-[0.5rem] w-[44%] h-20 bg-[#e7ecef] relative pl-[20px]}
+.breadcrumb{@apply text-nav-link pt-[1.5rem] pb-[0.5rem] w-[45%] h-20 bg-[#e7ecef] relative pl-[20px]}
 .breadcrumb ul{
   @apply flex flex-wrap items-center
 }
@@ -631,7 +656,7 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 .address-bx, .phone-bx{ @apply text-base  }
 .address-bx h4{@apply text-red font-normal text-base uppercase }
 .phone-bx h4{@apply text-red font-normal text-base uppercase }
-.hours{ order: 0; @apply bg-white  w-full  lg:w-[19.8125rem] p-4 md:p-6 }
+.hours{ order: 0; @apply   w-full  lg:w-[19.8125rem] p-4 md:p-6 }
 .address-with-availablity{  @apply flex  items-start flex-col}
 .address-with-availablity .address{  @apply pr-5}
 .address-with-availablity > div{  @apply flex-1}
@@ -682,7 +707,7 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 /* services sec */
 .services-sec{@apply bg-white w-full pt-8 pb-16 md:py-9 }
 .sec-title{@apply mb-4 md:mb-7}
-.sec-title h2, .sec-title h1{@apply text-center text-3xl font-second-main-font md:text-[1.75rem] text-[#024b86] font-[700] }
+.sec-title h2, .sec-title h1{@apply text-center text-3xl  md:text-[1.75rem] text-[#024b86] font-[700] }
 .sec-title h1{@apply mb-5}
 .services-inner{@apply flex flex-wrap  }
 .services-inner .service-icon{@apply  m-0 }
@@ -761,19 +786,25 @@ ul#splide-nearby-list {
   width: 15rem;
   text-decoration-line: none !important;
 }
-/* a.Link.btn.notHighligh {
-  letter-spacing: .0625rem;
-  color: #024b86 !important;
-  text-transform: uppercase;
+a.Link.btn.notHighligh {
+  font-size: .75rem;
+  line-height: 2.08;
+  background-color: #fff;
+  color: #024b86;
   font-weight: 700;
-  width: 100%;
-  justify-content: flex-start;
-  --tw-text-opacity: 1;
-  background-color: white;
-  padding-left: 0;
-  margin-left: 0px !important;
-  text-decoration-line: none !important;
-} */
+  text-transform: uppercase;
+  padding: 0.3125rem 0.875rem;
+  height: 1.5625rem;
+  width: 6.5rem;
+  border: 0.0625rem solid #024b86;
+  border-radius: 125rem;
+  letter-spacing: .03125rem;
+}
+a.Link.btn.notHighligh:hover{
+  background-color: #024b86;
+  color: #fff;
+  border-color: #024b86;
+}
 
 
 /* newsletter sec */
@@ -1006,7 +1037,7 @@ h1.entity-name{
     font-weight: 300;
     color: #000;
 }
-.getdirection-button-box{
+/* .getdirection-button-box{
   font-size: .75rem;
   line-height: 2.08;
   background-color: #fff !important;
@@ -1028,14 +1059,16 @@ h1.entity-name{
   line-height: 2.08;
   /* background-color: #fff !important; */
   /* color: #024b86 !important; */
-  font-weight: 700;
+  /* font-weight: 700;
   text-transform: uppercase;
   padding: 4px 6px;
   height: 2rem;
-  width: 8rem;
+  width: 8rem; */
   /* border: 1px solid #024b86; */
-  border-radius: 125rem;
-  letter-spacing: .03125rem;
+  /* border-radius: 125rem;
+  letter-spacing: .03125rem; */
+  li.getdirection-button-box {
+    padding: 20px;
 }
 .locator-button-box{
 
@@ -1058,7 +1091,7 @@ h1.entity-name{
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 2.5rem;
+  margin-top: 3.5rem;
 }
 .Hero-cta--eyeexam {
   display: -webkit-box;
@@ -1336,4 +1369,157 @@ h1.entity-name{
   background-color: #fff;
   color: #0078b4;
   border-color: #0078b4;
+}
+
+/* Brand Section */
+
+.Brands {
+  padding: 3.125rem 0;
+  position: relative;
+}
+.Brands-container {
+  width: 97%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.Brands-title {
+  font-size: 2.3rem;
+  line-height: 1.19;
+  letter-spacing: .01563rem;
+  font-weight: 500;
+  color: #024b86;
+  margin-bottom: 1.875rem;
+  text-align: center;
+}
+.Brands-list {
+  margin: -1.5625rem;
+  list-style: none;
+  flex-wrap: wrap;
+  display: flex;
+}
+.Brands-listItem {
+  padding: 1.5625rem;
+  width: 25%;
+}
+.Brand {
+ 
+  display: flex;
+  height: 100%;
+  position: relative;
+}
+.Brand-imageWrapper {
+  padding: 1.875rem;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 100%;
+  border: 0.0625rem solid #e3e3e3;
+}
+.Brand-image {
+  width: 100%;
+}
+.Brand-imageWrapper:hover {
+  background: #fff;
+  box-shadow: 4px 4px #8caabb;
+  padding: 1.875rem;
+}
+
+/* Offer Section */
+
+.Offers {
+  padding: 3.125rem 0;
+  background-color: #f5f8fa;
+  position: relative;
+}
+.Offers-container {
+  width: 97%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+    margin-right: auto;
+}
+.Offers-title {
+  font-size: 2rem;
+  line-height: 1.19;
+  letter-spacing: .01563rem;
+  font-weight: 700;
+  color: #024b86;
+  margin-bottom: 1.875rem;
+  text-align: center;
+}
+.Offers-list {
+  margin: -1.5625rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.Offers-listItem {
+  padding: 1.5625rem;
+  width: 50%;
+}
+.Offer {
+  height: 100%;
+  position: relative;
+}
+.Offer-row {
+  height: 100%;
+}
+.Offer-info {
+  padding: 2.5rem;
+  background: #fff;
+  box-shadow: 4px 4px #8caabb;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  height: 100%;
+}
+.Offer-title {
+  font-size: 1.125rem;
+  line-height: 1.44;
+  letter-spacing: .01563rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.Offer-description {
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+}
+.Offer-ctaWrapper {
+  margin-top: 1rem;
+}
+.Offer-cta {
+  letter-spacing: .0625rem;
+  color: #024b86;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.Offers-ctaWrapper {
+  margin-top: 3.125rem;
+  display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+.Offers-cta{
+  display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: center;
+    background-color: #a6182e;
+    color: #fff;
+    padding: 0.75rem 1.5625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 0.125rem solid;
+    border-color: #a6182e;
+}
+.Offers-cta:hover, .Offers-cta:active, .Offers-cta:focus {
+  background-color: #fff;
+  color: #a6182e;
+  border-color: #a6182e;
 }

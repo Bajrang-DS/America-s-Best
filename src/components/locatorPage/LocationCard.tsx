@@ -19,10 +19,8 @@ let array = [];
 
 
 
-const LocationCard: CardComponent<Location> = ({ result }) => {
-  
-  let url = "";
-  const [hoursopen, setHoursopen] = React.useState(false);
+const LocationCard: CardComponent<Location> = ({ result}) => {
+ const [hoursopen, setHoursopen] = React.useState(false);
 
   function opentime(e: any) {
     //console.log(e.target);
@@ -38,34 +36,24 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
   }
 
   const { address, mainPhone } = result.rawData;
-  //     var name: any = result.rawData.name?.toLowerCase();
-  //   var region: any = result.rawData.address.region?.toLowerCase();
-  //   var initialregion: any = region.toString();
-  //   var finalregion: any = initialregion.replaceAll(" ", "-");
-  //   var city: any = result.rawData.address.city?.toLowerCase();
-  //   var initialrcity: any = city.toString();
-  //   var finalcity: any = initialrcity.replaceAll(" ", "-");
-  //   var string: any = name.toString();
-  //   let result1: any = string.replaceAll(" ", "-");
-  //  if (!result.rawData.slug) {
-  //    url= `/${result.rawData.id}-${result1}.html`;
-  //  } else {
-  //    url= `/${result.rawData.slug.toString()}.html`;
-  //  }
+  let countrycode = `${result.rawData.address?.countryCode?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`;
+  let statecode = `${result.rawData.address?.region?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`;
+  let citycode = `${result.rawData?.address?.city?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`;
+  let url = `${countrycode + "/" + statecode + "/" + citycode + "/" + result.rawData.slug?.toString()}`;
 
+  console.log(result.rawData,"bajrang")
   return (
     <div className={`location result-list-inner-${result.id} result`} id={`result-${result.id}`} key={`result-${result.rawData.id}`}>
       <div className="result-inner ">
         <div className="center-column">
           <div className="lp-param-results lp-subparam-hours">
             <div className="location-name-miles icon-row">
-              <div className="icon text-black relative"> <img className=" " src={redmapimage} width="20" height="20"
-                alt={''} /><span className="map-count">A</span></div>
+              <div className="icon text-black relative"><span className="map-count">{result.index}</span></div>
               <h2><Link className="inline-block notHighlight"
                 data-ya-track={`viewDetail -${result.rawData.name}`}
                 eventName={`viewDetail -${result.rawData.name}`}
                 rel="noopener noreferrer"
-                href={`/${result.rawData.id}`}>{result.rawData.name}
+                href={`/${url}`}>{result.rawData.name}
               </Link></h2>
               {typeof result.distance != "undefined" ?
                 <div className="distance">
@@ -128,7 +116,11 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
             </div>
 
             <div className="button-bx">
-              <Link type="button" href={`/${result.rawData.id}`} className=" btn notHighlight "
+              <div style={{paddingRight:"1rem"}}>
+                <h4>Eye exams provided by: Doctors Exchange of Alabama, P.C.</h4>
+              </div>
+          
+              <Link type="button" href={`/${url}`} className=" btn notHighlight "
                 data-ya-track={`viewStore -${result.rawData.name}`}
                 eventName={`viewStore -${result.rawData.name}`}
                 rel="noopener noreferrer"

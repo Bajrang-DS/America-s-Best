@@ -231,11 +231,11 @@ function UnwrappedGoogleMaps({
       position,
       map,
       icon: Mapicon2,
-      // label: {  //open letter
-      //   text: String(i),
-      //   color: "white",
-
-      // },
+      label: {  //open letter
+        text: String(i),
+        color: "white",
+     },
+      
       // animation: google.maps.Animation.DROP
     });
 
@@ -503,31 +503,34 @@ function UnwrappedGoogleMaps({
   function Infowindow(i: number, result: any): void {
     info = true;
     let url = "";
-
-    // const name: any = result.rawData.name?.toLowerCase();
-    // const region: any = result.rawData.address.region?.toLowerCase();
-    // const initialregion: any = region.toString();
-    // const finalregion: any = initialregion.replaceAll(" ", "-");
-    // const city: any = result.rawData.address.city?.toLowerCase();
-    // const initialrcity: any = city.toString();
-    // const finalcity: any = initialrcity.replaceAll(" ", "-");
-    // const string1: any = name.toString();
-    // const result1: any = string1.replaceAll(" ", "-");
-    // if (!result.rawData.slug) {
-    //   url = `${result.rawData.id}-${result1}.html`;
-    // } else {
-    //   url = `${result.rawData.slug.toString()}.html`;
-    // }
+    const name: any = result.rawData.name?.toLowerCase();
+    const region: any = result.rawData.address.region?.toLowerCase();
+    const initialregion: any = region.toString();
+    const finalregion: any = initialregion.replaceAll(" ", "-");
+    const city: any = result.rawData.address.city?.toLowerCase();
+    const initialrcity: any = city.toString();
+    const finalcity: any = initialrcity.replaceAll(" ", "-");
+    const string1: any = name.toString();
+    const result1: any = string1.replaceAll(" ", "-");
+    if (!result.rawData.slug) {
+      url = `${result.rawData.id}-${result1}`;
+    } else {
+      // url = `${result.rawData.slug.toString()}`;
+      let countrycode = `${result.rawData?.address?.countryCode?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`;
+      let statecode = `${result.rawData?.address?.region?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`;
+      let citycode = `${result.rawData?.address?.city?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`;
+      url = `${countrycode + "/" + statecode + "/" + citycode + "/" + result.rawData.slug?.toString()}`;
+    }
 
     const MarkerContent = (
       <>
         {" "}
-        <div className="flex w-full flex-col max-w-[24rem] pl-4  md:w-[22.5rem] font-main-font text-xs sm:text-sm lg:text-base">
+        <div className="flex w-full flex-col max-w-[24rem] pl-4  md:w-[22.5rem] text-xs sm:text-sm lg:text-base">
           <div className="location-name-miles">
             {/* <div className="icon"> <img className=" " src={mapimage} width="20" height="20"
         alt="" /></div> */}
             <h2>
-              <a className="inline-block notHighlight" href={`/${result.rawData.id}`}>
+              <a className="inline-block notHighlight" href={`/${url}`}>
                 {result.rawData.name}
               </a>
             </h2>
@@ -588,8 +591,8 @@ function UnwrappedGoogleMaps({
           )}
         </div>
         <div className="button-bx !ml-4 !mb-0">
-          <a type="button" href={`/${result.rawData.id}`} className="btn">
-            {/* <div dangerouslySetInnerHTML={{__html: View_Store}}/> */}
+          <a type="button" href={`/${url}`} className="btn">
+          
             {StaticData.StoreDetailbtn}
           </a>
           {result.rawData.displayCoordinate ? (
@@ -603,7 +606,7 @@ function UnwrappedGoogleMaps({
               data-country={result.rawData.address.countryCode}
               data-region={result.rawData.address.region}
             >
-              {/* <div dangerouslySetInnerHTML={{__html: Directionsvg}}/> */}
+            
               {StaticData.getDirection}
             </a>
           ) : (
@@ -617,12 +620,11 @@ function UnwrappedGoogleMaps({
               className="cursor-pointer getdirection1 btn"
               rel="noopener noreferrer"
             >
-              {/* <div dangerouslySetInnerHTML={{__html: Directionsvg}}/> */}
+             
               {StaticData.getDirection}
             </a>
           )}
 
-          {/* <GetDirection buttonText="Direction" latitude={result.rawData.displayCoordinate?.latitude} longitude={result.rawData.displayCoordinate?.longitude}/> */}
         </div>
       </>
     );

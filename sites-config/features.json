@@ -165,7 +165,10 @@
         "c_galleryimage",
         "c_galleryitems",
         "c_aboutheading",
-        "c_aboutdatas"
+        "c_aboutdatas",
+        "c_branddata",
+        "c_offers",
+        "c_offerheading"
       ],
       "filter": {
         "entityTypes": [

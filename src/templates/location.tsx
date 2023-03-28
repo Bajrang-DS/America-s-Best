@@ -49,6 +49,8 @@ import { Fade, Slide } from "react-awesome-reveal";
 import MgmTimber from "../components/locationDetail/MgmTimber";
 import { AnswerExperienceConfig } from "../config/answersHeadlessConfig";
 import StickHeader from "../components/locationDetail/StickHeader";
+import Brands from "../components/locationDetail/Brands";
+import Offers from "../components/locationDetail/offers";
 
 /**
  * Required when Knowledge Graph data is used for a template.
@@ -79,7 +81,10 @@ export const config: TemplateConfig = {
       "c_galleryimage",
       "c_galleryitems",
       "c_aboutheading",
-      "c_aboutdatas"
+      "c_aboutdatas",
+      "c_branddata",
+      "c_offers",
+      "c_offerheading"
 
     ],
     // Defines the scope of entities that qualify for this stream.
@@ -289,7 +294,10 @@ const Location: Template<ExternalApiRenderData> = ({
     c_galleryitems,
     c_galleryimage,
     c_aboutheading,
-    c_aboutdatas
+    c_aboutdatas,
+    c_branddata,
+    c_offerheading,
+    c_offers
   } = document;
 
   let templateData = { document: document, __meta: __meta };
@@ -491,12 +499,14 @@ const Location: Template<ExternalApiRenderData> = ({
 
             <StickHeader _site={_site} />
             <PhotoGallery c_galleryitems={c_galleryitems} c_galleryimage={c_galleryimage} />
-            <div>
-              <About
-                c_aboutheading={c_aboutheading} c_aboutdatas={c_aboutdatas} latitude={yextDisplayCoordinate ? yextDisplayCoordinate.latitude : displayCoordinate?.latitude}
-                longitude={yextDisplayCoordinate ? yextDisplayCoordinate.longitude : displayCoordinate?.longitude} yextDisplayCoordinate={yextDisplayCoordinate} />
 
-            </div>
+            <Offers c_offerheading={c_offerheading} c_offers={c_offers}/>
+
+            <About
+              c_aboutheading={c_aboutheading} c_aboutdatas={c_aboutdatas} latitude={yextDisplayCoordinate ? yextDisplayCoordinate.latitude : displayCoordinate?.latitude}
+              longitude={yextDisplayCoordinate ? yextDisplayCoordinate.longitude : displayCoordinate?.longitude} yextDisplayCoordinate={yextDisplayCoordinate} />
+
+            <Brands c_branddata={c_branddata} />
 
             <div className="nearby-sec">
               <div className="container">

@@ -24,26 +24,6 @@ import {
 } from "@yext/pages/components";
 import { AnswerExperienceConfig } from "../config/answersHeadlessConfig";
 
-// export const config: TemplateConfig = {
-//   stream: {
-//     $id: "Locator",
-//     // Specifies the exact data that each generated document will contain. This data is passed in
-//     // directly as props to the default exported function.
-//     fields: [
-//       "name",
-     
-//     ],
-//     // Defines the scope of entities that qualify for this stream.
-//     filter: {
-//       entityIds: ["global-data"]
-//     },
-//     // The entity language profiles that documents will be generated for.
-//     localization: {
-//       locales: ["en_GB"],
-//       primary: false,
-//     },
-//   },
-// };
 
 export const getPath: GetPath<TemplateProps> = () => {
   return `/index.html`;

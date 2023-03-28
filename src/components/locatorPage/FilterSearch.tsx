@@ -94,7 +94,7 @@ const FilterSearch = React.forwardRef<FilterHandle, FilterSearchProps>(
     const searchAction = useSearchActions();
     const [input, setInput] = useState(inputvalue);
     const selectedFilterOptionRef = useRef<Filter | null>(null);
-    const searchParamFields = searchFields.map((searchField) => {
+    const searchParamFields = searchFields?.map((searchField) => {
       return { ...searchField, fetchEntities: false };
     });
     React.useImperativeHandle(ref,() => {

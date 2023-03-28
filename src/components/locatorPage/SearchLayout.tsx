@@ -223,11 +223,35 @@ const SearchLayout = (props: any): JSX.Element => {
     }
   }, [])
 
+  // useEffect(() => {
+  //   const center = { lat: 50.064192, lng: -130.605469 };
+  //   // Create a bounding box with sides ~10km away from the center point
+  //   const defaultBounds = {
+  //     north: center.lat + 0.1,
+  //     south: center.lat - 0.1,
+  //     east: center.lng + 0.1,
+  //     west: center.lng - 0.1,
+  //   };
+  //   const input = document.getElementById("pac-input") as HTMLInputElement;
+  //   const options = {
+  //     bounds: defaultBounds,
+  //     componentRestrictions: { country: "us" },
+  //     fields: ["address_components", "geometry", "icon", "name"],
+  //     strictBounds: false,
+  //     types: ["establishment"],
+  //   };
+
+  //   const autocomplete = new google.maps.places.Autocomplete(input, options);
+
+  // })
+
+
   return (
     <>
+      {/* <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18&libraries=places&callback=initMap"></script> */}
 
       {/* {loader} */}
-      <div className="breadcrumb">
+      {/* <div className="breadcrumb">
         <div className="container-custom">
           <ul>
             <li>
@@ -237,7 +261,7 @@ const SearchLayout = (props: any): JSX.Element => {
           </ul>
 
         </div>
-      </div>
+      </div> */}
       <div className="locator-main">
         {allowlocation.length > 0 ?
           <div className="for-allow">{allowlocation}</div>
@@ -309,9 +333,9 @@ const SearchLayout = (props: any): JSX.Element => {
 
           <div className="fliter-sec">
             <button className="useMyLocation" title="Search using your current location!" id="useLocation" onClick={onClick}>
-              <span style={{color:"blue"}} className="icon" dangerouslySetInnerHTML={{ __html: UseMylocationsvg }} />
+              <span style={{ color: "blue" }} className="icon" dangerouslySetInnerHTML={{ __html: UseMylocationsvg }} />
 
-              <span style={{color:"blue"}}  className="underline hover:no-underline"> {StaticData.Usemylocation}</span>
+              <span style={{ color: "blue" }} className="underline hover:no-underline"> {StaticData.Usemylocation}</span>
             </button>
 
             <ResultsCount
@@ -346,7 +370,7 @@ const SearchLayout = (props: any): JSX.Element => {
 
             <div>
 
-            <VerticalResults
+              <VerticalResults
                 displayAllOnNoResults={false}
                 CardComponent={LocationCard}
                 locationResults={locationResults}

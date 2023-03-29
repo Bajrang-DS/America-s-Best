@@ -23,6 +23,7 @@ import {
   AnalyticsScopeProvider,
 } from "@yext/pages/components";
 import { AnswerExperienceConfig } from "../config/answersHeadlessConfig";
+import Footer from "../components/layouts/footer";
 
 
 export const getPath: GetPath<TemplateProps> = () => {
@@ -185,7 +186,7 @@ const Locator: Template<TemplateRenderProps>= ({
         >
           
           <SearchLayout _site={_site}/>
-     
+    
         </SearchHeadlessProvider>
       
    

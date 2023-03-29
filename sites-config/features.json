@@ -168,7 +168,11 @@
         "c_aboutdatas",
         "c_branddata",
         "c_offers",
-        "c_offerheading"
+        "c_offerheading",
+        "c_faqs.question",
+        "c_faqs.answer",
+        "c_faqtitle",
+        "c_faqsubtitle"
       ],
       "filter": {
         "entityTypes": [

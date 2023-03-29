@@ -16,5 +16,13 @@ export const AnswerExperienceConfig = {
     verticalAutocomplete: "https://liveapi-sandbox.yext.com/v2/accounts/me/answers/vertical/autocomplete",
     filterSearch: "https://liveapi-sandbox.yext.com/v2/accounts/me/answers/filtersearch",
 
+    
   }
+  
 }
+export const googleMapsConfig =  {
+  centerLatitude:38.889248,
+  centerLongitude: -77.050636,
+  googleMapsApiKey: "AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18"
+};
+// export const googleMapsApiKey = "AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18";

@@ -51,6 +51,7 @@ import { AnswerExperienceConfig } from "../config/answersHeadlessConfig";
 import StickHeader from "../components/locationDetail/StickHeader";
 import Brands from "../components/locationDetail/Brands";
 import Offers from "../components/locationDetail/offers";
+import Faqs from "../components/locationDetail/Faqs";
 
 /**
  * Required when Knowledge Graph data is used for a template.
@@ -84,7 +85,11 @@ export const config: TemplateConfig = {
       "c_aboutdatas",
       "c_branddata",
       "c_offers",
-      "c_offerheading"
+      "c_offerheading",
+      "c_faqs.question",
+      "c_faqs.answer",
+      "c_faqtitle",
+      "c_faqsubtitle"
 
     ],
     // Defines the scope of entities that qualify for this stream.
@@ -297,7 +302,10 @@ const Location: Template<ExternalApiRenderData> = ({
     c_aboutdatas,
     c_branddata,
     c_offerheading,
-    c_offers
+    c_offers,
+    c_faqs,
+    c_faqtitle,
+    c_faqsubtitle
   } = document;
 
   let templateData = { document: document, __meta: __meta };
@@ -507,6 +515,8 @@ const Location: Template<ExternalApiRenderData> = ({
               longitude={yextDisplayCoordinate ? yextDisplayCoordinate.longitude : displayCoordinate?.longitude} yextDisplayCoordinate={yextDisplayCoordinate} />
 
             <Brands c_branddata={c_branddata} />
+
+            <Faq c_faqs={c_faqs} c_faqtitle={c_faqtitle} c_faqsubtitle={c_faqsubtitle}/>
 
             <div className="nearby-sec">
               <div className="container">

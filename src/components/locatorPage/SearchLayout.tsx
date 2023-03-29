@@ -1,8 +1,14 @@
+import {
+  Matcher,
+  SelectableFilter,
+} from "@yext/search-headless-react";
 import { useSearchActions } from "@yext/search-headless-react";
 import { useEffect, useState, useRef } from 'react';
 import * as React from "react";
 import { LocationBias, Pagination } from "@yext/search-ui-react";
-
+import {
+  googleMapsConfig,
+} from "../../config/answersHeadlessConfig";
 import { Location } from "../../types/search/locations";
 import LocationCard from "./LocationCard";
 import { AnswersHeadlessProvider } from '@yext/answers-headless-react';
@@ -17,7 +23,7 @@ import Banner from "../locationDetail/banner";
 import LoadingSpinner from "../commons/LoadingSpinner";
 import { breadcrumbhome, center_latitude, center_longitude, googleApikey, search_icn, UseMylocationsvg } from "../../../sites-global/global";
 import { StaticData } from "../../../sites-global/staticData";
-
+import { Wrapper } from "@googlemaps/react-wrapper";
 import FilterSearch from "../locatorPage/FilterSearch";
 import ViewMore from "./ViewMore";
 import VerticalResults from "../VerticalResults";
@@ -25,12 +31,18 @@ import ResultsCount from "./ResultsCount";
 import useFetchResults from "../../hooks/useFetchResults";
 import { Link } from "@mui/material";
 import { AnswerExperienceConfig } from "../../config/answersHeadlessConfig";
+import Footer from "../layouts/footer";
 
 var params1: any = { latitude: center_latitude, longitude: center_longitude }
 var mapzoom = 8;
 var centerLatitude = center_latitude;
 var centerLongitude = center_longitude;
+
 const SearchLayout = (props: any): JSX.Element => {
+  const [zoomlevel, setZoomlevel] = React.useState(7);
+  const [modelopen, setModelOpen] = useState(false);
+  const [userShareLocation, setUserShareLocation] = useState(false);
+  const [isUserLocation, setIsUserLocation] = React.useState<boolean>(false);
   const [isLoading, setIsloading] = React.useState(true);
   const [check, setCheck] = useState(false);
   type FilterHandle = React.ElementRef<typeof FilterSearch>;
@@ -39,6 +51,9 @@ const SearchLayout = (props: any): JSX.Element => {
   const locationinbuit = useSearchState(state => state.vertical?.results) || [];
   const alternateresult = useSearchState(state => state.vertical?.results?.length) || 0;
   const [displaymsg, setDisplaymsg] = useState(false);
+  const [filterValue, setFilterValue] = useState([]);
+  const [facetData, setFacetData] = useState("");
+  let googleLib = typeof google !== "undefined" ? google : null;
   const [inputvalue, setInputValue] = React.useState('');
   // const [inputvalue, setInputValue] = React.useState('');
   const [allowlocation, setallowLocation] = React.useState('');
@@ -46,6 +61,7 @@ const SearchLayout = (props: any): JSX.Element => {
     latitude: 0,
     longitude: 0
   });
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const [offset, setOffset] = React.useState(0);
   const searchActions = useSearchActions();
   const state = useSearchState(s => s) || [];
@@ -55,7 +71,7 @@ const SearchLayout = (props: any): JSX.Element => {
 
   var searchKey: any;
   var target;
-
+// var {_site} =document;
   var firstTimeRunners = true;
 
 
@@ -95,51 +111,67 @@ const SearchLayout = (props: any): JSX.Element => {
       $("body").removeClass("overflow-hidden");
     }, 3100);
   };
+
+
   const onClick = () => {
-
+    setZoomlevel(4);
     if (navigator.geolocation) {
-      const error = (error: any) => {
-
-        if (error.code == 1) {
-          setallowLocation('Please allow your Location')
-
-        }
-      };
-
-
-      navigator.geolocation.getCurrentPosition(function (position) {
-        Geocode.setApiKey(googleApikey);
-        var inputformat = '';
-        Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
-          (response: any) => {
-            if (response.results[0]) {
-              filterRef.current && filterRef.current.setInputValue(response.results[0].formatted_address);
-              setallowLocation('');
+        const error = (error: any) => {
+            if (error.code == 1) {
+                setallowLocation(props.allowYourLocationMessage);
+                setModelOpen(true);
             }
-          },
-          (error: any) => {
-            console.error(error);
-            setCheck(false);
-          }
-        );
-
-        let params = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude
+            setUserShareLocation(false);
         };
+        navigator.geolocation.getCurrentPosition(
+            function (position) {
+                setIsUserLocation(true);
+                Geocode.setApiKey(googleMapsConfig.googleMapsApiKey);
+                Geocode.fromLatLng(
+                    position.coords.latitude,
+                    position.coords.longitude
+                ).then(
+                    (response: any) => {
+                        if (response.results[0]) {
+                            if (inputRef.current) {
+                                inputRef.current.value =
+                                    response.results[0].formatted_address;
+                            }
 
-        mapzoom = 3;
-        searchActions.setVertical('locations');
-        searchActions.setUserLocation(params);
-        searchActions.setOffset(0);
-        searchActions.executeVerticalQuery();
+                            let pacInput: any = document?.getElementById("pac-input");
+                            if (pacInput) {
+                                pacInput.value = response.results[0].formatted_address;
+                                pacInput.focus();
+                            }
 
-      }, error, {
-        timeout: 10000,
-      });
+                            setallowLocation("");
+                            searchActions.setUserLocation({
+                                latitude: position.coords.latitude,
+                                longitude: position.coords.longitude,
+                            });
+                        }
+                    },
+                    (error: any) => {
+                        console.error(error);
+                        setCheck(false);
+                    }
+                );
+                searchActions.setUserLocation({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                });
+                searchActions.setVertical(AnswerExperienceConfig.verticalKey);
+                searchActions.setOffset(0);
+                searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
+                searchActions.executeVerticalQuery();
+            },
+            error,
+            {
+                timeout: 10000,
+            }
+        );
     }
-  }
-
+};
 
   const Findinput = () => {
     let searchKey = document.getElementsByClassName('FilterSearchInput');
@@ -157,17 +189,70 @@ const SearchLayout = (props: any): JSX.Element => {
     }
   }
 
-  const handleInputValue = () => {
-    setInputValue('');
-  }
-  const handleSetUserShareLocation = (value: any, userShareStatus: boolean) => {
-    console.log(value, center_latitude, center_longitude, "value");
-    setInputValue(value);
-    if (userShareStatus) {
-      setCenterLatitude(center_latitude);
-      setCenterLongitude(center_longitude);
+  const Findinput2 = () => {
+    let Search = inputRef.current?.value || "";
+    let locationHub: any = []
+    if (Search.length == 0) {
+      const bounds = new google.maps.LatLngBounds();
+      bounds.extend({
+        lat: googleMapsConfig.centerLatitude,
+        lng: googleMapsConfig.centerLongitude,
+      });
+      searchActions.setVertical("locations");
+      searchActions.setQuery("");
+
+      if (filterValue.length > 0) {
+        // setShowFilterEmptyMsg(true);
+        let location: SelectableFilter = {
+          selected: true,
+          fieldId: "c_relatedAdvantages.name",
+          value: filterValue[0],
+          matcher: Matcher.Equals,
+        };
+        locationHub.push(location);
+
+        if (filterValue.length > 1) {
+          let location2: SelectableFilter = {
+            selected: true,
+            fieldId: "c_glassdriveAdvantages",
+            value: filterValue[1],
+            matcher: Matcher.Equals,
+          };
+          locationHub.push(location2);
+        }
+
+        if (facetData != "") {
+          let facet_core: SelectableFilter = {
+            selected: false,
+            fieldId: "c_typesDeVéhicules",
+            value: facetData,
+            matcher: Matcher.Equals,
+          };
+          locationHub.push(facet_core);
+        }
+      } else {
+        locationHub = []
+      }
+      searchActions.setStaticFilters(locationHub);
+
+      searchActions.setOffset(0);
+      searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
+      searchActions.executeVerticalQuery();
+      getCoordinates(Search);
     }
-  }
+  };
+
+  // const handleInputValue = () => {
+  //   setInputValue('');
+  // }
+  // const handleSetUserShareLocation = (value: any, userShareStatus: boolean) => {
+  //   console.log(value, center_latitude, center_longitude, "value");
+  //   setInputValue(value);
+  //   if (userShareStatus) {
+  //     setCenterLatitude(center_latitude);
+  //     setCenterLongitude(center_longitude);
+  //   }
+  // }
 
 
   function getCoordinates(address: String) {
@@ -182,12 +267,6 @@ const SearchLayout = (props: any): JSX.Element => {
     searchActions.executeVerticalQuery();
 
   }
-
-  let bannerimage = props._site.c_locatorBannerImage != undefined ? props._site.c_locatorBannerImage.image.url : '';
-
-
-  // const loader =
-  //   isLoading ? <LoadingSpinner /> : '';
 
   const addClass = () => {
 
@@ -215,43 +294,117 @@ const SearchLayout = (props: any): JSX.Element => {
       }
     });
   }, [loading])
+
   useEffect(() => {
-    if (firstTimeRunners) {
-      firstTimeRunners = false;
-      // searchActions.resetFacets();
-      FirstLoad();
+        if (firstTimeRunners) {
+            firstTimeRunners = false;
+            FirstLoad();
+        }
+        if (isLoading) {
+            $("body").addClass("overflow-hidden");
+        }
+    }, []);
+
+
+
+  const [autocomplete, setAutocomplete] = useState<google.maps.places.Autocomplete>();
+
+  useEffect(() => {
+    if (googleLib && typeof google.maps === "object") {
+      let pacInput: any = document?.getElementById("pac-input");
+      let options: any = {
+        options: {
+          types: ["geocode"],
+          componentRestrictions: { country:params1},
+          strictBounds: false,
+          fields: ["address_components", "geometry", "icon", "name"],
+        },
+      };
+      const autoComplete = new google.maps.places.Autocomplete(
+        pacInput,
+        options
+      );
+      if (autoComplete) {
+        function pacSelectFirst(input: HTMLInputElement) {
+          var _addEventListener = input.addEventListener;
+
+          function addEventListenerWrapper(type: string, listener: any) {
+            if (type == "keydown") {
+              var orig_listener = listener;
+
+              listener = function (event: { which: number }) {
+                var suggestion_selected = $(".pac-item-selected").length > 0;
+
+                if (
+                  (event.which == 13 || event.which == 9) &&
+                  !suggestion_selected
+                ) {
+                  var simulated_downarrow = $.Event("keydown", {
+                    keyCode: 40,
+                    which: 40,
+                  });
+                  orig_listener.apply(input, [simulated_downarrow]);
+                }
+
+                orig_listener.apply(input, [event]);
+              };
+            }
+
+            _addEventListener.apply(input, [type, listener]);
+          }
+
+          if (input.addEventListener) {
+            input.addEventListener = addEventListenerWrapper;
+          }
+        }
+
+        setAutocomplete(autoComplete);
+        pacSelectFirst(pacInput);
+        $("#search-location-button")
+          .off("click")
+          .on("click", function () {
+            var keydown = document.createEvent("HTMLEvents");
+            keydown.initEvent("keydown", true, false);
+            Object.defineProperty(keydown, "keyCode", {
+              get: function () {
+                return 13;
+              },
+            });
+            Object.defineProperty(keydown, "which", {
+              get: function () {
+                return 13;
+              },
+            });
+            pacInput.dispatchEvent(keydown);
+          });
+
+        google.maps.event.addListener(
+          autoComplete,
+          "place_changed",
+          function () {
+            const searchKey: any = pacInput.value;
+            if (searchKey) {
+              getCoordinates(searchKey);
+            }
+          }
+        );
+      }
     }
-  }, [])
-
-  // useEffect(() => {
-  //   const center = { lat: 50.064192, lng: -130.605469 };
-  //   // Create a bounding box with sides ~10km away from the center point
-  //   const defaultBounds = {
-  //     north: center.lat + 0.1,
-  //     south: center.lat - 0.1,
-  //     east: center.lng + 0.1,
-  //     west: center.lng - 0.1,
-  //   };
-  //   const input = document.getElementById("pac-input") as HTMLInputElement;
-  //   const options = {
-  //     bounds: defaultBounds,
-  //     componentRestrictions: { country: "us" },
-  //     fields: ["address_components", "geometry", "icon", "name"],
-  //     strictBounds: false,
-  //     types: ["establishment"],
-  //   };
-
-  //   const autocomplete = new google.maps.places.Autocomplete(input, options);
-
-  // })
+    return () => {
+      if (autocomplete) {
+        autocomplete.unbindAll();
+      }
+    };
+  }, [googleLib]);
 
 
   return (
-    <>
-      {/* <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18&libraries=places&callback=initMap"></script> */}
-
+    <Wrapper
+      apiKey={googleMapsConfig.googleMapsApiKey}
+      libraries={["places", "geometry"]}
+    >
       {/* {loader} */}
-      {/* <div className="breadcrumb">
+      <div className="breadcrumb">
         <div className="container-custom">
           <ul>
             <li>
@@ -261,7 +414,7 @@ const SearchLayout = (props: any): JSX.Element => {
           </ul>
 
         </div>
-      </div> */}
+      </div>
       <div className="locator-main">
         {allowlocation.length > 0 ?
           <div className="for-allow">{allowlocation}</div>
@@ -272,7 +425,7 @@ const SearchLayout = (props: any): JSX.Element => {
           </div>
 
           <div className="search-field">
-            <FilterSearch
+            {/* <FilterSearch
               ref={filterRef}
               displaymsg={displaymsg}
               setDisplaymsg={setDisplaymsg}
@@ -285,49 +438,68 @@ const SearchLayout = (props: any): JSX.Element => {
               setSearchInputValue={setInputValue}
               params={params1}
               searchOnSelect={true}
-              searchFields={[
-                {
-                  entityType: "location",
-                  fieldApiName: "address.line1",
+              // searchFields={[
+              //   {
+              //     entityType: "location",
+              //     fieldApiName: "address.line1",
 
-                },
-                {
-                  entityType: "location",
-                  fieldApiName: "address.postalCode",
+              //   },
+              //   {
+              //     entityType: "location",
+              //     fieldApiName: "address.postalCode",
 
-                },
-                {
-                  entityType: "location",
-                  fieldApiName: "name",
+              //   },
+              //   {
+              //     entityType: "location",
+              //     fieldApiName: "name",
 
-                },
-                {
-                  entityType: "location",
-                  fieldApiName: "address.city",
+              //   },
+              //   {
+              //     entityType: "location",
+              //     fieldApiName: "address.city",
 
-                },
-                {
-                  entityType: "location",
-                  fieldApiName: "address.region",
+              //   },
+              //   {
+              //     entityType: "location",
+              //     fieldApiName: "address.region",
 
-                },
-                {
-                  entityType: "location",
-                  fieldApiName: "address.countryCode",
+              //   },
+              //   {
+              //     entityType: "location",
+              //     fieldApiName: "address.countryCode",
 
-                },
-              ]}
+              //   },
+              // ]}
 
               handleInputValue={handleInputValue}
               handleSetUserShareLocation={handleSetUserShareLocation}
+            /> */}
+            <input
+              id="pac-input"
+              type="text"
+              ref={inputRef}
+              placeholder="Find Something Here"
+              className="text-sm bg-white outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-blue-600 FilterSearchInput"
+              onChange={() => Findinput2()}
+              onKeyDown={(evt) => {
+                if (
+                  evt.key === "Backspace" ||
+                  evt.key === "x" ||
+                  evt.key === "Delete"
+                )
+                 {
+                  Findinput2();
+                }
+              }}
+              
             />
-
             <button
               className="search-btn"
               aria-label="Search bar icon"
               id="search-location-button" onClick={Findinput}>
               <span><b>
-                GO</b></span>
+                GO</b>
+                </span>
             </button>
           </div>
 
@@ -387,15 +559,14 @@ const SearchLayout = (props: any): JSX.Element => {
               <div className="button-bx">
                 <ViewMore className={" btn notHighlight lg:!w-[132%] !mb-2 button view-more"} idName={"view-more-button"} buttonLabel={"View More"} />
               </div>
+              <Footer />
             </div>
           </PerfectScrollbar>
         </div>
 
 
       </div>
-
-
-    </>
+    </Wrapper>
   );
 };
 

@@ -26,7 +26,7 @@ const Footer = (props: any) => {
                 </div>
               </div>
             </div>
-            {props._site.c_footerlinks.map((item: any) =>
+            {props._site?.c_footerlinks.map((item: any) =>
               <>
                 <div className="Footer-col Footer-col--links">
 
@@ -62,11 +62,11 @@ const Footer = (props: any) => {
             </div>
           </div>
           <div className="Footer-row Footer-row--copyright">
-            <div className="Footer-col">{props._site.c_footerpolicy.text1}
+            <div className="Footer-col">{props._site?.c_footerpolicy.text1}
               <br />
-              {props._site.c_footerpolicy.text2}
-              <a className="Footer-copyrightLink" href="https://www.americasbest.com/state-legal-disclosures" data-ya-track="copyrightlink">{props._site.c_footerpolicy.cta.label}</a>
-              {props._site.c_footerpolicy.text3}
+              {props._site?.c_footerpolicy.text2}
+              <a className="Footer-copyrightLink" href="https://www.americasbest.com/state-legal-disclosures" data-ya-track="copyrightlink">{props._site?.c_footerpolicy.cta.label}</a>
+              {props._site?.c_footerpolicy.text3}
             </div>
           </div>
         </div>

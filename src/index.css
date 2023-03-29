@@ -241,7 +241,7 @@ img.location-logo {
   flex-shrink: 0;
 }
 .Footer-container {
-  width: 83.75rem;
+  width: 97%;
   padding-left: 1rem;
   padding-right: 1rem;
   margin-left: auto;
@@ -409,7 +409,7 @@ body.mapView .mobile-btns .btn.mapBtn{  @apply text-Dark-red border-t-0 border-l
 
 .location .result-inner .svg-map-icn svg{@apply fill-gray }
 .location.fixed-hover .result-inner .svg-map-icn svg{@apply fill-red }
-.location.fixed-hover.active{
+.location.fixed-hover{
   background-color: #dbe6ed;
 }
 .location.active{
@@ -745,13 +745,16 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 .faq-card h2{@apply  py-2 md:py-4 font-second-main-font  text-center relative text-[1.75rem] md:text-[1.75rem] uppercase text-red  before:bg-dots before:absolute before:left-0 before:top-0  }
 .faq-tab{@apply w-full text-left mt-0 border-b border-b-box-border }
 .faq-tab .faq-tab-label{ @apply w-full font-second-main-font text-xl border-none  text-black pl-4 pr-12 py-2.5 hover:text-red}
-.faq-tab .faq__question-button{@apply leading-7 relative w-full text-left after:absolute after:top-3 after:right-4 after:w-5 after:h-5 md:after:w-7 md:after:h-7 after:rounded-full   after:bg-plus_icon after:bg-center after:bg-no-repeat after:bg-[length:.625rem_.625rem] md:after:bg-[length:1rem_1rem] }
+.faq-tab .faq__question-button{@apply leading-7 relative w-full text-left after:absolute after:top-3 after:right-4 after:w-5 after:h-5 md:after:w-7 md:after:h-7 after:rounded-full   after:bg-plus_icon after:bg-center after:bg-no-repeat after:bg-[length:.625rem_.625rem] md:after:bg-[length:1rem_1rem] duration-1000 }
 .faq-tab .faq__question-button[aria-expanded="true"]{ @apply after:bg-minus_icon}
 .faq-tab  .faq-tab-label.active{  @apply border-b-transparent before:opacity-0 }
 .faq-tab  .faq-tab-label{ @apply flex justify-between items-center relative font-normal cursor-pointer border-b border-faq-border }
 .faq-tab-content{@apply px-4  text-lg text-black py-3 bg-opacity-25 my-3 }
 .faq-tab-label.active{ @apply justify-start }
 .view-more{  @apply text-center mt-5}
+
+
+
 
 /* near by */
 .nearby-sec{@apply bg-transparent md:bg-light-grey w-full pt-7 pb-0 md:pb-[3.75rem] pt-[4rem] }
@@ -1527,4 +1530,67 @@ h1.entity-name{
   background-color: #fff;
   color: #a6182e;
   border-color: #a6182e;
+}
+
+.scrollbar-container.ps--active-y{
+  overflow: overlay !important;
+}
+
+/* FAQ section */
+
+.FAQ {
+  padding-bottom: 3.125rem;
+  position: relative;
+}
+.FAQ-container{
+  flex-direction: row;
+  min-height: 26.5rem;
+  width: 97%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+.FAQ--ace .FAQ-titleContainer {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  flex-shrink: 0;
+  width: 66.6666666667%;
+  height: 25.5rem;
+  padding: 1.875rem;
+  padding-right: 16.75rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+justify-content: center;
+flex-direction: column;
+    background-color: #f5f8fa;
+}
+.FAQ--ace .FAQ-title {
+  font-size: 2rem;
+  line-height: 1.19;
+  letter-spacing: .01563rem;
+  font-weight: 700;
+  color: #024b86;
+  width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.FAQ--ace .FAQ-subtitle {
+  font-size: 1.125rem;
+  line-height: 1.44;
+  letter-spacing: .01563rem;
+  font-weight: 700;
+}
+.FAQ--ace .FAQ-list {
+  margin-top: 3.125rem;
+  margin-left: calc(66.6666666667% - 15.375rem);
+  background: #fff;
+  box-shadow: 4px 4px #8caabb;
+  padding: 0;
+  position: relative;
 }

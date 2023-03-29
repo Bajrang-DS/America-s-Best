@@ -76,6 +76,9 @@ const Contact = (props: any) => {
         <div className="Hero-ctaWrapper Hero-ctaWrapper--eyeexam">
                 <a className="Hero-cta Hero-cta--eyeexam" href="#" data-ya-track="cta">Schedule an Eye Exam</a>
                 </div>
+                <h3>
+                Eye exams provided by: Doctors Exchange of Alabama, P.C.
+                </h3>
 
       </div>
 

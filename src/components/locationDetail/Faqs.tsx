@@ -1,9 +1,7 @@
 import * as React from "react";
-import gallerybg from "../../images/faq-bg.png"
-
 import { useState, useEffect } from "react";
 import AccordionItem from "./AccordianItem";
-import { StaticData } from "../../../sites-global/staticData";
+
 
 
 export default function Faq(props: any) {
@@ -14,8 +12,8 @@ export default function Faq(props: any) {
   const [activeIndex, setActiveIndex] = useState(0);
   let preExpandedarr = [];
 
-  if (props.faqs.length > 0) {
-    props.faqs.map((e: any, i: Number) => {
+  if (props.c_faqs?.length > 0) {
+    props.c_faqs.map((e: any, i: Number) => {
       if (i == 0) {
         preExpandedarr = [e];
       }
@@ -35,7 +33,7 @@ export default function Faq(props: any) {
   function setclass(e: any) {
     setCurrent(e.target.id);
   }
-  const renderedQuestionsAnswers = props.faqs.map((item: any, index: Number) => {
+  const renderedQuestionsAnswers = props.c_faqs?.map((item: any, index: any) => {
     const showDescription = index === activeIndex ? "current" : "hidden";
     const background = index === activeIndex ? "active" : "";
     const fontWeightBold = index === activeIndex ? " font-weight-bold  py-0 mt-2" : "";
@@ -57,16 +55,21 @@ export default function Faq(props: any) {
 
   return (
     <>
-      <div className=" faq-main-sec">
+      <div className="FAQ FAQ--ace Anchor">
 
-        <div className=" faq-card ">
-          <div className="faq-sec-inner">
-            <h2 className="">{props.c_fAQsHeading?props.c_fAQsHeading:StaticData.FAQheading}</h2>
-            <div className="faq-tabs">{renderedQuestionsAnswers}</div>
+        <div className="FAQ-container">
+          <div className="FAQ-titleContainer">
+            <h2 className="FAQ-title">
+              {props.c_faqtitle}
+            </h2>
+            <div className="FAQ-subtitle">
+              {props.c_faqsubtitle}
+            </div>
           </div>
+          <div className="FAQ-list">
+            {renderedQuestionsAnswers}
+            </div>
         </div>
-
-
       </div>
     </>
   );

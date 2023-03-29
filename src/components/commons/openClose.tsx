@@ -248,7 +248,7 @@ export const OpenStausFunctions = {
             <div className="red-dot">
              
               <div className="hours-info ">
-                <span className="font-second-main-font text-[#000]"><b> Closed - </b></span>
+                <span className="font-second-main-font text-[#a6182e]"><b> Closed - </b></span>
                 {"Opens at "}
                 <span className="lowercase">
                   {OpenStausFunctions.formatTime(nextInterval.start).replace(
@@ -266,7 +266,7 @@ export const OpenStausFunctions = {
         <div className="closeddot 2">
           <div className="red-dot">
            
-            <div className="hours-info text-[#000] ">Closed</div>{" "}
+            <div className="hours-info text-[#a6182e] ">Closed</div>{" "}
           </div>
         </div>
       );
@@ -435,7 +435,7 @@ export default function OpenClose(props: any) {
                 fill="#ad1e1f"
               />
             </svg>
-            <div className="hours-info font-second-main-font text-[#000] "><b> Closed</b></div>{" "}
+            <div className="hours-info font-second-main-font text-[#a6182e] "><b> Closed</b></div>{" "}
           </div>
         </div>
       )}

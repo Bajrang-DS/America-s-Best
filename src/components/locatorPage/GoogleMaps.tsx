@@ -81,9 +81,9 @@ const builtInCssClasses: Readonly<GoogleMapsCssClasses> = {
 export function GoogleMaps(props: GoogleMapsProps) {
   return (
     <div>
-      <Wrapper apiKey={props.apiKey}>
+      {/* <Wrapper apiKey={props.apiKey}> */}
         <UnwrappedGoogleMaps {...props} />
-      </Wrapper>
+      {/* </Wrapper> */}
     </div>
   );
 }
@@ -720,7 +720,7 @@ function getPosition(result: Result) {
   return { lat, lng };
 }
 
-function scrollToRow(index: any) {
+export function scrollToRow(index: any) {
   const result: any = [].slice.call(
     document.querySelectorAll(`.result`) || []
   )[0];

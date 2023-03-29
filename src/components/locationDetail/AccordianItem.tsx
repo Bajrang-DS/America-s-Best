@@ -20,7 +20,7 @@ const AccordionItem = ({
         onClick={onClick}
       >
       <h3 className={`faq-tab-label  ${background} `}>
-      <div dangerouslySetInnerHTML={{__html: RtfConverter.toHTML(item.question)}}/>
+      <div dangerouslySetInnerHTML={{__html: RtfConverter.toHTML(item?.question)}}/>
      </h3>
       </button>
       <div
@@ -28,7 +28,7 @@ const AccordionItem = ({
         data-qa="faq__desc"
         className={`faq-tab-content ${showDescription}`}
       >
-       <div dangerouslySetInnerHTML={{__html: RtfConverter.toHTML(item.answer)}}/> 
+       <div dangerouslySetInnerHTML={{__html: RtfConverter.toHTML(item?.answer)}}/> 
       </div>
   </div>
 );

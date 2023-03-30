@@ -73,7 +73,7 @@ if (!location.data.slug) {
               <SplideSlide key={index}>
               <div className="nearby-card">
                 <div className="location-name-miles icon-row">
-                  <h2><Link className="inline-block notHighlight" href={`/${url}`}
+                  <h2><Link className="inline-block notHighlight" href={`/${url +".html"}`}
                     data-ya-track={`${location.data.name}`}
                     eventName={`${location.data.name}`}
                     rel="noopener noreferrer"><b> {location.data.name}</b></Link></h2>

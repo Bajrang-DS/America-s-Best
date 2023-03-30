@@ -313,7 +313,7 @@ const City: Template<TemplateRenderProps> = ({
         {/* <SplideSlide > */}
         <div style={{ width: "23rem" }} className="nearby-card">
           <div className="location-name-miles icon-row">
-            <h2><Link className="inline-block notHighlight" href={`/${detailPageUrl}`}
+            <h2><Link className="inline-block notHighlight" href={`/${detailPageUrl + ".html"}`}
               data-ya-track={`${entity.name}`}
               eventName={`${entity.name}`}
               rel="noopener noreferrer"><b> {entity.name}</b></Link></h2>

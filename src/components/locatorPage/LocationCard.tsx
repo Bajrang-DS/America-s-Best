@@ -54,7 +54,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                 data-ya-track={`viewDetail -${result.rawData.name}`}
                 eventName={`viewDetail -${result.rawData.name}`}
                 rel="noopener noreferrer"
-                href={`/${url}`}>{result.rawData.name}
+                href={`/${url + ".html"}`}>{result.rawData.name}
               </Link></h2>
               {typeof result.distance != "undefined" ?
                 <div className="distance">
@@ -127,7 +127,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                 <h4>Eye exams provided by: Doctors Exchange of Alabama, P.C.</h4>
               </div>
 
-              <Link type="button" href={`/${url}`} className=" btn notHighlight "
+              <Link type="button" href={`/${url + ".html"}`} className=" btn notHighlight "
                 data-ya-track={`viewStore -${result.rawData.name}`}
                 eventName={`viewStore -${result.rawData.name}`}
                 rel="noopener noreferrer"

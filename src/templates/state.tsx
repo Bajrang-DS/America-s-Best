@@ -239,7 +239,7 @@ const State: Template<TemplateRenderProps> = ({
     __meta,
     slug,
   } = document;
-
+console.log(dm_directoryChildren,"bajrang")
   var sortedChildren = dm_directoryChildren.sort(function (a: any, b: any) {
     var a = a.name;
     var b = b.name;

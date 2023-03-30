@@ -9,6 +9,7 @@ import OpenClose from "../commons/openClose";
 import { StaticData } from "../../../sites-global/staticData";
 import { Link } from "@yext/pages/components";
 import Phonesvg from "../../images/phone.svg";
+import Model from "../locationDetail/Model";
 
 
 const metersToMiles = (meters: number) => {
@@ -19,8 +20,8 @@ let array = [];
 
 
 
-const LocationCard: CardComponent<Location> = ({ result}) => {
- const [hoursopen, setHoursopen] = React.useState(false);
+const LocationCard: CardComponent<Location> = ({ result }) => {
+  const [hoursopen, setHoursopen] = React.useState(false);
 
   function opentime(e: any) {
     //console.log(e.target);
@@ -35,13 +36,13 @@ const LocationCard: CardComponent<Location> = ({ result}) => {
     }
   }
 
-  const { address, mainPhone } = result.rawData;
+  const { address, mainPhone, hours, additionalHoursText, c_specific_day } = result.rawData;
   let countrycode = `${result.rawData.address?.countryCode?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`;
   let statecode = `${result.rawData.address?.region?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`;
   let citycode = `${result.rawData?.address?.city?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`;
   let url = `${countrycode + "/" + statecode + "/" + citycode + "/" + result.rawData.slug?.toString()}`;
 
-  console.log(result.rawData,"bajrang")
+  console.log(result.rawData, "bajrang")
   return (
     <div className={`location result-list-inner-${result.id} result`} id={`result-${result.id}`} key={`result-${result.rawData.id}`}>
       <div className="result-inner ">
@@ -89,6 +90,12 @@ const LocationCard: CardComponent<Location> = ({ result}) => {
                 </div>
               </div>}
             </div>
+            
+            
+            <b>  <Model name={StaticData.Holdiay}
+                holidayHours={hours?.holidayHours}
+                c_specific_day={c_specific_day}
+              /></b>
 
             <div className="icon-row content-col address-with-availablity notHighlight">
               <Address address={address} />
@@ -102,24 +109,24 @@ const LocationCard: CardComponent<Location> = ({ result}) => {
                     <a id="address" className=" location-phn" href={`tel:${mainPhone}`}>
                       {mainPhone}
                     </a>
-                    <div style={{float:"right"}} className="Hero-ctaWrapper Hero-ctaWrapper--locator">
-                <a className="Hero-cta Hero-cta--locator" href="#" data-ya-track="cta">Schedule Exam</a>
-                </div>
+                    <div style={{ float: "right" }} className="Hero-ctaWrapper Hero-ctaWrapper--locator">
+                      <a className="Hero-cta Hero-cta--locator" href="#" data-ya-track="cta">Schedule Exam</a>
+                    </div>
                   </div>
-                 
+
                 </div>
               ) : (
                 ""
               )}
-               
+
 
             </div>
 
             <div className="button-bx">
-              <div style={{paddingRight:"1rem"}}>
+              <div style={{ paddingRight: "1rem" }}>
                 <h4>Eye exams provided by: Doctors Exchange of Alabama, P.C.</h4>
               </div>
-          
+
               <Link type="button" href={`/${url}`} className=" btn notHighlight "
                 data-ya-track={`viewStore -${result.rawData.name}`}
                 eventName={`viewStore -${result.rawData.name}`}

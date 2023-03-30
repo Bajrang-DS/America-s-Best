@@ -32,7 +32,7 @@ const Header = (props: any) => {
                 <div className="Header-searchBarAndCtasWrapper">
                   <div className="Header-searchBarWrapper">
                     <a className="Header-searchLabelText" href="search"><img className="location-logo" src={props?._site?.c_middleHeader.icon.url} alt="" /></a>
-                    <form method="get" id="HeaderSearchForm" className="search Header-form" action="#">
+                    <form method="get" id="HeaderSearchForm" className="search Header-form" action="https://master-almost--alive--badger-sbx-pgsdemo-com.sbx.preview.pagescdn.com/">
                       <div className="Header-searchBar">
                       <input placeholder="Search by City, State, or ZIP code" className="search-input Header-input" type="text" name="inputStoreValue" id="HeaderSearchInput"  required />
                         <button type="submit" className="search-button Header-submit" data-ya-track="search">

@@ -71,7 +71,7 @@ const SearchLayout = (props: any): JSX.Element => {
 
   var searchKey: any;
   var target;
-// var {_site} =document;
+  // var {_site} =document;
   var firstTimeRunners = true;
 
 
@@ -98,8 +98,8 @@ const SearchLayout = (props: any): JSX.Element => {
       );
     }
     params1 = {
-      latitude: 38.889248,
-      longitude: -77.050636,
+      latitude: 38.573936,
+      longitude: -92.603760,
     };
     SetNewparam(params1);
     // mapzoom=8;
@@ -114,64 +114,49 @@ const SearchLayout = (props: any): JSX.Element => {
 
 
   const onClick = () => {
-    setZoomlevel(4);
+
     if (navigator.geolocation) {
-        const error = (error: any) => {
-            if (error.code == 1) {
-                setallowLocation(props.allowYourLocationMessage);
-                setModelOpen(true);
-            }
-            setUserShareLocation(false);
-        };
-        navigator.geolocation.getCurrentPosition(
-            function (position) {
-                setIsUserLocation(true);
-                Geocode.setApiKey(googleMapsConfig.googleMapsApiKey);
-                Geocode.fromLatLng(
-                    position.coords.latitude,
-                    position.coords.longitude
-                ).then(
-                    (response: any) => {
-                        if (response.results[0]) {
-                            if (inputRef.current) {
-                                inputRef.current.value =
-                                    response.results[0].formatted_address;
-                            }
+      const error = (error: any) => {
 
-                            let pacInput: any = document?.getElementById("pac-input");
-                            if (pacInput) {
-                                pacInput.value = response.results[0].formatted_address;
-                                pacInput.focus();
-                            }
+        if (error.code == 1) {
+          setallowLocation('Please allow your Location')
 
-                            setallowLocation("");
-                            searchActions.setUserLocation({
-                                latitude: position.coords.latitude,
-                                longitude: position.coords.longitude,
-                            });
-                        }
-                    },
-                    (error: any) => {
-                        console.error(error);
-                        setCheck(false);
-                    }
-                );
-                searchActions.setUserLocation({
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                });
-                searchActions.setVertical(AnswerExperienceConfig.verticalKey);
-                searchActions.setOffset(0);
-                searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
-                searchActions.executeVerticalQuery();
-            },
-            error,
-            {
-                timeout: 10000,
+        }
+      };
+
+
+      navigator.geolocation.getCurrentPosition(function (position) {
+        Geocode.setApiKey(googleApikey);
+        var inputformat = '';
+        Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
+          (response: any) => {
+            if (response.results[0]) {
+              filterRef.current && filterRef.current.setInputValue(response.results[0].formatted_address);
+              setallowLocation('');
             }
+          },
+          (error: any) => {
+            console.error(error);
+            setCheck(false);
+          }
         );
+
+        let params = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        };
+
+        mapzoom = 3;
+        searchActions.setVertical('locations');
+        searchActions.setUserLocation(params);
+        searchActions.setOffset(0);
+        searchActions.executeVerticalQuery();
+
+      }, error, {
+        timeout: 10000,
+      });
     }
-};
+  }
 
   const Findinput = () => {
     let searchKey = document.getElementsByClassName('FilterSearchInput');
@@ -189,70 +174,70 @@ const SearchLayout = (props: any): JSX.Element => {
     }
   }
 
-  const Findinput2 = () => {
-    let Search = inputRef.current?.value || "";
-    let locationHub: any = []
-    if (Search.length == 0) {
-      const bounds = new google.maps.LatLngBounds();
-      bounds.extend({
-        lat: googleMapsConfig.centerLatitude,
-        lng: googleMapsConfig.centerLongitude,
-      });
-      searchActions.setVertical("locations");
-      searchActions.setQuery("");
+  // const Findinput2 = () => {
+  //   let Search = inputRef.current?.value || "";
+  //   let locationHub: any = []
+  //   if (Search.length == 0) {
+  //     const bounds = new google.maps.LatLngBounds();
+  //     bounds.extend({
+  //       lat: googleMapsConfig.centerLatitude,
+  //       lng: googleMapsConfig.centerLongitude,
+  //     });
+  //     searchActions.setVertical("locations");
+  //     searchActions.setQuery("");
 
-      if (filterValue.length > 0) {
-        // setShowFilterEmptyMsg(true);
-        let location: SelectableFilter = {
-          selected: true,
-          fieldId: "c_relatedAdvantages.name",
-          value: filterValue[0],
-          matcher: Matcher.Equals,
-        };
-        locationHub.push(location);
+  //     if (filterValue.length > 0) {
+  //       // setShowFilterEmptyMsg(true);
+  //       let location: SelectableFilter = {
+  //         selected: true,
+  //         fieldId: "c_relatedAdvantages.name",
+  //         value: filterValue[0],
+  //         matcher: Matcher.Equals,
+  //       };
+  //       locationHub.push(location);
 
-        if (filterValue.length > 1) {
-          let location2: SelectableFilter = {
-            selected: true,
-            fieldId: "c_glassdriveAdvantages",
-            value: filterValue[1],
-            matcher: Matcher.Equals,
-          };
-          locationHub.push(location2);
-        }
+  //       if (filterValue.length > 1) {
+  //         let location2: SelectableFilter = {
+  //           selected: true,
+  //           fieldId: "c_glassdriveAdvantages",
+  //           value: filterValue[1],
+  //           matcher: Matcher.Equals,
+  //         };
+  //         locationHub.push(location2);
+  //       }
 
-        if (facetData != "") {
-          let facet_core: SelectableFilter = {
-            selected: false,
-            fieldId: "c_typesDeVéhicules",
-            value: facetData,
-            matcher: Matcher.Equals,
-          };
-          locationHub.push(facet_core);
-        }
-      } else {
-        locationHub = []
-      }
-      searchActions.setStaticFilters(locationHub);
+  //       if (facetData != "") {
+  //         let facet_core: SelectableFilter = {
+  //           selected: false,
+  //           fieldId: "c_typesDeVéhicules",
+  //           value: facetData,
+  //           matcher: Matcher.Equals,
+  //         };
+  //         locationHub.push(facet_core);
+  //       }
+  //     } else {
+  //       locationHub = []
+  //     }
+  //     searchActions.setStaticFilters(locationHub);
 
-      searchActions.setOffset(0);
-      searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
-      searchActions.executeVerticalQuery();
-      getCoordinates(Search);
-    }
-  };
-
-  // const handleInputValue = () => {
-  //   setInputValue('');
-  // }
-  // const handleSetUserShareLocation = (value: any, userShareStatus: boolean) => {
-  //   console.log(value, center_latitude, center_longitude, "value");
-  //   setInputValue(value);
-  //   if (userShareStatus) {
-  //     setCenterLatitude(center_latitude);
-  //     setCenterLongitude(center_longitude);
+  //     searchActions.setOffset(0);
+  //     searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
+  //     searchActions.executeVerticalQuery();
+  //     getCoordinates(Search);
   //   }
-  // }
+  // };
+
+  const handleInputValue = () => {
+    setInputValue('');
+  }
+  const handleSetUserShareLocation = (value: any, userShareStatus: boolean) => {
+    console.log(value, center_latitude, center_longitude, "value");
+    setInputValue(value);
+    if (userShareStatus) {
+      setCenterLatitude(center_latitude);
+      setCenterLongitude(center_longitude);
+    }
+  }
 
 
   function getCoordinates(address: String) {
@@ -296,123 +281,131 @@ const SearchLayout = (props: any): JSX.Element => {
   }, [loading])
 
   useEffect(() => {
-        if (firstTimeRunners) {
-            firstTimeRunners = false;
-            FirstLoad();
-        }
-        if (isLoading) {
-            $("body").addClass("overflow-hidden");
-        }
-    }, []);
-
-
-
-  const [autocomplete, setAutocomplete] = useState<google.maps.places.Autocomplete>();
-
-  useEffect(() => {
-    if (googleLib && typeof google.maps === "object") {
-      let pacInput: any = document?.getElementById("pac-input");
-      let options: any = {
-        options: {
-          types: ["geocode"],
-          componentRestrictions: { country:params1},
-          strictBounds: false,
-          fields: ["address_components", "geometry", "icon", "name"],
-        },
-      };
-      const autoComplete = new google.maps.places.Autocomplete(
-        pacInput,
-        options
-      );
-      if (autoComplete) {
-        function pacSelectFirst(input: HTMLInputElement) {
-          var _addEventListener = input.addEventListener;
-
-          function addEventListenerWrapper(type: string, listener: any) {
-            if (type == "keydown") {
-              var orig_listener = listener;
-
-              listener = function (event: { which: number }) {
-                var suggestion_selected = $(".pac-item-selected").length > 0;
-
-                if (
-                  (event.which == 13 || event.which == 9) &&
-                  !suggestion_selected
-                ) {
-                  var simulated_downarrow = $.Event("keydown", {
-                    keyCode: 40,
-                    which: 40,
-                  });
-                  orig_listener.apply(input, [simulated_downarrow]);
-                }
-
-                orig_listener.apply(input, [event]);
-              };
-            }
-
-            _addEventListener.apply(input, [type, listener]);
-          }
-
-          if (input.addEventListener) {
-            input.addEventListener = addEventListenerWrapper;
-          }
-        }
-
-        setAutocomplete(autoComplete);
-        pacSelectFirst(pacInput);
-        $("#search-location-button")
-          .off("click")
-          .on("click", function () {
-            var keydown = document.createEvent("HTMLEvents");
-            keydown.initEvent("keydown", true, false);
-            Object.defineProperty(keydown, "keyCode", {
-              get: function () {
-                return 13;
-              },
-            });
-            Object.defineProperty(keydown, "which", {
-              get: function () {
-                return 13;
-              },
-            });
-            pacInput.dispatchEvent(keydown);
-          });
-
-        google.maps.event.addListener(
-          autoComplete,
-          "place_changed",
-          function () {
-            const searchKey: any = pacInput.value;
-            if (searchKey) {
-              getCoordinates(searchKey);
-            }
-          }
-        );
-      }
+    if (firstTimeRunners) {
+      firstTimeRunners = false;
+      // searchActions.resetFacets();
+      FirstLoad();
     }
-    return () => {
-      if (autocomplete) {
-        autocomplete.unbindAll();
-      }
-    };
-  }, [googleLib]);
+
+    let params = (new URL(window.location.href)).searchParams;
+    let addresssearch = params.get("inputStoreValue");
+
+    if (addresssearch) {
+      setInputValue(addresssearch);
+      getCoordinates(addresssearch);
+      //  localStorage.removeItem('inputvalue');
+      setInputValue("");
+    }
+
+  }, [])
+
+
+
+  // const [autocomplete, setAutocomplete] = useState<google.maps.places.Autocomplete>();
+
+  // useEffect(() => {
+  //   if (googleLib && typeof google.maps === "object") {
+  //     let pacInput: any = document?.getElementById("pac-input");
+  //     let options: any = {
+  //       options: {
+  //         types: ["geocode"],
+  //         componentRestrictions: { country:params1},
+  //         strictBounds: false,
+  //         fields: ["address_components", "geometry", "icon", "name"],
+  //       },
+  //     };
+  //     const autoComplete = new google.maps.places.Autocomplete(
+  //       pacInput,
+  //       options
+  //     );
+  //     if (autoComplete) {
+  //       function pacSelectFirst(input: HTMLInputElement) {
+  //         var _addEventListener = input.addEventListener;
+
+  //         function addEventListenerWrapper(type: string, listener: any) {
+  //           if (type == "keydown") {
+  //             var orig_listener = listener;
+
+  //             listener = function (event: { which: number }) {
+  //               var suggestion_selected = $(".pac-item-selected").length > 0;
+
+  //               if (
+  //                 (event.which == 13 || event.which == 9) &&
+  //                 !suggestion_selected
+  //               ) {
+  //                 var simulated_downarrow = $.Event("keydown", {
+  //                   keyCode: 40,
+  //                   which: 40,
+  //                 });
+  //                 orig_listener.apply(input, [simulated_downarrow]);
+  //               }
+
+  //               orig_listener.apply(input, [event]);
+  //             };
+  //           }
+
+  //           _addEventListener.apply(input, [type, listener]);
+  //         }
+
+  //         if (input.addEventListener) {
+  //           input.addEventListener = addEventListenerWrapper;
+  //         }
+  //       }
+
+  //       setAutocomplete(autoComplete);
+  //       pacSelectFirst(pacInput);
+  //       $("#search-location-button")
+  //         .off("click")
+  //         .on("click", function () {
+  //           var keydown = document.createEvent("HTMLEvents");
+  //           keydown.initEvent("keydown", true, false);
+  //           Object.defineProperty(keydown, "keyCode", {
+  //             get: function () {
+  //               return 13;
+  //             },
+  //           });
+  //           Object.defineProperty(keydown, "which", {
+  //             get: function () {
+  //               return 13;
+  //             },
+  //           });
+  //           pacInput.dispatchEvent(keydown);
+  //         });
+
+  //       google.maps.event.addListener(
+  //         autoComplete,
+  //         "place_changed",
+  //         function () {
+  //           const searchKey: any = pacInput.value;
+  //           if (searchKey) {
+  //             getCoordinates(searchKey);
+  //           }
+  //         }
+  //       );
+  //     }
+  //   }
+  //   return () => {
+  //     if (autocomplete) {
+  //       autocomplete.unbindAll();
+  //     }
+  //   };
+  // }, [googleLib]);
 
 
   return (
-    <Wrapper
-      apiKey={googleMapsConfig.googleMapsApiKey}
-      libraries={["places", "geometry"]}
-    >
+    <>
+   
       {/* {loader} */}
-      <div className="breadcrumb">
-        <div className="container-custom">
-          <ul>
-            <li>
-              <a href="#" className="home"> Home</a>
-            </li>
-            <li>{StaticData.locator_breadcrumb}</li>
-          </ul>
-
+      <div className="city-breadcrumb">
+        <div className="breadcrumb">
+          <div className="container-custom">
+            <ul>
+              <li>
+                <a href="#" className="home"> Home</a>
+              </li>
+              <li>{StaticData.locator_breadcrumb}</li>
+            </ul>
+          </div>
         </div>
       </div>
       <div className="locator-main">
@@ -425,7 +418,7 @@ const SearchLayout = (props: any): JSX.Element => {
           </div>
 
           <div className="search-field">
-            {/* <FilterSearch
+            <FilterSearch
               ref={filterRef}
               displaymsg={displaymsg}
               setDisplaymsg={setDisplaymsg}
@@ -438,43 +431,43 @@ const SearchLayout = (props: any): JSX.Element => {
               setSearchInputValue={setInputValue}
               params={params1}
               searchOnSelect={true}
-              // searchFields={[
-              //   {
-              //     entityType: "location",
-              //     fieldApiName: "address.line1",
+              searchFields={[
+                {
+                  entityType: "location",
+                  fieldApiName: "address.line1",
 
-              //   },
-              //   {
-              //     entityType: "location",
-              //     fieldApiName: "address.postalCode",
+                },
+                {
+                  entityType: "location",
+                  fieldApiName: "address.postalCode",
 
-              //   },
-              //   {
-              //     entityType: "location",
-              //     fieldApiName: "name",
+                },
+                {
+                  entityType: "location",
+                  fieldApiName: "name",
 
-              //   },
-              //   {
-              //     entityType: "location",
-              //     fieldApiName: "address.city",
+                },
+                {
+                  entityType: "location",
+                  fieldApiName: "address.city",
 
-              //   },
-              //   {
-              //     entityType: "location",
-              //     fieldApiName: "address.region",
+                },
+                {
+                  entityType: "location",
+                  fieldApiName: "address.region",
 
-              //   },
-              //   {
-              //     entityType: "location",
-              //     fieldApiName: "address.countryCode",
+                },
+                {
+                  entityType: "location",
+                  fieldApiName: "address.countryCode",
 
-              //   },
-              // ]}
+                },
+              ]}
 
               handleInputValue={handleInputValue}
               handleSetUserShareLocation={handleSetUserShareLocation}
-            /> */}
-            <input
+            />
+            {/* <input
               id="pac-input"
               type="text"
               ref={inputRef}
@@ -492,14 +485,14 @@ const SearchLayout = (props: any): JSX.Element => {
                 }
               }}
               
-            />
+            /> */}
             <button
               className="search-btn"
               aria-label="Search bar icon"
               id="search-location-button" onClick={Findinput}>
               <span><b>
                 GO</b>
-                </span>
+              </span>
             </button>
           </div>
 
@@ -559,14 +552,14 @@ const SearchLayout = (props: any): JSX.Element => {
               <div className="button-bx">
                 <ViewMore className={" btn notHighlight lg:!w-[132%] !mb-2 button view-more"} idName={"view-more-button"} buttonLabel={"View More"} />
               </div>
-              <Footer />
+
             </div>
           </PerfectScrollbar>
         </div>
 
 
       </div>
-    </Wrapper>
+      </>
   );
 };
 

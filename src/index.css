@@ -401,7 +401,7 @@ body.mapView .mobile-btns .btn.mapBtn{  @apply text-Dark-red border-t-0 border-l
 .search-field{@apply flex relative  }
 .search-bx .search-btn{@apply absolute top-0 rounded-none right-0  text-white p-2 w-12 h-12 text-center bg-[#024b86] }  
 .search-bx .search-btn svg{ @apply mx-auto}
-.search-field input{@apply  w-full bg-white h-12 text-dark-gray placeholder:text-dark-gray  py-2 pr-20 sm:py-4 sm:pr-40 pl-4 leading-7  text-[1.0625rem] font-main-font  border border-[#8c8c8c] rounded-none border-none}
+.search-field input{@apply  w-full bg-white h-12 text-dark-gray placeholder:text-dark-gray  py-2 pr-20 sm:py-4 sm:pr-16 pl-4 leading-7  text-[1.0625rem] font-main-font  border border-[#8c8c8c] rounded-none border-none}
 .location p{ @apply mr-2 absolute rounded-lg -left-4 top-[0px] sm:top-[2px] xl:top-1}
 .search-bx .whitespace-nowrap{  @apply text-white !font-normal py-0 }
 .location{ @apply  border-b border-[#d8d8d8]  mt-0 }
@@ -499,22 +499,22 @@ table.day-hrs .time-b{  @apply text-lg md:text-lg  w-auto leading-[1.875rem] rou
   @apply overflow-hidden
 }
 .ReactModal__Content{ 
-  @apply max-w-[94%] md:max-w-3xl w-full max-h-[80%] !mr-0 !p-0 !pb-8 !border-none  !rounded-none
+  @apply max-w-[94%] md:max-w-3xl w-full max-h-[80%] !mr-0 !p-0 !pb-8 !border-none  !rounded-[20px]
 }
 .ReactModal__Overlay{
   @apply !bg-black bg-opacity-80 z-[999]
 }
 .ReactModal__Content .closeButton {@apply absolute right-4 top-2 cursor-pointer}
-.pop-up-holyhrs{@apply flex flex-row border border-dark-gray mx-4  border-b-0 last:border-b}
+.pop-up-holyhrs{@apply flex flex-row border border-dark-gray mr-4  border-b-0 last:border-b}
 .pop-up-holyhrs > div{@apply flex-[1_1_0] p-1.5 md:p-2.5}
-.pop-up-holyhrs.heading{@apply bg-dark-gray text-white}
+.pop-up-holyhrs.heading{@apply bg-[#024b86] text-white}
 .holytime-sec{@apply w-48 flex justify-evenly}
 .spac-bx{@apply w-8 text-center}
 .op-time{@apply w-8  lowercase}
 .cl-time{@apply w-8 lowercase}
 .days-sec{@apply w-8 lowercase}
 .closeButton{
-  @apply bg-red flex items-center justify-center rounded-full hover:opacity-80
+  @apply bg-[#024b86] flex items-center justify-center rounded-full hover:opacity-80
 }
 .closeButton svg{
   @apply w-3.5
@@ -656,7 +656,7 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 .title-with-link .box-title{ @apply mb-0}
 .title-with-link-1{@apply flex justify-between items-center mb-4}
 .title-with-link-1 .box-title{ @apply mb-0}
-.text-link{ @apply relative cursor-pointer capitalize text-red hover:text-black after:content-[""] after:bg-black after:h-px after:absolute after:left-0 after:bottom-0 after:w-0 after:transition-all after:duration-500 after:hover:w-full before:content-[""] before:bg-red before:h-px before:absolute before:left-0 before:bottom-0 before:w-full  }
+.text-link{ @apply relative cursor-pointer capitalize text-[#024b86] hover:text-black w-[9rem] pl-6}
 .address-bx{@apply text-base }
 .address-bx, .phone-bx{ @apply text-base  }
 .address-bx h4{@apply text-red font-normal text-base uppercase }
@@ -973,7 +973,7 @@ a.Link.btn.notHighligh:hover{
 @media screen and (max-width: 420px){
 .availablity-content{ @apply flex-col}
 .opennow-sec{@apply w-full even:w-full}
-.pop-up-holyhrs{@apply mx-1}
+.pop-up-holyhrs{@apply mr-1}
 .pop-up-holyhrs div{ @apply text-xs}
 
 .department-sec ul{@apply flex-col }

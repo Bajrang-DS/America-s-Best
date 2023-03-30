@@ -21,8 +21,8 @@ export const AnswerExperienceConfig = {
   
 }
 export const googleMapsConfig =  {
-  centerLatitude:38.889248,
-  centerLongitude: -77.050636,
+  centerLatitude:38.573936,
+  centerLongitude: -92.603760,
   googleMapsApiKey: "AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18"
 };
 // export const googleMapsApiKey = "AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18";

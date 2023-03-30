@@ -133,7 +133,10 @@
         "dm_directoryChildren.dm_baseEntityCount",
         "dm_directoryParents.name",
         "dm_directoryParents.slug",
-        "dm_directoryParents.meta.entityType"
+        "dm_directoryParents.meta.entityType",
+        "dm_directoryChildren.dm_directoryChildren.name",
+        "dm_directoryChildren.dm_directoryChildren.id",
+        "dm_directoryChildren.dm_directoryChildren.slug"
       ],
       "localization": {
         "locales": [

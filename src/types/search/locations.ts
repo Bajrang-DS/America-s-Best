@@ -290,7 +290,7 @@ export interface Location {
 	description?: string,
 	hours?: Hours,
 	logo?: ComplexImage,
-	name: string,
+	// name: string,
 	categories?: any,
 	cityCoordinate?: Coordinate,
 	closed?: boolean,
@@ -344,4 +344,5 @@ export interface Location {
 	yextRoutableCoordinate?: Coordinate,
 	yextWalkableCoordinate?: Coordinate,
 	videos?: ComplexVideo[],
+	c_specific_day?:any;
 }

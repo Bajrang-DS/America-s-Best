@@ -327,7 +327,7 @@ const DayRow = (props: DayRow) => {
                     <>
                       {openint.isClosed ? (
                         <div className="time-group" key={index}>
-                          <span  className="time-b closeddot">Closed</span>
+                          <span  className="time-b closeddot ">Closed</span>
                         </div>
                       ) : (
                         openint?.openIntervals &&

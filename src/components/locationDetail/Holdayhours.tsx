@@ -1,88 +1,81 @@
 import * as React from "react";
-import { useEffect } from "react";
- const Holidayhours =(props:any)=>{
+/**
+ * Create HolidayHour for holiday feild
+ * @param props
+ * @returns html for holiday hours feild
+ */
+type Holidayhour = {
+  isClosed: boolean;
+};
+const Holidayhour = (props: any) => {
+  const date = new Date();
+  let Day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
 
-    return(
-     <>
-      {props.hours.map((res:any,index:Number)=>{
-          console.log(res.isClosed)
-       const weeks=[
-         "Sunday",
-         "Monday",
-         "Tuesday",
-         "Wednesday",
-         "Thursday",
-         "Friday",
-         "Saturday"
-       ]
-    
-       const d = new Date(res.date);
-       let day = d.getDay();
-       let a,s,holidayDate:any;
-      function join(t:any, a:any, s:any) {
-        function format(m:any) {
-        let f = new Intl.DateTimeFormat('en', m);
-        return f.format(t);  
+  let currentDate = `${year}-${month}-${Day}`;
+  let array: any = [];
+  props.hours.map((i: any) => {
+    let d1 = new Date(`${currentDate}`);
+    let d2 = new Date(`${i.date}`);
+    if (d2.getTime() >= d1.getTime()) {
+      array.push(i);
+    }
+  });
+  return (
+    <>
+      {array.map((res: any, index: Number) => {
+        const weeks = [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ];
+        const d = new Date(res.date);
+        let day = d.getDay();
+        let date: any = d.getDate();
+        if (date < 10) {
+          date = "0" + date;
         }
-   return a.map(format).join(s);
-     } 
-   
-     a = [ {day: '2-digit'},{month: 'numeric'},{year: 'numeric'}];
-    //  s = join(new Date(), a, '-');  
-     var d1 = new Date();
-     var d2 = new Date(res.date);
-   if(d2.getDate() >= d1.getDate()){  
-         
-          
-           return(
-            <div className="pop-up-holyhrs">
-                <div>{join(new Date(res.date), a, '-') }</div>         
-                <div>{weeks[day]}</div> 
-                {console.log(res)}  
-                {res.isClosed?<span className="cl-time">
-                      Closed
-                    </span>:<>   
-                {res.openIntervals&&res.openIntervals.map((openinterval: any, index: Number) => {
-                  
-                  return (
-                    <>
-                  
-                     <div>  
-                      <>
-                      <span className="op-time">
-                        {openinterval.start}
-                      </span>{" "}
-                     <span className="spac-bx"> - </span> 
-                      {" "}
-                      <span className="cl-time">
-                        {openinterval.end}
-                      </span></>
-                   
-                      </div>
-                    </>
-                  );
-                })}</>}
-                   {props.c_specific_day&&props.c_specific_day.map((specificDay:any)=>{
-                        return(
-                          <>
+        let month: any = d.getMonth() + 1;
+        if (month < 10) {
+          month = "0" + month;
+        }
+        let year = d.getFullYear();
+
+        return (
+          <>
+            <div style={{marginLeft:"14px"}} className="pop-up-holyhrs">
+              <div>{`${date}/${month}/${year}`}</div>
+              <div>{weeks[day]}</div>
+              {!res.isClosed && (
+                <div className="">
+                  {res.openIntervals?.map(
+                    (openinterval: any, index: Number) => {
+                      return (
+                        <>
                           <div>
-                          {specificDay.holidayDate==res.date?
-                           <span className="specificday">
-                           {specificDay.holidayName}
-                         </span>:''
-                        
-                        }
-                        </div>
-                          </>
-                        )
-                      })}
-              </div>
-           )
-          }
-         
-         })}
-         
-     </>
-    )
-   }
-   export default Holidayhours;
+                            <span className="op-time">
+                              {openinterval?.start}
+                            </span>
+                            <span className="spac-bx"> - </span>
+                            <span className="cl-time">{openinterval?.end}</span>
+                          </div>
+                        </>
+                      );
+                    }
+                  )}
+                </div>
+              )}
+              {res.isClosed && <div>Closed</div>}
+            </div>
+          </>
+        );
+      })}
+    </>
+  );
+};
+export default Holidayhour;

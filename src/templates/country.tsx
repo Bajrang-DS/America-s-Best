@@ -43,7 +43,10 @@ export const config: TemplateConfig = {
        "dm_directoryChildren.dm_baseEntityCount",
       "dm_directoryParents.name",
       "dm_directoryParents.slug",
-      "dm_directoryParents.meta.entityType"
+      "dm_directoryParents.meta.entityType",
+      "dm_directoryChildren.dm_directoryChildren.name",
+      "dm_directoryChildren.dm_directoryChildren.id",
+      "dm_directoryChildren.dm_directoryChildren.slug"
       // "c_globalData.c_headerLinks1",
       // "c_globalData.c_footerLinks",
       // "c_globalData.facebookPageUrl",
@@ -209,10 +212,12 @@ const Country: Template<TemplateRenderProps> = ({
   path,
   document,
 }) => {
-  const { description, dm_directoryChildren, dm_directoryParents, c_tagline } = document;
+  // const { description, dm_directoryChildren, dm_directoryParents, c_tagline, dm_baseEntityCount } = document;
   const {
     name,
     slug,
+    dm_directoryChildren,
+     dm_directoryParents,
     c_globalData,
     _site,
     c_canonical,
@@ -221,18 +226,47 @@ const Country: Template<TemplateRenderProps> = ({
     __meta,
   } = document;
 
-  const childrenDivs = dm_directoryChildren.map((entity: any) => (
+ 
+const childrenDivs = dm_directoryChildren ? dm_directoryChildren.map((entity: any) => {
+ var detlslug1 ="";
+  var detlslug= "";
+if(entity.dm_baseEntityCount == 1){
+
+ entity.dm_directoryChildren ? entity.dm_directoryChildren.map((detl: any) => {
+          
+        if (!detl.slug) {
+            let slugString = detl.id + " " + detl.name;
+            let slug = slugify(slugString);
+            detlslug1 = `${slug}.html`;
+          } else {
+            detlslug1 = `${slug + "/" + entity.slug +"/"+entity?.dm_directoryChildren[0]?.slug+"/"+detl.slug.toString()}`;
+          }
+
+          detlslug = detlslug1;
+
+        }) : detlslug = detlslug1;
+      }
+      else{
+        detlslug = slug + "/" + entity.slug ;
+      }
+      return (
+        <>
     <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4">
       <Link
         eventName="Region"
         key={entity.slug}
-        href={slug + "/" + entity.slug + ".html"}
+        // href={slug + "/" + entity.slug + ".html"}
+        href={detlslug + ".html"}
         className="hover:text-red"
       >
         {entity.name} ({entity.dm_baseEntityCount})
       </Link>
     </div>
-  ));
+    </>
+  );
+}) :"";
+
+
   let templateData = { document: document, __meta: __meta };
   let breadcrumbScheme = [];
 

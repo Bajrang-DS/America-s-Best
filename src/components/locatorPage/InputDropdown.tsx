@@ -354,6 +354,22 @@ export default function InputDropdown({
     }
   );
 
+  const [input, setInput] = useState("");
+  useEffect(() => {
+
+    // if(localStorage.getItem('inputvalue')){
+    //       setInput(localStorage.getItem('inputvalue')); 
+    let params = (new URL(window.location.href)).searchParams;
+    let addresssearch = params.get("inputStoreValue");
+    if (addresssearch) {
+      setInput(addresssearch);
+
+
+    } else {
+      setInput(input);
+    }
+  });
+
 
 
   return (

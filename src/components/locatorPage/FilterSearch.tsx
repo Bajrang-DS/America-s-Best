@@ -102,6 +102,23 @@ const FilterSearch = React.forwardRef<FilterHandle, FilterSearchProps>(
         setInputValue: (value: String) => setInput(value)
       }
     })
+
+    useEffect(() => {
+
+      // if(localStorage.getItem('inputvalue')){
+      //       setInput(localStorage.getItem('inputvalue'));
+
+      let params = (new URL(window.location.href)).searchParams;
+      let addresssearch = params.get("inputStoreValue");
+      if (addresssearch) {
+        setInput(addresssearch);
+      } else {
+        setInput(inputvalue);
+
+      }
+
+    }, [inputvalue]);
+    
    console.log(displaymsg,"fisttimedispalydfsd")
     const cssClasses = useComposedCssClasses(
       builtInCssClasses,

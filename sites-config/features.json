@@ -134,9 +134,14 @@
         "dm_directoryParents.name",
         "dm_directoryParents.slug",
         "dm_directoryParents.meta.entityType",
+        "dm_directoryParents.dm_baseEntityCount",
         "dm_directoryChildren.dm_directoryChildren.name",
         "dm_directoryChildren.dm_directoryChildren.id",
-        "dm_directoryChildren.dm_directoryChildren.slug"
+        "dm_directoryChildren.dm_directoryChildren.slug",
+        "dm_directoryChildren.dm_directoryChildren.dm_directoryChildren.name",
+        "dm_directoryChildren.dm_directoryChildren.dm_directoryChildren.id",
+        "dm_directoryChildren.dm_directoryChildren.dm_directoryChildren.slug",
+        "dm_directoryChildren.dm_directoryChildren.dm_directoryChildren.meta.entityType"
       ],
       "localization": {
         "locales": [

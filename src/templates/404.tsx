@@ -70,7 +70,7 @@ const FourOhFour: Template<TemplateRenderProps> = ({
     <>
       <PageLayout _site={_site}>
         <div className="content-list">
-          <div className="container">
+          <div className="container flex">
             <div className="FourOhFour-image">
               <img src={_site.c_404image.url} alt="" />
             </div>

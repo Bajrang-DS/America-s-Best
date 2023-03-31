@@ -43,12 +43,7 @@ function Model(props: any) {
   return (
     <>
       <div className="text-link"  >
-        {/* <button
-          className="current-location hide-mob link-line-text holidayHoursButton"
-          onClick={openModal}
-        >
-          Holiday Hours
-        </button> */}
+      
         <a onClick={openModal} id="holidaybtn" href="javascript:void(0);">
           {props.name}
         </a>

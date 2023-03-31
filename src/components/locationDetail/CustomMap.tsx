@@ -30,7 +30,8 @@ function CustomMap(coords: props) {
   });
   return (
     <LoadScript googleMapsApiKey="AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18">
-      {coords.prop.latitude && coords.prop.longitude?<> <GoogleMap
+      {coords.prop.latitude && coords.prop.longitude?<> 
+      <GoogleMap
         mapContainerStyle={containerStyle}
         center={{
           lat: coords.prop && coords.prop.latitude,
@@ -53,9 +54,19 @@ function CustomMap(coords: props) {
                 "elementType": "all",
                 "stylers": [
                     {
-                        "visibility": "on"
+                        "visibility": "on",
+                        "color": "#f5f8fa"
                     }
                 ]
+            },
+            {
+              featureType: "landscape",
+              elementType: "gecometry.fill",
+              stylers: [
+                {
+                  color: "#f5f8fa",
+                },
+              ],
             },
             {
                 "featureType": "poi",

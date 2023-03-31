@@ -96,7 +96,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 /* middle header */
 .Header-container {
-  width: 97rem;
+  width: 97%;
   padding-left: 1rem;
   padding-right: 1rem;
   margin-left: auto;
@@ -221,7 +221,7 @@ img.location-logo {
 }
 
 .Header-linkWrapper--main:not(:last-child) {
-  margin-right: 5rem;
+  margin-right: 4rem;
 }
 .Header-link--main {
   font-size: 1rem;
@@ -230,6 +230,45 @@ img.location-logo {
   font-weight: 700;
   display: inline-block;
   color: #fff;
+}
+
+.c-main-nav__utility {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  
+}
+.c-main-nav__link .m-icon-dropdown {
+  height: 100%;
+  position: relative;
+}
+.m-icon-dropdown__icon{
+  color: #fff;
+  height: 100%;
+  font-size: 1rem;
+  line-height: 1.625rem;
+  font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    width: auto;
+    position: relative;
+    display: flex;
+    gap: 5px;
+    border-right: 2px solid;
+    padding-right: 1.5rem;
+    border-color: black;
+}
+.m-icon-dropdown__icon:last-child{
+  border: none !important;
+}
+.icon-search-image{
+  padding-top: 2px;
+}
+.m-nav-search.m-icon-dropdown.dropdown.js-autocomplete-search{
+  display: flex;
+  gap: 1.5rem;
+  float: right;
 }
 
 /* footer */
@@ -990,6 +1029,14 @@ a.Link.btn.notHighligh:hover{
   .storelocation-openCloseTime .day-hrs td.dayName{@apply pl-6}
   .storelocation-openCloseTime table.day-hrs .currentDay .dayName .checked{@apply left-1}
 }
+.FourOhFour-image > img {
+  height: 20rem;
+  width: 20rem;
+}
+.FourOhFour-image {
+  width: 23%;
+  float: left;
+}
 
 /* hero banner */
 .hero-banner {
@@ -1340,6 +1387,11 @@ h1.entity-name{
     color: #024b86;
     margin-bottom: 1.875rem;
 }
+.About-description {
+  font-size: 1.1rem;
+  line-height: 1.87;
+  color: black;
+}
 .About-description p:not(:last-child) {
   margin-bottom: 1.25rem;
 }
@@ -1355,6 +1407,7 @@ h1.entity-name{
 
   display: flex;
 }
+
 .About-cta{
   display: flex;
   -webkit-box-pack: center;

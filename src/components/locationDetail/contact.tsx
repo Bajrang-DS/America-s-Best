@@ -94,11 +94,11 @@ const Contact = (props: any) => {
             <div className="hours-div mb-5 md:mb-1 flex flex-col">
               {hours.holidayHours && typeof hours.reopenDate == "undefined" ? (
                 <>
-                  <Model
+                  {/* <Model
                     name={StaticData.Holdiay}
                     holidayHours={hours.holidayHours}
                     c_specific_day={c_specific_day}
-                  />
+                  /> */}
                 </>
               ) : (
                 ""

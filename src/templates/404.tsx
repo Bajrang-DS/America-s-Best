@@ -19,7 +19,7 @@ export const config: TemplateConfig = {
     // directly as props to the default exported function.
     fields: [
       "name",
-      
+
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
@@ -61,23 +61,37 @@ const FourOhFour: Template<TemplateRenderProps> = ({
   const {
     _site
   } = document;
+//   const array = [{ name: "John" }, { name: "bajrang" }, { name: "bajrang" }, { name: "bajrang" }];
+
+//   let pp = array.filter( (ele, ind) => ind === array.findIndex( elem => elem.name === ele.name))
+
+// console.log(pp,"gggggggggg")
   return (
     <>
       <PageLayout _site={_site}>
         <div className="content-list">
           <div className="container">
-            <div className="sec-title text-center">
+            <div className="FourOhFour-image">
+              <img src={_site.c_404image.url} alt="" />
+            </div>
+            <div className="sec-title text-center float-right w-[77%]">
               <h1 className="" style={{ textAlign: "center" }}>
                 {StaticData.PagenotFound}
               </h1>
-              <p style={{color:"crimson"}}>{StaticData.cantfind_page}.</p>
-              <p style={{color:"blue"}}>{StaticData.Youcouldtry}</p>
+              <p style={{ color: "crimson" }}>{StaticData.cantfind_page}.</p>
+              <p style={{ color: "blue" }}>{StaticData.Youcouldtry}</p>
               <div className="button-bx max-w-[45rem] !mx-auto !mt-5">
                 <a className="btn border-[1px]" href="javascript:history.back()">{StaticData.Previuspage} &gt;</a>
                 <a className="btn border-[1px]" href="/">{StaticData.homePage} &gt;</a>
               </div>
             </div>
+            {/* <div>
+              {pp.map((name: any) =>
 
+                <h1>{name.name}</h1>
+
+              )}
+            </div> */}
 
           </div>
         </div>

@@ -23,9 +23,13 @@ const About = (props: any) => {
               {props.c_aboutdatas.map((item: any) =>
 
                 <p>
+                  {item.strongtext ? 
+                  <>
                   <strong>
                     {item.strongtext}
-                  </strong><br />
+                  </strong>
+                  <br /></>
+                   : ""}
                   {item.destext}
                 </p>
               )}

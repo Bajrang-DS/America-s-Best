@@ -234,8 +234,8 @@ function UnwrappedGoogleMaps({
       label: {  //open letter
         text: String(i),
         color: "white",
-     },
-      
+      },
+
       // animation: google.maps.Animation.DROP
     });
 
@@ -279,6 +279,54 @@ function UnwrappedGoogleMaps({
         new window.google.maps.Map(ref.current, {
           center,
           zoom,
+          // styles: [
+          //   {
+          //     featureType: "administrative",
+          //     elementType: "all",
+          //     stylers: [
+          //       {
+          //         visibility: "simplified",
+          //       },
+          //     ],
+          //   },
+          //   {
+          //     featureType: "landscape",
+          //     elementType: "all",
+          //     stylers: [
+          //       {
+          //         visibility: "on",
+          //         color: "#f5f8fa",
+          //       },
+          //     ],
+          //   },
+          //   {
+          //     featureType: "landscape",
+          //     elementType: "gecometry.fill",
+          //     stylers: [
+          //       {
+          //         color: "#f5f8fa",
+          //       },
+          //     ],
+          //   },
+          //   {
+          //     featureType: "poi",
+          //     elementType: "all",
+          //     stylers: [
+          //       {
+          //         visibility: "off",
+          //       },
+          //     ],
+          //   },
+          //   {
+          //     featureType: "transit",
+          //     elementType: "all",
+          //     stylers: [
+          //       {
+          //         visibility: "off",
+          //       },
+          //     ],
+          //   },
+          // ],
           ...providerOptions,
         })
       );
@@ -467,7 +515,7 @@ function UnwrappedGoogleMaps({
                     const resultelement = document.querySelectorAll(
                       ".result"
                     );
-                    resultelement[index].classList.remove("active","fixed-hover");
+                    resultelement[index].classList.remove("active", "fixed-hover");
                   });
                   map?.setZoom(10);
                 }
@@ -530,7 +578,7 @@ function UnwrappedGoogleMaps({
             {/* <div className="icon"> <img className=" " src={mapimage} width="20" height="20"
         alt="" /></div> */}
             <h2>
-              <a className="inline-block notHighlight" href={`/${url +".html"}`}>
+              <a className="inline-block notHighlight" href={`/${url + ".html"}`}>
                 {result.rawData.name}
               </a>
             </h2>
@@ -591,8 +639,8 @@ function UnwrappedGoogleMaps({
           )}
         </div>
         <div className="button-bx !ml-4 !mb-0">
-          <a type="button" href={`/${url +".html"}`} className="btn">
-          
+          <a type="button" href={`/${url + ".html"}`} className="btn">
+
             {StaticData.StoreDetailbtn}
           </a>
           {result.rawData.displayCoordinate ? (
@@ -606,7 +654,7 @@ function UnwrappedGoogleMaps({
               data-country={result.rawData.address.countryCode}
               data-region={result.rawData.address.region}
             >
-            
+
               {StaticData.getDirection}
             </a>
           ) : (
@@ -620,7 +668,7 @@ function UnwrappedGoogleMaps({
               className="cursor-pointer getdirection1 btn"
               rel="noopener noreferrer"
             >
-             
+
               {StaticData.getDirection}
             </a>
           )}

@@ -95,7 +95,8 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
             </div>
             
             
-            <b>  <Model name={StaticData.Holdiay}
+            <b>  
+              <Model name={StaticData.Holdiay}
                 holidayHours={hours?.holidayHours}
                 c_specific_day={c_specific_day}
               /></b>

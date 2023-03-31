@@ -418,7 +418,7 @@ body.mapView .mobile-btns .btn.mapBtn{  @apply text-Dark-red border-t-0 border-l
    
 .location .button-bx{  @apply max-w-lg justify-start xl:mr-[8px] flex-row  justify-end}
 .result-list .location{ @apply first:mt-0}
-.location .button-bx .btn{@apply w-[12.85rem]  border-none text-[#024b86]    }
+.location .button-bx .btn{@apply w-[11.5rem]  border-none text-[#024b86]    }
 .location .button-bx .btn{
   border: 0.125rem solid;
   border-color: #024b86;

@@ -10,6 +10,7 @@ import { StaticData } from "../../../sites-global/staticData";
 import Holidayhours from "./Holdayhours";
 import Model from "./Model";
 import CustomMap from "./CustomMap";
+import { formatPhoneNumber } from "react-phone-number-input";
 
 const Contact = (props: any) => {
   const {
@@ -24,6 +25,8 @@ const Contact = (props: any) => {
     c_storeInfoHeading,
     c_getDirectionsCTAText
   } = props;
+
+  const mainPhone = formatPhoneNumber(phone);
   return (
     <>
       <div className="address-main-sec">
@@ -61,7 +64,7 @@ const Contact = (props: any) => {
             </div>
             <div className="content-col">
               <a id="address" className=" location-phn" href={`tel:${phone}`}>
-                {phone}
+                {mainPhone}
               </a>
             </div>
           </div>

@@ -11,6 +11,7 @@ import * as React from "react";
 import { favicon } from "../../sites-global/global";
 import { StaticData } from "../../sites-global/staticData";
 import PageLayout from "../components/layouts/PageLayout";
+import "../index.css";
 export const config: TemplateConfig = {
   stream: {
     $id: "404",
@@ -69,11 +70,11 @@ const FourOhFour: Template<TemplateRenderProps> = ({
               <h1 className="" style={{ textAlign: "center" }}>
                 {StaticData.PagenotFound}
               </h1>
-              <p>{StaticData.cantfind_page}.</p>
-              <p>{StaticData.Youcouldtry}</p>
+              <p style={{color:"crimson"}}>{StaticData.cantfind_page}.</p>
+              <p style={{color:"blue"}}>{StaticData.Youcouldtry}</p>
               <div className="button-bx max-w-[45rem] !mx-auto !mt-5">
-                <a className="btn" href="javascript:history.back()">{StaticData.Previuspage} &gt;</a>
-                <a className="btn" href="/">{StaticData.homePage} &gt;</a>
+                <a className="btn border-[1px]" href="javascript:history.back()">{StaticData.Previuspage} &gt;</a>
+                <a className="btn border-[1px]" href="/">{StaticData.homePage} &gt;</a>
               </div>
             </div>
 

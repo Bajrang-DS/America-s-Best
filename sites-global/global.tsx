@@ -6,7 +6,7 @@ export const baseuRL = "https://liveapi-sandbox.yext.com/v2/accounts/me/entities
 export const apikey_for_entity = "ea7ea73738da090eba9cafbc45220b0b"
 // export const favicon="https://i.insider.com/55a40a08eab8eacf01028ac8?width=750&format=jpeg&auto=webp";
 
-export const favicon = "../src/images/favicon.png";
+export const favicon = "https://www.americasbest.com/_ui/responsive/theme-ambest/images/favicon180x180.png";
 export const apiKey = "b88e27af2c8b5d5b7fe52d29786f3b57";
 export const googleApikey = "AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18";
 export const regionNames = new Intl.DisplayNames(['en'], { type: 'region' })

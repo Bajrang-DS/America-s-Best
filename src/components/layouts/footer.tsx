@@ -64,9 +64,9 @@ const Footer = (props: any) => {
           <div className="Footer-row Footer-row--copyright">
             <div className="Footer-col">{props._site?.c_footerpolicy.text1}
               <br />
-              {props._site?.c_footerpolicy.text2}
-              <a className="Footer-copyrightLink" href="https://www.americasbest.com/state-legal-disclosures" data-ya-track="copyrightlink">{props._site?.c_footerpolicy.cta.label}</a>
-              {props._site?.c_footerpolicy.text3}
+              {props._site?.c_footerpolicy.text2}&nbsp;
+              <a className="Footer-copyrightLink" href="#" data-ya-track="copyrightlink">{props._site?.c_footerpolicy.cta.label}</a>&nbsp;
+             {props._site?.c_footerpolicy.text3}
             </div>
           </div>
         </div>

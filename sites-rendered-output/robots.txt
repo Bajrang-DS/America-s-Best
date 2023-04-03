@@ -1,2 +1,0 @@
-Sitemap: https://master-almost--alive--badger-sbx-pgsdemo-com.sbx.preview.pagescdn.com//sitemap.xml
-  User-agent: /

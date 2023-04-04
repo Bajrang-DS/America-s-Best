@@ -46,6 +46,7 @@ export const config: TemplateConfig = {
       "dm_directoryParents.slug",
       "dm_directoryParents.meta.entityType",
       "dm_directoryChildren.name",
+      "dm_directoryChildren.timezone",
       "dm_directoryChildren.slug",
       "dm_directoryChildren.id",
       "dm_directoryParents.dm_baseEntityCount",
@@ -255,6 +256,8 @@ const City: Template<TemplateRenderProps> = ({
     c_metaDescription,
     c_metaTitle,
     _site,
+    timezone,
+    hours,
     __meta,
   } = document;
   var address;
@@ -279,6 +282,7 @@ const City: Template<TemplateRenderProps> = ({
   const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
 
   const childrenDivs = dm_directoryChildren.map((entity: any) => {
+
     var origin: any = null;
     if (entity.address.city) {
       origin = entity.address.city;
@@ -332,8 +336,11 @@ const City: Template<TemplateRenderProps> = ({
                 <div className="hours-info text-lg font-second-main-font closeddot">
                   Closed
                 </div>
+               
               </div>
+            
             }
+           
           </div>
           <div className="icon-row content-col">
             <Address address={entity.address} />

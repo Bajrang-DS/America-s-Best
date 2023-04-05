@@ -309,6 +309,15 @@ function UnwrappedGoogleMaps({
           //     ],
           //   },
           //   {
+          //     featureType: "water",
+          //     elementType: "gecometry.fill",
+          //     stylers: [
+          //       {
+          //         color: "#ADD8E6",
+          //       },
+          //     ],
+          //   },
+          //   {
           //     featureType: "poi",
           //     elementType: "all",
           //     stylers: [

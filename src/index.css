@@ -278,6 +278,10 @@ img.location-logo {
   background-color: #024b86;
   color: #fff;
   flex-shrink: 0;
+  font-size: 1rem;
+  line-height: 1.87;
+  letter-spacing: .02188rem;
+  font-family: "Lato",Helvetica,Arial,sans-serif;
 }
 .Footer-container {
   width: 97%;
@@ -291,6 +295,7 @@ img.location-logo {
 }
 .Footer-row--main {
   padding-bottom: 3.375rem;
+  padding-top: 1rem;
 }
 .Footer-col--sloganAndSocials {
   margin-right: 1.25rem;
@@ -341,6 +346,9 @@ img.location-logo {
 .Footer-link {
   text-decoration: none;
   font-weight: 700;
+}
+.Footer-link:active, .Footer-link:focus, .Footer-link:hover {
+  text-decoration: underline;
 }
 .Footer-row:not(:last-child) {
   border-bottom: 0.0625rem solid #0078b4;
@@ -671,7 +679,7 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
   @apply after:content-[''] last:after:content-none after:w-1.5 after:h-1.5 md:after:w-2 md:after:h-2 after:border-r after:border-b after:border-nav-link after:transform after:-rotate-45 after:mx-1.5 md:after:mx-1.5
 }
 .breadcrumb ul li a{ 
-  @apply hover:text-red font-main-font
+  @apply underline hover:no-underline font-main-font text-[#024b86]
 }
 
 /* hero-banner */
@@ -1557,6 +1565,9 @@ h1.entity-name{
   color: #024b86;
   text-transform: uppercase;
   font-weight: 700;
+}
+.Offer-cta:hover, .Offer-cta:active {
+  color: #0078b4;
 }
 .Offers-ctaWrapper {
   margin-top: 3.125rem;

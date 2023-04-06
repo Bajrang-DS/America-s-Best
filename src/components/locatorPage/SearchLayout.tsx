@@ -32,6 +32,9 @@ import useFetchResults from "../../hooks/useFetchResults";
 import { Link } from "@mui/material";
 import { AnswerExperienceConfig } from "../../config/answersHeadlessConfig";
 import Footer from "../layouts/footer";
+import {
+  StandardFacets,
+} from "@yext/search-ui-react";
 
 var params1: any = { latitude: center_latitude, longitude: center_longitude }
 var mapzoom = 8;
@@ -394,7 +397,7 @@ const SearchLayout = (props: any): JSX.Element => {
 
   return (
     <>
-   
+
       {/* {loader} */}
       <div className="city-breadcrumb">
         <div className="breadcrumb">
@@ -467,6 +470,8 @@ const SearchLayout = (props: any): JSX.Element => {
               handleInputValue={handleInputValue}
               handleSetUserShareLocation={handleSetUserShareLocation}
             />
+          
+
             {/* <input
               id="pac-input"
               type="text"
@@ -503,10 +508,16 @@ const SearchLayout = (props: any): JSX.Element => {
               <span style={{ color: "blue" }} className="underline hover:no-underline"> {StaticData.Usemylocation}</span>
             </button>
 
+            <StandardFacets
+              customCssClasses={{ container: "filter-items" }}
+              defaultExpanded={true}
+            ></StandardFacets>
+
             <ResultsCount
-              customCssClasses={{ container: "mx-2 my-0 text-dark-gray" }}
+              customCssClasses={{ container: "mx-2 mt-[10px] text-dark-gray" }}
             />
           </div>
+       
         </div>
         <div className="mobile-btns">
           <div className="button-bx">
@@ -559,7 +570,7 @@ const SearchLayout = (props: any): JSX.Element => {
 
 
       </div>
-      </>
+    </>
   );
 };
 

@@ -10,7 +10,7 @@ interface ResultsCountCssClasses {
 }
 
 const builtInCssClasses: ResultsCountCssClasses = {
-  container: 'pb-7 md:pb-4',
+  container: 'pb-7 md:pb-[10px]',
   text: 'text-sm text-gray-700',
   number: 'font-medium'
 }

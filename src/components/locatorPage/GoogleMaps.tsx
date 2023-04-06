@@ -648,10 +648,14 @@ function UnwrappedGoogleMaps({
           )}
         </div>
         <div className="button-bx !ml-4 !mb-0">
-          <a type="button" href={`/${url + ".html"}`} className="btn">
-
-            {StaticData.StoreDetailbtn}
-          </a>
+        <Link type="button" href={`/${url + ".html"}`} className=" btn notHighlight "
+                data-ya-track={`viewStore -${result.rawData.name}`}
+                eventName={`viewStore -${result.rawData.name}`}
+                rel="noopener noreferrer"
+              >
+                {/* <div dangerouslySetInnerHTML={{__html: View_Store}}/> */}
+                {StaticData.StoreDetailbtn}
+              </Link>
           {result.rawData.displayCoordinate ? (
             <a
               data-listener="false"

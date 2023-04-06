@@ -442,7 +442,7 @@ body.mapView .mobile-btns .btn.mapBtn{  @apply text-Dark-red border-t-0 border-l
 
 /* left listing */
 .search-bx{@apply  mb-0  z-20 px-4 md:pl-3  pt-0 pb-6 text-gray-dark float-left w-full md:w-[30rem] lg:w-[33.6875rem] border-b border-[#d8d8d8] bg-[#f5f8fa]}
-.search-bx button{ @apply float-left mr-0 relative text-white text-xs sm:text-sm }
+.search-bx button{ @apply float-left mr-0 relative }
 .search-bx button.useMyLocation {@apply text-dark-gray flex items-center font-second-main-font text-lg}
 .search-bx button.useMyLocation .icon{@apply mr-1.5}
 .search-field{@apply flex relative  }
@@ -493,7 +493,7 @@ body.mapView .mobile-btns .btn.mapBtn{  @apply text-Dark-red border-t-0 border-l
 #result-1 .result-inner{ @apply pt-0 md:pt-4}
 #result-1 .result-inner .availablity-content{@apply mt-2}
 /* .location-phn{ @apply  hover:!no-underline text-lg } */
-.fliter-sec{ @apply mt-2 flex items-start sm:items-center justify-start sm:justify-between  flex-col sm:flex-row}
+.fliter-sec{ @apply mt-2 flex items-start  justify-start  flex-col }
 .location .result-inner .green-dot, .location .result-inner .red-dot{ @apply  flex  }
 .location .result-inner .green-dot svg, .location .result-inner .red-dot svg{ @apply  ml-1 mt-1 }
 .location-with-filter{ @apply mb-6 flex items-center justify-between text-sm leading-5}
@@ -1657,4 +1657,21 @@ flex-direction: column;
   box-shadow: 4px 4px #8caabb;
   padding: 0;
   position: relative;
+}
+
+button#react-collapsed-toggle-1 {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  background: blue;
+  color: #fff;
+  padding: 10px;
+  margin-top: 10px;
+  position: relative;
+  width: 100%;
+}
+div#react-collapsed-panel-1 {
+  /* padding: 10px; */
+  /* position: relative; */
+  width: 100%;
+  overflow: hidden;
 }

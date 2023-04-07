@@ -77,6 +77,14 @@ const SearchLayout = (props: any): JSX.Element => {
   // var {_site} =document;
   var firstTimeRunners = true;
 
+  const [FacetValue, setFacetValues] = useState('off');
+  const myFunction = (x: any) => {
+    if (FacetValue == "off") {
+      setFacetValues("on");
+    } else {
+      setFacetValues("off");
+    }
+  }
 
   const FirstLoad = () => {
     setCheck(true);
@@ -470,7 +478,7 @@ const SearchLayout = (props: any): JSX.Element => {
               handleInputValue={handleInputValue}
               handleSetUserShareLocation={handleSetUserShareLocation}
             />
-          
+
 
             {/* <input
               id="pac-input"
@@ -508,16 +516,31 @@ const SearchLayout = (props: any): JSX.Element => {
               <span style={{ color: "blue" }} className="underline hover:no-underline"> {StaticData.Usemylocation}</span>
             </button>
 
-            <StandardFacets
-              customCssClasses={{ container: "filter-items" }}
-              defaultExpanded={true}
-            ></StandardFacets>
 
             <ResultsCount
-              customCssClasses={{ container: "mx-2 mt-[10px] text-dark-gray" }}
+              customCssClasses={{ container: "mx-2 text-dark-gray text-right w-[50%]" }}
             />
+
           </div>
-       
+          <div className="facet-data">
+
+
+            <div className="facet-button-class" onClick={myFunction}>
+              Apply Filter
+            </div>
+            <div className={"fliter-sec filter-facet " + FacetValue} id="bg-search">
+              <StandardFacets
+                customCssClasses={{ container: "filter-items" }}
+                defaultExpanded={false}
+                collapsible={true}
+           
+              // title="Apply Filter"
+              ></StandardFacets>
+            </div>
+
+          </div>
+
+
         </div>
         <div className="mobile-btns">
           <div className="button-bx">

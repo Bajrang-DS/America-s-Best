@@ -119,7 +119,7 @@ function UnwrappedGoogleMaps({
 
   const refLocationResults = useRef({});
 
-  // const locationResults = useSearchState(state => state.vertical?.results) || [];
+  // const locationResults = useSearchState(state => state.vertical?.results) || [];  //if location marker not add after click on view more
   const locationResults = useFetchResults() || [];
 
 

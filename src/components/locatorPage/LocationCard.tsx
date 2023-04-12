@@ -11,6 +11,8 @@ import { Link } from "@yext/pages/components";
 // import Phonesvg from "../../images/phone.svg";
 import Model from "../locationDetail/Model";
 import { formatPhoneNumber } from "react-phone-number-input";
+import { useSearchState } from "@yext/search-headless-react";
+import useFetchResults from "../../hooks/UseFetchResults";
 
 
 const metersToMiles = (meters: number) => {
@@ -37,22 +39,46 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
     }
   }
 
-  const { address, mainPhone, hours, additionalHoursText, c_specific_day } = result.rawData;
+  const { address, mainPhone, hours, additionalHoursText, c_specific_day,index } = result.rawData;
   const phone = formatPhoneNumber(mainPhone);
+
+  const locationResults = useFetchResults();
+  // const resultsCount = useSearchState(state => state.vertical) || 0;
+  // const resultsLength = useSearchState(state => state.vertical?.results?.length) || 0;
+  // const offset = useSearchState(state => state.vertical?.offset) || 0;
+  
+//   const arr = locationResults.map((data: any, index: number) => index
+  
+//   )
+//  console.log(locationResults, "locationResults")
 
   let countrycode = `${result.rawData.address?.countryCode?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`;
   let statecode = `${result.rawData.address?.region?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`;
   let citycode = `${result.rawData?.address?.city?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`;
   let url = `${countrycode + "/" + statecode + "/" + citycode + "/" + result.rawData.slug?.toString()}`;
 
-  console.log(result.rawData, "bajrang")
+
+var els = document.querySelectorAll('.countnumber');
+
+for(var i=0;i < els.length; i++){
+        els[i].index = i;
+        els[i].innerHTML = i+1;
+}
+
+  // console.log(result.index, "bajrang")
   return (
     <div className={`location result-list-inner-${result.id} result`} id={`result-${result.id}`} key={`result-${result.rawData.id}`}>
       <div className="result-inner ">
         <div className="center-column">
           <div className="lp-param-results lp-subparam-hours">
             <div className="location-name-miles icon-row">
-              <div className="icon text-black relative"><span className="map-count">{result.index}</span></div>
+              <div className="icon text-black relative">
+                
+                <span className="map-count countnumber">
+
+                {/* {result.index} */}
+                
+                </span></div>
               <h2><Link className="inline-block notHighlight"
                 data-ya-track={`viewDetail -${result.rawData.name}`}
                 eventName={`viewDetail -${result.rawData.name}`}
@@ -93,9 +119,9 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                 </div>
               </div>}
             </div>
-            
-            
-            <b>  
+
+
+            <b>
               <Model name={StaticData.Holdiay}
                 holidayHours={hours?.holidayHours}
                 c_specific_day={c_specific_day}
@@ -127,7 +153,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
             </div>
 
             <div className="button-bx">
-              <div style={{ paddingRight: "1rem" , fontSize:"12px"}}>
+              <div style={{ paddingRight: "1rem", fontSize: "12px" }}>
                 <h4>Eye exams provided by: Doctors Exchange of Alabama, P.C.</h4>
               </div>
 

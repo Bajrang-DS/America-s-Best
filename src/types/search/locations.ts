@@ -345,4 +345,6 @@ export interface Location {
 	yextWalkableCoordinate?: Coordinate,
 	videos?: ComplexVideo[],
 	c_specific_day?:any;
+	index?:number;
+	
 }

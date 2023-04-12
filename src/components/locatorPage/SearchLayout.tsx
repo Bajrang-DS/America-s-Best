@@ -405,7 +405,10 @@ const SearchLayout = (props: any): JSX.Element => {
 
   return (
     <>
-
+      {/* <Wrapper
+      apiKey={googleMapsConfig.googleMapsApiKey}
+      libraries={["places", "geometry"]}
+    ></Wrapper> */}
       {/* {loader} */}
       <div className="city-breadcrumb">
         <div className="breadcrumb">
@@ -533,7 +536,7 @@ const SearchLayout = (props: any): JSX.Element => {
                 customCssClasses={{ container: "filter-items" }}
                 defaultExpanded={false}
                 collapsible={true}
-           
+
               // title="Apply Filter"
               ></StandardFacets>
             </div>
@@ -590,8 +593,6 @@ const SearchLayout = (props: any): JSX.Element => {
             </div>
           </PerfectScrollbar>
         </div>
-
-
       </div>
     </>
   );

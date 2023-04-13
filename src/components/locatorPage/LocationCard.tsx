@@ -42,16 +42,6 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
   const { address, mainPhone, hours, additionalHoursText, c_specific_day,index } = result.rawData;
   const phone = formatPhoneNumber(mainPhone);
 
-  const locationResults = useFetchResults();
-  // const resultsCount = useSearchState(state => state.vertical) || 0;
-  // const resultsLength = useSearchState(state => state.vertical?.results?.length) || 0;
-  // const offset = useSearchState(state => state.vertical?.offset) || 0;
-  
-//   const arr = locationResults.map((data: any, index: number) => index
-  
-//   )
-//  console.log(locationResults, "locationResults")
-
   let countrycode = `${result.rawData.address?.countryCode?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`;
   let statecode = `${result.rawData.address?.region?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`;
   let citycode = `${result.rawData?.address?.city?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`;

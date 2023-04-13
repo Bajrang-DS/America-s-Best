@@ -184,6 +184,11 @@ const SearchLayout = (props: any): JSX.Element => {
       setDisplaymsg(false);
     }
   }
+  // const Demoinput = () => {        //to search from any button
+  //   getCoordinates("arnold");
+  // }
+
+
 
   // const Findinput2 = () => {
   //   let Search = inputRef.current?.value || "";
@@ -430,6 +435,9 @@ const SearchLayout = (props: any): JSX.Element => {
           <div className="location-with-filter">
             <h1 className="">{StaticData.FindLocationtext}</h1>
           </div>
+          {/* <button onClick={Demoinput} className="btn">     // button to search with keyword
+            Demo
+          </button><br /> */}
 
           <div className="search-field">
             <FilterSearch
@@ -536,8 +544,6 @@ const SearchLayout = (props: any): JSX.Element => {
                 customCssClasses={{ container: "filter-items" }}
                 defaultExpanded={false}
                 collapsible={true}
-
-              // title="Apply Filter"
               ></StandardFacets>
             </div>
 
@@ -587,7 +593,8 @@ const SearchLayout = (props: any): JSX.Element => {
                   <a className="underline " href='/us.html'>Use the search above or <span className="font-second-main-font"> browse our directory</span></a>
                 </div> : ''} */}
               <div className="button-bx">
-                <ViewMore className={" btn notHighlight lg:!w-[132%] !mb-2 button view-more"} idName={"view-more-button"} buttonLabel={"View More"} />
+                {/* <ViewMore className={" btn notHighlight lg:!w-[132%] !mb-2 button view-more"} idName={"view-more-button"} buttonLabel={"View More"} /> */}
+                <div className="pagination-bottom"> <Pagination /> </div>
               </div>
 
             </div>

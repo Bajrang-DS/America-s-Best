@@ -1658,8 +1658,7 @@ flex-direction: column;
   padding: 0;
   position: relative;
 }
-
-button#react-collapsed-toggle-1,button#react-collapsed-toggle-2 {
+.w-full.flex.justify-between.items-center.mb-4 {
   font-size: 0.875rem;
   line-height: 1.25rem;
   background: #024b86;

@@ -70,7 +70,7 @@ const Header = (props: any) => {
                     <div className="m-nav-search m-icon-dropdown dropdown js-autocomplete-search">
                       {props._site?.c_leftheader.map((image: any) =>
 
-                        <a href="#" type="button" className="border-0 m-nav-search__trigger a-icon m-icon-dropdown__icon d-none d-lg-flex open" aria-haspopup="true" aria-expanded="false">
+                        <a href="#" className="border-0 m-nav-search__trigger a-icon m-icon-dropdown__icon d-none d-lg-flex open" aria-haspopup="true" aria-expanded="false">
                           <span className="icon-search a-icon_icon icon"></span>
                           <img src={image.icon.url} alt="" className="icon-search-image" width="20" height="20" />
                           <span className="label-text">{image.text}</span>

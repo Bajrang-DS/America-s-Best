@@ -173,15 +173,17 @@ const SearchLayout = (props: any): JSX.Element => {
     let searchKey = document.getElementsByClassName('FilterSearchInput');
     let Search = (searchKey[0].value);
 
-    setInputValue('');
+    setInputValue('hi');
     if (searchKey[0].value != "") {
       getCoordinates(Search);
+     
     }
-    console.log(locationinbuit.length, "fisttimedispaly")
     if (locationinbuit.length == 0) {
       setDisplaymsg(true)
+    
     } else {
       setDisplaymsg(false);
+     
     }
   }
   // const Demoinput = () => {        //to search from any button
@@ -311,6 +313,7 @@ const SearchLayout = (props: any): JSX.Element => {
       getCoordinates(addresssearch);
       //  localStorage.removeItem('inputvalue');
       setInputValue("");
+      
     }
 
   }, [])

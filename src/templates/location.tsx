@@ -8,8 +8,8 @@ import { CustomFieldDebuggerReactProvider } from '@yext/custom-field-debugger';
 import { JsonLd } from "react-schemaorg";
 import Opening from "../components/commons/openClose";
 import { nearByLocation } from "../types/nearByLocation";
-import Logo from "../images/logo-header.svg"
-import offerBanner from "../images/offer-banner.jpg"
+// import Logo from "../images/logo-header.svg"
+// import offerBanner from "../images/offer-banner.jpg"
 import IframeMap from "../components/locationDetail/IframeMap";
 import "../index.css";
 import {

@@ -1696,3 +1696,9 @@ div#bg-search > .w-full .w-full.h-px.bg-gray-200.my-4 {
   display: none;
 
 }
+
+.nearby-distance {
+  padding-left: 8px;
+  display: flex;
+  opacity: .6;
+}

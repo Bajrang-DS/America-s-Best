@@ -42,13 +42,12 @@ function Model(props: any) {
   var day;
   return (
     <>
-      <div className="text-link"  >
       
-        <a onClick={openModal} id="holidaybtn" href="javascript:void(0);">
-          {props.name}
-        </a>
-
-      </div>
+        <div className="text-link"  >
+          <a onClick={openModal} id="holidaybtn" href="javascript:void(0);">
+            {props.name}
+          </a>
+        </div> 
       {props.holidayHours.map((res: any, index: Number) => {
         const d = new Date(res.date);
         day = d.getDay();
@@ -73,10 +72,8 @@ function Model(props: any) {
         if (d2.getDate() >= d1.getDate()) {
 
           return (
+
             <>
-
-
-
               <Modal
                 isOpen={modalIsOpen}
                 // onAfterOpen={afterOpenModal}

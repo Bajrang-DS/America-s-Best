@@ -16,7 +16,7 @@ import useFetchResults from "../../hooks/UseFetchResults";
 
 
 const metersToMiles = (meters: number) => {
-  const miles = meters * 0.000621371;
+  const miles = meters * 0.001;
   return miles.toFixed(2);
 }
 let array = [];
@@ -39,7 +39,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
     }
   }
 
-  const { address, mainPhone, hours, additionalHoursText, c_specific_day,index } = result.rawData;
+  const { address, mainPhone, hours, additionalHoursText, c_specific_day, index } = result.rawData;
   const phone = formatPhoneNumber(mainPhone);
 
   let countrycode = `${result.rawData.address?.countryCode?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`;
@@ -48,12 +48,12 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
   let url = `${countrycode + "/" + statecode + "/" + citycode + "/" + result.rawData.slug?.toString()}`;
 
 
-var els = document.querySelectorAll('.countnumber');
+  var els = document.querySelectorAll('.countnumber');
 
-for(var i=0;i < els.length; i++){
-        els[i].index = i;
-        els[i].innerHTML = i+1;
-}
+  for (var i = 0; i < els.length; i++) {
+    els[i].index = i;
+    els[i].innerHTML = i + 1;
+  }
 
   // console.log(result.index, "bajrang")
   return (
@@ -63,11 +63,11 @@ for(var i=0;i < els.length; i++){
           <div className="lp-param-results lp-subparam-hours">
             <div className="location-name-miles icon-row">
               <div className="icon text-black relative">
-                
+
                 <span className="map-count countnumber">
 
-                {/* {result.index} */}
-                
+                  {/* {result.index} */}
+
                 </span></div>
               <h2><Link className="inline-block notHighlight"
                 data-ya-track={`viewDetail -${result.rawData.name}`}
@@ -77,7 +77,7 @@ for(var i=0;i < els.length; i++){
               </Link></h2>
               {typeof result.distance != "undefined" ?
                 <div className="distance">
-                  {metersToMiles(result.distance)} <span>{StaticData.miles}</span>
+                  {metersToMiles(result.distance)} <span>{StaticData.kilometer}</span>
                 </div>
                 : ''}
             </div>
@@ -110,12 +110,12 @@ for(var i=0;i < els.length; i++){
               </div>}
             </div>
 
-
-            <b>
-              <Model name={StaticData.Holdiay}
-                holidayHours={hours?.holidayHours}
-                c_specific_day={c_specific_day}
-              /></b>
+            {hours?.holidayHours ?
+              <b>
+                <Model name={StaticData.Holdiay}
+                  holidayHours={hours?.holidayHours}
+                  c_specific_day={c_specific_day}
+                /></b> : alert("hello")}
 
             <div className="icon-row content-col address-with-availablity notHighlight">
               <Address address={address} />

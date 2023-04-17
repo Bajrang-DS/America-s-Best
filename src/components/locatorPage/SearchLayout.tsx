@@ -29,7 +29,7 @@ import ViewMore from "./ViewMore";
 import VerticalResults from "../VerticalResults";
 import ResultsCount from "./ResultsCount";
 import useFetchResults from "../../hooks/useFetchResults";
-import { Link } from "@mui/material";
+// import { Link } from "@mui/material";
 import { AnswerExperienceConfig } from "../../config/answersHeadlessConfig";
 import Footer from "../layouts/footer";
 import {
@@ -97,7 +97,22 @@ const SearchLayout = (props: any): JSX.Element => {
           };
           params1 = params;
           SetNewparam(params1);
+
           mapzoom = 3;
+          const locationFilter: SelectableFilter = {
+            selected: true,
+            fieldId: "builtin.location",
+            value: {
+              lat: params.latitude,
+              lng: params.longitude,
+              radius: 100000000000,
+            },
+
+            matcher: Matcher.Near,
+          };
+
+          // searchActions.setOffset(0)
+          searchActions.setStaticFilters([locationFilter]);
           searchActions.setUserLocation(params1);
           searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
           searchActions.executeVerticalQuery();
@@ -112,8 +127,22 @@ const SearchLayout = (props: any): JSX.Element => {
       latitude: 38.573936,
       longitude: -92.603760,
     };
-    SetNewparam(params1);
+    SetNewparam(params1); // to bound result in 100 km
     // mapzoom=8;
+    const locationFilter: SelectableFilter = {
+      selected: true,
+      fieldId: "builtin.location",
+      value: {
+        lat: params1.latitude,
+        lng: params1.longitude,
+        radius: 10000000,
+      },
+
+      matcher: Matcher.Near,
+    };
+
+    // searchActions.setOffset(0)
+    searchActions.setStaticFilters([locationFilter]);
     searchActions.setUserLocation(params1);
     searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
     searchActions.executeVerticalQuery();
@@ -176,18 +205,22 @@ const SearchLayout = (props: any): JSX.Element => {
     setInputValue('hi');
     if (searchKey[0].value != "") {
       getCoordinates(Search);
-     
+
     }
     if (locationinbuit.length == 0) {
       setDisplaymsg(true)
-    
+
     } else {
       setDisplaymsg(false);
-     
+
     }
   }
-  // const Demoinput = () => {        //to search from any button
+  // const Demoinput = (index: number) => {        //to search from any button
   //   getCoordinates("arnold");
+  //   var target =
+  //     document.querySelector('#react-collapsed-panel-1:nth-of-type(2)').click();
+
+
   // }
 
 
@@ -313,7 +346,7 @@ const SearchLayout = (props: any): JSX.Element => {
       getCoordinates(addresssearch);
       //  localStorage.removeItem('inputvalue');
       setInputValue("");
-      
+
     }
 
   }, [])
@@ -321,6 +354,7 @@ const SearchLayout = (props: any): JSX.Element => {
 
 
   // const [autocomplete, setAutocomplete] = useState<google.maps.places.Autocomplete>();
+
 
   // useEffect(() => {
   //   if (googleLib && typeof google.maps === "object") {
@@ -410,7 +444,6 @@ const SearchLayout = (props: any): JSX.Element => {
   //   };
   // }, [googleLib]);
 
-
   return (
     <>
       {/* <Wrapper
@@ -438,7 +471,7 @@ const SearchLayout = (props: any): JSX.Element => {
           <div className="location-with-filter">
             <h1 className="">{StaticData.FindLocationtext}</h1>
           </div>
-          {/* <button onClick={Demoinput} className="btn">     // button to search with keyword
+          {/* <button onClick={Demoinput} className="btn">    
             Demo
           </button><br /> */}
 
@@ -547,6 +580,7 @@ const SearchLayout = (props: any): JSX.Element => {
                 customCssClasses={{ container: "filter-items" }}
                 defaultExpanded={false}
                 collapsible={true}
+
               ></StandardFacets>
             </div>
 

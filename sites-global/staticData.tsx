@@ -7,6 +7,7 @@ export const StaticData = {
     Search:"Search",
     Brandname:"America's Best",
     miles:"miles",
+    kilometer:"km",
     tempClosed:"Temporarily Closed",
     StoreDetailbtn:"VISIT STORE PAGE",
     Storehighlight:"Store Highlights",

@@ -68,6 +68,7 @@ export const config: TemplateConfig = {
       "name",
       "address",
       "mainPhone",
+      "closed",
       "hours",
       "slug",
       "timezone",

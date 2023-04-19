@@ -86,7 +86,7 @@ export default function InputDropdown({
   onlyAllowDropdownOptionSubmissions,
   forceHideDropdown,
   children,
-  onSubmit = () => {},
+  onSubmit = () => { },
   renderSearchButton = () => null,
   renderLogo = () => null,
   onInputChange,
@@ -129,12 +129,12 @@ export default function InputDropdown({
   const dropdownRef = useRef<HTMLDivElement>(null);
   const inputDropdownRef = useRef<HTMLDivElement>(null);
   const locationResults = useSearchState((s) => s.vertical.results) || [];
-  const allResultsForVertical = useSearchState(state => state.vertical?.noResults?.allResultsForVertical.results?.length) ||0;
+  const allResultsForVertical = useSearchState(state => state.vertical?.noResults?.allResultsForVertical.results?.length) || 0;
   const searchActions = useSearchActions();
-  const staticfilter=useSearchState((s) => s.filters.static?.length)||0;
+  const staticfilter = useSearchState((s) => s.filters.static?.length) || 0;
   let numSections = 0;
   const childrenWithProps = recursivelyMapChildren(children, (child) => {
-  
+
     if (!(React.isValidElement(child) && child.type === DropdownSection)) {
       return child;
     }
@@ -143,7 +143,7 @@ export default function InputDropdown({
 
     const childProps = child.props as DropdownSectionProps;
     const modifiedOptions = childProps.options.map((option) => {
-      console.log(option,"children")
+      console.log(option, "children")
       const modifiedOnSelect = () => {
         setSearchInputValue("");
         setLatestUserInput(option.value);
@@ -241,7 +241,7 @@ export default function InputDropdown({
       dispatch({ type: "HideSections" });
       // document.querySelector('.z-10')?.classList.add('hidden');
 
-       getCoordinates(latestUserInput);
+      getCoordinates(latestUserInput);
     }
     if (
       evt.key == "Enter" &&
@@ -253,7 +253,7 @@ export default function InputDropdown({
       dispatch({ type: "HideSections" });
       // document.querySelector('.z-10')?.classList.add('hidden');
 
-        getCoordinates(latestUserInput);
+      getCoordinates(latestUserInput);
     }
 
     handleInputValue();
@@ -264,7 +264,7 @@ export default function InputDropdown({
         setLatestUserInput("");
         if (keyUpStatus) {
           // searchActions.setVertical("");
-          
+
           searchActions.setQuery("");
           searchActions.setOffset(0);
           searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
@@ -273,13 +273,13 @@ export default function InputDropdown({
         }
       }
     }
-    
-   
+
+
     // if (document.querySelector(".z-10") != null) {
     //   document.querySelector(".z-10")?.classList.remove("hidden");
     // }
   }
-  useEffect(()=>{
+  useEffect(() => {
     if (inputValue != "") {
       setKeyUpStatus(true);
     }
@@ -288,7 +288,7 @@ export default function InputDropdown({
       // setKeyUpStatus(false);
       // searchActions.setVertical("locations");
     }
-  },[inputValue])
+  }, [inputValue])
 
   useEffect(() => {
     if (shouldDisplayDropdown) {
@@ -306,7 +306,7 @@ export default function InputDropdown({
     } else if (!loading && locationResults.length === 0) {
       setDisplaymsg(true);
     }
-  }, );
+  },);
   function getCoordinates(address: string) {
     searchActions.setQuery(address);
     searchActions.setUserLocation(params);
@@ -328,10 +328,10 @@ export default function InputDropdown({
       onSubmit(inputValue);
       // dispatch({ type: 'HideSections' });
     }
-    if(staticfilter > 0){
+    if (staticfilter > 0) {
       searchActions.setStaticFilters([]);
     }
-   
+
   }
 
   function handleBlur(evt: FocusEvent<HTMLDivElement>) {
@@ -386,7 +386,7 @@ export default function InputDropdown({
           id={'pac-input'}
           onChange={(evt) => {
             const value = evt.target.value;
-            
+
             setNorecord(false);
             setDisplaymsg(false);
             setLatestUserInput(value);
@@ -411,10 +411,16 @@ export default function InputDropdown({
           {renderSearchButton()}
         </div>
       </div>
-      {(locationResults.length === 0 && allResultsForVertical>0) || (locationResults.length === 0 &&displaymsg && !loading) ? (
-        <h4 className="font-bold">
-          Sorry No result found
-        </h4>
+      {(locationResults.length === 0 && allResultsForVertical > 0) || (locationResults.length === 0 && displaymsg && !loading) ? (
+        <div className="no-result flex">
+          <img style={{ height: "90px", width: "90px" }} src="https://bluemoji.io/emoji/Blue/37.png" alt="none" />
+          <h4 className="font-bold text-center pt-4 pl-4 text-[red]">
+            Sorry No Result Found - <span >Please Enter Right Query</span><br />
+            <span className="text-[#024b86]"> Or <br /> Visit Below Locations</span>
+
+          </h4>
+        </div>
+
       ) : (
         ""
       )}

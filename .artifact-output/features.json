@@ -160,6 +160,7 @@
         "name",
         "address",
         "mainPhone",
+        "closed",
         "hours",
         "slug",
         "timezone",

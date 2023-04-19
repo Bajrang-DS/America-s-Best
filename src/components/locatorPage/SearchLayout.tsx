@@ -202,7 +202,7 @@ const SearchLayout = (props: any): JSX.Element => {
     let searchKey = document.getElementsByClassName('FilterSearchInput');
     let Search = (searchKey[0].value);
 
-    setInputValue('');
+    setInputValue('hi');
     if (searchKey[0].value != "") {
       getCoordinates(Search);
 
@@ -342,10 +342,10 @@ const SearchLayout = (props: any): JSX.Element => {
     let addresssearch = params.get("inputStoreValue");
 
     if (addresssearch) {
-      setInputValue('');
+      setInputValue(addresssearch);
       getCoordinates(addresssearch);
       //  localStorage.removeItem('inputvalue');
-      // setInputValue("");
+      setInputValue("");
 
     }
 

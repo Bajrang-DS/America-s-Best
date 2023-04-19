@@ -414,11 +414,19 @@ export default function InputDropdown({
       {(locationResults.length === 0 && allResultsForVertical > 0) || (locationResults.length === 0 && displaymsg && !loading) ? (
         <div className="no-result flex">
           <img style={{ height: "90px", width: "90px" }} src="https://bluemoji.io/emoji/Blue/37.png" alt="none" />
-          <h4 className="font-bold text-center pt-4 pl-4 text-[red]">
-            Sorry No Result Found - <span >Please Enter Right Query</span><br />
-            <span className="text-[#024b86]"> Or <br /> Visit Below Locations</span>
+          <div>
+            <h4 className="font-bold text-center pt-4 pl-4 text-[red]">
+              Sorry No Result Found - <span >Please Enter Right Query</span><br />
+              <span className="text-[#024b86] flex justify-center">
+                Or <br />
+                Visit Below Locations
+                <img style={{ height: "30px", width: "30px" }} src="https://em-content.zobj.net/source/microsoft-teams/337/backhand-index-pointing-down_1f447.png" alt="" />
 
-          </h4>
+              </span>
+
+            </h4>
+
+          </div>
         </div>
 
       ) : (

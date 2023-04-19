@@ -68,7 +68,7 @@ export default function Nearby(props: any) {
             let citycode = `${location.data?.address?.city?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`;
             url = `${countrycode + "/" + statecode + "/" + citycode + "/" + location.data.slug?.toString()}`;
           }
-console.log(location.distance,"distance")
+// console.log(location.distance,"distance")
           if (index > 0) {
             return (
               <>

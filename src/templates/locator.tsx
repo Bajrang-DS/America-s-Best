@@ -185,7 +185,7 @@ const Locator: Template<TemplateRenderProps>= ({
           endpoints={AnswerExperienceConfig.endpoints}    
         >
           
-          <SearchLayout _site={_site}/>
+          <SearchLayout />
     
         </SearchHeadlessProvider>
       

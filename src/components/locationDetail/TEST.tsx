@@ -75,6 +75,7 @@ const SearchLayout = (props: any): JSX.Element => {
     const [isUserLocation, setIsUserLocation] = React.useState<boolean>(false);
     const [showFilterEmptyMsg, setShowFilterEmptyMsg] = React.useState(false);
     var firstTimeRunners = true;
+    
     const FirstLoad = () => {
         setCheck(true);
         if (navigator.geolocation) {

@@ -87,6 +87,8 @@ const SearchLayout = (props: any): JSX.Element => {
   }
 
   const FirstLoad = () => {
+
+
     setCheck(true);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -225,58 +227,60 @@ const SearchLayout = (props: any): JSX.Element => {
 
 
 
-  // const Findinput2 = () => {
-  //   let Search = inputRef.current?.value || "";
-  //   let locationHub: any = []
-  //   if (Search.length == 0) {
-  //     const bounds = new google.maps.LatLngBounds();
-  //     bounds.extend({
-  //       lat: googleMapsConfig.centerLatitude,
-  //       lng: googleMapsConfig.centerLongitude,
-  //     });
-  //     searchActions.setVertical("locations");
-  //     searchActions.setQuery("");
+  const Findinput2 = () => {
+    let Search = inputRef.current?.value || "";
+    let locationHub: any = []
+    // alert("hello")
+    if (Search.length == 0) {
+      console.log("bajrang")
+      const bounds = new google.maps.LatLngBounds();
+      bounds.extend({
+        lat: googleMapsConfig.centerLatitude,
+        lng: googleMapsConfig.centerLongitude,
+      });
+      searchActions.setVertical("locations");
+      searchActions.setQuery("");
 
-  //     if (filterValue.length > 0) {
-  //       // setShowFilterEmptyMsg(true);
-  //       let location: SelectableFilter = {
-  //         selected: true,
-  //         fieldId: "c_relatedAdvantages.name",
-  //         value: filterValue[0],
-  //         matcher: Matcher.Equals,
-  //       };
-  //       locationHub.push(location);
+      if (filterValue.length > 0) {
+        // setShowFilterEmptyMsg(true);
+        let location: SelectableFilter = {
+          selected: true,
+          fieldId: "c_relatedAdvantages.name",
+          value: filterValue[0],
+          matcher: Matcher.Equals,
+        };
+        locationHub.push(location);
 
-  //       if (filterValue.length > 1) {
-  //         let location2: SelectableFilter = {
-  //           selected: true,
-  //           fieldId: "c_glassdriveAdvantages",
-  //           value: filterValue[1],
-  //           matcher: Matcher.Equals,
-  //         };
-  //         locationHub.push(location2);
-  //       }
+        if (filterValue.length > 1) {
+          let location2: SelectableFilter = {
+            selected: true,
+            fieldId: "c_glassdriveAdvantages",
+            value: filterValue[1],
+            matcher: Matcher.Equals,
+          };
+          locationHub.push(location2);
+        }
 
-  //       if (facetData != "") {
-  //         let facet_core: SelectableFilter = {
-  //           selected: false,
-  //           fieldId: "c_typesDeVéhicules",
-  //           value: facetData,
-  //           matcher: Matcher.Equals,
-  //         };
-  //         locationHub.push(facet_core);
-  //       }
-  //     } else {
-  //       locationHub = []
-  //     }
-  //     searchActions.setStaticFilters(locationHub);
+        if (facetData != "") {
+          let facet_core: SelectableFilter = {
+            selected: false,
+            fieldId: "c_typesDeVéhicules",
+            value: facetData,
+            matcher: Matcher.Equals,
+          };
+          locationHub.push(facet_core);
+        }
+      } else {
+        locationHub = []
+      }
+      searchActions.setStaticFilters(locationHub);
 
-  //     searchActions.setOffset(0);
-  //     searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
-  //     searchActions.executeVerticalQuery();
-  //     getCoordinates(Search);
-  //   }
-  // };
+      searchActions.setOffset(0);
+      searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
+      searchActions.executeVerticalQuery();
+      getCoordinates(Search);
+    }
+  };
 
   const handleInputValue = () => {
     setInputValue('');
@@ -317,8 +321,10 @@ const SearchLayout = (props: any): JSX.Element => {
       setDisplaymsg(false);
     }
   }, [locationinbuit])
+
+
   useEffect(() => {
-    console.log("yes rerender")
+    // console.log("yes rerender")
     locationResults.map((result: any, index: number) => {
       const resultelement = document.querySelectorAll(
         `.result-list-inner-${index + 1}`
@@ -331,152 +337,166 @@ const SearchLayout = (props: any): JSX.Element => {
     });
   }, [loading])
 
+
+  const [autocomplete, setAutocomplete] = useState<google.maps.places.Autocomplete>();
+
+
+  useEffect(() => {
+
+    //function to set value header search input value to locator search while google suggestion.
+    let params = (new URL(window.location.href)).searchParams;
+    let addresssearch = params.get("inputStoreValue");
+    if (addresssearch) {
+      getCoordinates(addresssearch);
+      document.getElementById("pac-input")?.setAttribute("value", addresssearch);
+    }
+
+
+    if (googleLib && typeof google.maps === "object") {
+      let pacInput: any = document?.getElementById("pac-input");
+      let options: any = {
+        options: {
+          types: ["geocode"],
+          componentRestrictions: { country: params1 },
+          strictBounds: false,
+          fields: ["address_components", "geometry", "icon", "name"],
+        },
+      };
+      const autoComplete = new google.maps.places.Autocomplete(
+        pacInput,
+        options
+      );
+      if (autoComplete) {
+        function pacSelectFirst(input: HTMLInputElement) {
+          var _addEventListener = input.addEventListener;
+
+          function addEventListenerWrapper(type: string, listener: any) {
+            if (type == "keydown") {
+              var orig_listener = listener;
+
+              listener = function (event: { which: number }) {
+                var suggestion_selected = $(".pac-item-selected").length > 0;
+
+                if (
+                  (event.which == 13 || event.which == 9) &&
+                  !suggestion_selected
+                ) {
+                  var simulated_downarrow = $.Event("keydown", {
+                    keyCode: 40,
+                    which: 40,
+                  });
+                  orig_listener.apply(input, [simulated_downarrow]);
+                }
+
+                orig_listener.apply(input, [event]);
+              };
+            }
+
+            _addEventListener.apply(input, [type, listener]);
+          }
+
+          if (input.addEventListener) {
+            input.addEventListener = addEventListenerWrapper;
+          }
+        }
+
+        setAutocomplete(autoComplete);
+        pacSelectFirst(pacInput);
+        $("#search-location-button")
+          .off("click")
+          .on("click", function () {
+            var keydown = document.createEvent("HTMLEvents");
+            keydown.initEvent("keydown", true, false);
+            Object.defineProperty(keydown, "keyCode", {
+              get: function () {
+                return 13;
+              },
+            });
+            Object.defineProperty(keydown, "which", {
+              get: function () {
+                return 13;
+              },
+            });
+            pacInput.dispatchEvent(keydown);
+          });
+
+        google.maps.event.addListener(
+          autoComplete,
+          "place_changed",
+          function () {
+            const searchKey: any = pacInput.value;
+            if (searchKey) {
+              getCoordinates(searchKey);
+            }
+          }
+        );
+      }
+    }
+    return () => {
+      if (autocomplete) {
+        autocomplete.unbindAll();
+      }
+    };
+  }, [googleLib]);
+
+
   useEffect(() => {
     if (firstTimeRunners) {
       firstTimeRunners = false;
-      // searchActions.resetFacets();
       FirstLoad();
     }
+    // let params = (new URL(window.location.href)).searchParams;
+    // let addresssearch = params.get("inputStoreValue");
+    // // getCoordinates(addresssearch);
+    // if (addresssearch) {
+    //   setInputValue(addresssearch);
+    //   getCoordinates(addresssearch);
+    //   document.getElementById("pac-input")?.setAttribute("value", addresssearch);
+    // }
 
-    let params = (new URL(window.location.href)).searchParams;
-    let addresssearch = params.get("inputStoreValue");
+    // function to set value header search input value to locator search while google suggestion.
 
-    if (addresssearch) {
-      setInputValue(addresssearch);
-      getCoordinates(addresssearch);
-      //  localStorage.removeItem('inputvalue');
-      setInputValue("");
-
-    }
-
+    // function updateVal() {
+    //   if (addresssearch != null) {
+    //     document.getElementById("pac-input").setAttribute("value", addresssearch);
+    //   }
+    // }
+    // setTimeout(updateVal, 1000)
   }, [])
-
-
-
-  // const [autocomplete, setAutocomplete] = useState<google.maps.places.Autocomplete>();
-
-
-  // useEffect(() => {
-  //   if (googleLib && typeof google.maps === "object") {
-  //     let pacInput: any = document?.getElementById("pac-input");
-  //     let options: any = {
-  //       options: {
-  //         types: ["geocode"],
-  //         componentRestrictions: { country:params1},
-  //         strictBounds: false,
-  //         fields: ["address_components", "geometry", "icon", "name"],
-  //       },
-  //     };
-  //     const autoComplete = new google.maps.places.Autocomplete(
-  //       pacInput,
-  //       options
-  //     );
-  //     if (autoComplete) {
-  //       function pacSelectFirst(input: HTMLInputElement) {
-  //         var _addEventListener = input.addEventListener;
-
-  //         function addEventListenerWrapper(type: string, listener: any) {
-  //           if (type == "keydown") {
-  //             var orig_listener = listener;
-
-  //             listener = function (event: { which: number }) {
-  //               var suggestion_selected = $(".pac-item-selected").length > 0;
-
-  //               if (
-  //                 (event.which == 13 || event.which == 9) &&
-  //                 !suggestion_selected
-  //               ) {
-  //                 var simulated_downarrow = $.Event("keydown", {
-  //                   keyCode: 40,
-  //                   which: 40,
-  //                 });
-  //                 orig_listener.apply(input, [simulated_downarrow]);
-  //               }
-
-  //               orig_listener.apply(input, [event]);
-  //             };
-  //           }
-
-  //           _addEventListener.apply(input, [type, listener]);
-  //         }
-
-  //         if (input.addEventListener) {
-  //           input.addEventListener = addEventListenerWrapper;
-  //         }
-  //       }
-
-  //       setAutocomplete(autoComplete);
-  //       pacSelectFirst(pacInput);
-  //       $("#search-location-button")
-  //         .off("click")
-  //         .on("click", function () {
-  //           var keydown = document.createEvent("HTMLEvents");
-  //           keydown.initEvent("keydown", true, false);
-  //           Object.defineProperty(keydown, "keyCode", {
-  //             get: function () {
-  //               return 13;
-  //             },
-  //           });
-  //           Object.defineProperty(keydown, "which", {
-  //             get: function () {
-  //               return 13;
-  //             },
-  //           });
-  //           pacInput.dispatchEvent(keydown);
-  //         });
-
-  //       google.maps.event.addListener(
-  //         autoComplete,
-  //         "place_changed",
-  //         function () {
-  //           const searchKey: any = pacInput.value;
-  //           if (searchKey) {
-  //             getCoordinates(searchKey);
-  //           }
-  //         }
-  //       );
-  //     }
-  //   }
-  //   return () => {
-  //     if (autocomplete) {
-  //       autocomplete.unbindAll();
-  //     }
-  //   };
-  // }, [googleLib]);
 
   return (
     <>
-      {/* <Wrapper
-      apiKey={googleMapsConfig.googleMapsApiKey}
-      libraries={["places", "geometry"]}
-    ></Wrapper> */}
-      {/* {loader} */}
-      <div className="city-breadcrumb">
-        <div className="breadcrumb">
-          <div className="container-custom">
-            <ul>
-              <li>
-                <a href="#" className="home"> Home</a>
-              </li>
-              <li>{StaticData.locator_breadcrumb}</li>
-            </ul>
+      <Wrapper
+        apiKey={googleMapsConfig.googleMapsApiKey}
+        libraries={["places", "geometry"]}
+      >
+        {/* {loader} */}
+        <div className="city-breadcrumb">
+          <div className="breadcrumb">
+            <div className="container-custom">
+              <ul>
+                <li>
+                  <a href="#" className="home"> Home</a>
+                </li>
+                <li>{StaticData.locator_breadcrumb}</li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="locator-main">
-        {allowlocation.length > 0 ?
-          <div className="for-allow">{allowlocation}</div>
-          : ''}
-        <div className="search-bx">
-          <div className="location-with-filter">
-            <h1 className="">{StaticData.FindLocationtext}</h1>
-          </div>
-          {/* <button onClick={Demoinput} className="btn">    
+        <div className="locator-main">
+          {allowlocation.length > 0 ?
+            <div className="for-allow">{allowlocation}</div>
+            : ''}
+          <div className="search-bx">
+            <div className="location-with-filter">
+              <h1 className="">{StaticData.FindLocationtext}</h1>
+            </div>
+            {/* <button onClick={Demoinput} className="btn">    
             Demo
           </button><br /> */}
 
-          <div className="search-field">
-            <FilterSearch
+            <div className="search-field">
+              {/* <FilterSearch
               ref={filterRef}
               displaymsg={displaymsg}
               setDisplaymsg={setDisplaymsg}
@@ -524,120 +544,121 @@ const SearchLayout = (props: any): JSX.Element => {
 
               handleInputValue={handleInputValue}
               handleSetUserShareLocation={handleSetUserShareLocation}
-            />
-
-
-            {/* <input
-              id="pac-input"
-              type="text"
-              ref={inputRef}
-              placeholder="Find Something Here"
-              className="text-sm bg-white outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-blue-600 FilterSearchInput"
-              onChange={() => Findinput2()}
-              onKeyDown={(evt) => {
-                if (
-                  evt.key === "Backspace" ||
-                  evt.key === "x" ||
-                  evt.key === "Delete"
-                )
-                 {
-                  Findinput2();
-                }
-              }}
-              
             /> */}
-            <button
-              className="search-btn"
-              aria-label="Search bar icon"
-              id="search-location-button" onClick={Findinput}>
-              <span><b>
-                GO</b>
-              </span>
-            </button>
-          </div>
-
-          <div className="fliter-sec">
-            <button className="useMyLocation" title="Search using your current location!" id="useLocation" onClick={onClick}>
-              <span style={{ color: "blue" }} className="icon" dangerouslySetInnerHTML={{ __html: UseMylocationsvg }} />
-
-              <span style={{ color: "blue" }} className="underline hover:no-underline"> {StaticData.Usemylocation}</span>
-            </button>
 
 
-            <ResultsCount
-              customCssClasses={{ container: "mx-2 text-dark-gray text-right w-[50%]" }}
-            />
+              <input
+                id="pac-input"
+                type="text"
+                ref={inputRef}
+                placeholder="Find Something Here"
+                className="text-sm bg-white outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-blue-600 FilterSearchInput"
+                onChange={() => Findinput2()}
 
-          </div>
-          <div className="facet-data">
+              // onKeyDown={(evt) => {
+              //   if (
+              //     evt.key === "Backspace" ||
+              //     evt.key === "x" ||
+              //     evt.key === "Delete"
+              //   ) {
+              //     Findinput2();
+              //   }
+              // }}
 
-
-            <div className="facet-button-class" onClick={myFunction}>
-              Apply Filter
-            </div>
-            <div className={"fliter-sec filter-facet " + FacetValue} id="bg-search">
-              <StandardFacets
-                customCssClasses={{ container: "filter-items" }}
-                defaultExpanded={false}
-                collapsible={true}
-
-              ></StandardFacets>
+              />
+              <button
+                className="search-btn"
+                aria-label="Search bar icon"
+                id="search-location-button" onClick={Findinput}>
+                <span><b>
+                  GO</b>
+                </span>
+              </button>
             </div>
 
-          </div>
+            <div className="fliter-sec">
+              <button className="useMyLocation" title="Search using your current location!" id="useLocation" onClick={onClick}>
+                <span style={{ color: "blue" }} className="icon" dangerouslySetInnerHTML={{ __html: UseMylocationsvg }} />
+
+                <span style={{ color: "blue" }} className="underline hover:no-underline"> {StaticData.Usemylocation}</span>
+              </button>
 
 
-        </div>
-        <div className="mobile-btns">
-          <div className="button-bx">
-
-            <a className="btn listBtn" href="javascript:void(0);" onClick={() => {
-              document.body.classList.remove('mapView')
-
-            }}> List View</a>
-            <a className="btn mapBtn" href="javascript:void(0);" onClick={addClass}> Map View</a>
-          </div>
-        </div>
-        <div className=" map-section ">
-          <GoogleMaps
-            apiKey={googleApikey}
-            centerLatitude={centerLatitude}
-            centerLongitude={centerLongitude}
-            check={true}
-            defaultZoom={mapzoom}
-            showEmptyMap={true}
-          />
-        </div>
-
-        <div className="left-listing">
-
-          <PerfectScrollbar >
-
-            <div>
-
-              <VerticalResults
-                displayAllOnNoResults={false}
-                CardComponent={LocationCard}
-                locationResults={locationResults}
-
-
-              //  CardComponent={LocationCard}
+              <ResultsCount
+                customCssClasses={{ container: "mx-2 text-dark-gray text-right w-[50%]" }}
               />
 
+            </div>
+            <div className="facet-data">
 
-              {/* {locationinbuit && locationinbuit.length <= 0 ?
-                <div className="browse-dir">
-                  <a className="underline " href='/us.html'>Use the search above or <span className="font-second-main-font"> browse our directory</span></a>
-                </div> : ''} */}
-              <div className="button-bx">
-                {/* <ViewMore className={" btn notHighlight lg:!w-[132%] !mb-2 button view-more"} idName={"view-more-button"} buttonLabel={"View More"} /> */}
-                <div className="pagination-bottom"> <Pagination /> </div>
+
+              <div className="facet-button-class" onClick={myFunction}>
+                Apply Filter
+              </div>
+              <div className={"fliter-sec filter-facet " + FacetValue} id="bg-search">
+                <StandardFacets
+                  customCssClasses={{ container: "filter-items" }}
+                  defaultExpanded={false}
+                  collapsible={true}
+
+                ></StandardFacets>
               </div>
 
             </div>
-          </PerfectScrollbar>
+
+
+          </div>
+          <div className="mobile-btns">
+            <div className="button-bx">
+
+              <a className="btn listBtn" href="javascript:void(0);" onClick={() => {
+                document.body.classList.remove('mapView')
+
+              }}> List View</a>
+              <a className="btn mapBtn" href="javascript:void(0);" onClick={addClass}> Map View</a>
+            </div>
+          </div>
+          <div className=" map-section ">
+            <GoogleMaps
+              apiKey={googleApikey}
+              centerLatitude={centerLatitude}
+              centerLongitude={centerLongitude}
+              check={true}
+              defaultZoom={mapzoom}
+              showEmptyMap={true}
+            />
+          </div>
+
+          <div className="left-listing">
+
+            <PerfectScrollbar >
+
+              <div>
+
+                <VerticalResults
+                  displayAllOnNoResults={false}
+                  CardComponent={LocationCard}
+                  locationResults={locationResults}
+
+
+                //  CardComponent={LocationCard}
+                />
+
+
+                {/* {locationinbuit && locationinbuit.length <= 0 ?
+                <div className="browse-dir">
+                  <a className="underline " href='/us.html'>Use the search above or <span className="font-second-main-font"> browse our directory</span></a>
+                </div> : ''} */}
+                <div className="button-bx">
+                  {/* <ViewMore className={" btn notHighlight lg:!w-[132%] !mb-2 button view-more"} idName={"view-more-button"} buttonLabel={"View More"} /> */}
+                  <div className="pagination-bottom"> <Pagination /> </div>
+                </div>
+
+              </div>
+            </PerfectScrollbar>
+          </div>
         </div>
-      </div>
+      </Wrapper>
     </>
   );
 };

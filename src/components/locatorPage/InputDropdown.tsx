@@ -380,7 +380,7 @@ export default function InputDropdown({
     >
       <div className={cssClasses?.inputContainer}>
         <div className={cssClasses.logoContainer}>{renderLogo()}</div>
-        <input
+        {/* <input
           className={cssClasses.inputElement}
           placeholder={placeholder}
           id={'pac-input'}
@@ -406,7 +406,7 @@ export default function InputDropdown({
           ref={inputRef}
           aria-describedby={screenReaderInstructionsId}
           aria-activedescendant={focusedOptionId}
-        />
+        /> */}
         <div className={cssClasses.searchButtonContainer}>
           {renderSearchButton()}
         </div>

@@ -155,8 +155,70 @@ const SearchLayout = (props: any): JSX.Element => {
   };
 
 
-  const onClick = () => {
+  // const onClick = () => {
+  //   setZoomlevel(4);
+  //   if (navigator.geolocation) {
+  //     const error = (error: any) => {
+  //       if (error.code == 1) {
+  //         setallowLocation(props.allowYourLocationMessage);
+  //         setModelOpen(true);
+  //       }
+  //       setUserShareLocation(false);
+  //     };
+  //     navigator.geolocation.getCurrentPosition(
+  //       function (position) {
+  //         setIsUserLocation(true);
+  //         Geocode.setApiKey(googleMapsConfig.googleMapsApiKey);
+  //         Geocode.fromLatLng(
+  //           position.coords.latitude,
+  //           position.coords.longitude
+  //         ).then(
+  //           (response: any) => {
+  //             if (response.results[0]) {
+  //               if (inputRef.current) {
+  //                 inputRef.current.value =
+  //                   response.results[0].formatted_address;
+  //               }
 
+  //               let pacInput: any = document?.getElementById("pac-input");
+  //               if (pacInput) {
+  //                 pacInput.value = response.results[0].formatted_address;
+  //                 pacInput.focus();
+  //               }
+
+  //               setallowLocation("");
+  //               searchActions.setUserLocation({
+  //                 latitude: position.coords.latitude,
+  //                 longitude: position.coords.longitude,
+  //               });
+  //             }
+  //           },
+  //           (error: any) => {
+  //             console.error(error);
+  //             setCheck(false);
+  //           }
+  //         );
+  //         searchActions.setUserLocation({
+  //           latitude: position.coords.latitude,
+  //           longitude: position.coords.longitude,
+  //         });
+  //         searchActions.setVertical(AnswerExperienceConfig.verticalKey);
+  //         searchActions.setOffset(0);
+  //         searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
+  //         searchActions.executeVerticalQuery();
+  //       },
+  //       error,
+  //       {
+  //         timeout: 10000,
+  //       }
+  //     );
+  //   }
+  // };
+
+
+  const onClick = () => {
+    
+    getCoordinates('');
     if (navigator.geolocation) {
       const error = (error: any) => {
 
@@ -165,23 +227,32 @@ const SearchLayout = (props: any): JSX.Element => {
 
         }
       };
-
-
       navigator.geolocation.getCurrentPosition(function (position) {
         Geocode.setApiKey(googleApikey);
         var inputformat = '';
-        Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
-          (response: any) => {
-            if (response.results[0]) {
-              filterRef.current && filterRef.current.setInputValue(response.results[0].formatted_address);
-              setallowLocation('');
+
+        Geocode.fromLatLng(
+          position.coords.latitude,
+          position.coords.longitude).then(
+            (response: any) => {
+              if (response.results[0]) {
+
+                filterRef.current && filterRef.current.setInputValue(response.results[0].formatted_address);
+
+                let pacInput: any = document?.getElementById("pac-input");
+                if (pacInput) {
+                  pacInput.value = response.results[0].formatted_address;
+                  pacInput.focus();
+                }
+
+                setallowLocation('');
+              }
+            },
+            (error: any) => {
+              console.error(error);
+              setCheck(false);
             }
-          },
-          (error: any) => {
-            console.error(error);
-            setCheck(false);
-          }
-        );
+          );
 
         let params = {
           latitude: position.coords.latitude,
@@ -194,28 +265,42 @@ const SearchLayout = (props: any): JSX.Element => {
         searchActions.setOffset(0);
         searchActions.executeVerticalQuery();
 
-      }, error, {
+      }
+        ,
+        error, {
         timeout: 10000,
-      });
+      }
+      );
     }
+ 
+
+    // let searchKey = document.getElementsByClassName('FilterSearchInput');
+    // let Search = (searchKey[0].value);
+    // searchActions.setOffset(0);
+   
+    // if (Search?.length) {
+    //   setInputValue('');
+    //   getCoordinates('');
+
+    // }
   }
 
   const Findinput = () => {
     let searchKey = document.getElementsByClassName('FilterSearchInput');
     let Search = (searchKey[0].value);
 
-    setInputValue('hi');
+    setInputValue('');
     if (searchKey[0].value != "") {
       getCoordinates(Search);
 
     }
-    if (locationinbuit.length == 0) {
-      setDisplaymsg(true)
+    // if (locationinbuit.length == 0) {
+    //   setDisplaymsg(true)
 
-    } else {
-      setDisplaymsg(false);
+    // } else {
+    //   setDisplaymsg(false);
 
-    }
+    // }
   }
   // const Demoinput = (index: number) => {        //to search from any button
   //   getCoordinates("arnold");
@@ -343,7 +428,7 @@ const SearchLayout = (props: any): JSX.Element => {
 
   useEffect(() => {
 
-    //function to set value header search input value to locator search while google suggestion.
+    // to set value header search input value to locator search while google suggestion.
     let params = (new URL(window.location.href)).searchParams;
     let addresssearch = params.get("inputStoreValue");
     if (addresssearch) {
@@ -496,74 +581,25 @@ const SearchLayout = (props: any): JSX.Element => {
           </button><br /> */}
 
             <div className="search-field">
-              {/* <FilterSearch
-              ref={filterRef}
-              displaymsg={displaymsg}
-              setDisplaymsg={setDisplaymsg}
-              customCssClasses={{
-                filterSearchContainer: "m-2 w-full",
-                inputElement: "FilterSearchInput pr-[90px]",
-                optionsContainer: "options"
-              }}
-              inputvalue={inputvalue}
-              setSearchInputValue={setInputValue}
-              params={params1}
-              searchOnSelect={true}
-              searchFields={[
-                {
-                  entityType: "location",
-                  fieldApiName: "address.line1",
-
-                },
-                {
-                  entityType: "location",
-                  fieldApiName: "address.postalCode",
-
-                },
-                {
-                  entityType: "location",
-                  fieldApiName: "name",
-
-                },
-                {
-                  entityType: "location",
-                  fieldApiName: "address.city",
-
-                },
-                {
-                  entityType: "location",
-                  fieldApiName: "address.region",
-
-                },
-                {
-                  entityType: "location",
-                  fieldApiName: "address.countryCode",
-
-                },
-              ]}
-
-              handleInputValue={handleInputValue}
-              handleSetUserShareLocation={handleSetUserShareLocation}
-            /> */}
-
 
               <input
                 id="pac-input"
                 type="text"
+              
                 ref={inputRef}
-                placeholder="Find Something Here"
+                placeholder="Search with Yext or enter address..."
                 className="text-sm bg-white outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-blue-600 FilterSearchInput"
                 onChange={() => Findinput2()}
-
-              // onKeyDown={(evt) => {
-              //   if (
-              //     evt.key === "Backspace" ||
-              //     evt.key === "x" ||
-              //     evt.key === "Delete"
-              //   ) {
-              //     Findinput2();
-              //   }
-              // }}
+               
+                onKeyDown={(evt) => {
+                  if (
+                    evt.key === "Backspace" ||
+                    evt.key === "x" ||
+                    evt.key === "Delete"
+                  ) {
+                    Findinput2();
+                  }
+                }}
 
               />
               <button
@@ -574,8 +610,58 @@ const SearchLayout = (props: any): JSX.Element => {
                   GO</b>
                 </span>
               </button>
-            </div>
 
+
+              <FilterSearch
+                ref={filterRef}
+                displaymsg={displaymsg}
+                setDisplaymsg={setDisplaymsg}
+                customCssClasses={{
+                  filterSearchContainer: "m-2 w-full",
+                  inputElement: "FilterSearchInput pr-[90px]",
+                  optionsContainer: "options"
+                }}
+                inputvalue={inputvalue}
+                setSearchInputValue={setInputValue}
+                params={params1}
+                searchOnSelect={true}
+              // searchFields={[
+              //   {
+              //     entityType: "location",
+              //     fieldApiName: "address.line1",
+
+              //   },
+              //   {
+              //     entityType: "location",
+              //     fieldApiName: "address.postalCode",
+
+              //   },
+              //   {
+              //     entityType: "location",
+              //     fieldApiName: "name",
+
+              //   },
+              //   {
+              //     entityType: "location",
+              //     fieldApiName: "address.city",
+
+              //   },
+              //   {
+              //     entityType: "location",
+              //     fieldApiName: "address.region",
+
+              //   },
+              //   {
+              //     entityType: "location",
+              //     fieldApiName: "address.countryCode",
+
+              //   },
+              // ]}
+
+              // handleInputValue={handleInputValue}
+              // handleSetUserShareLocation={handleSetUserShareLocation}
+              />
+            </div>
             <div className="fliter-sec">
               <button className="useMyLocation" title="Search using your current location!" id="useLocation" onClick={onClick}>
                 <span style={{ color: "blue" }} className="icon" dangerouslySetInnerHTML={{ __html: UseMylocationsvg }} />

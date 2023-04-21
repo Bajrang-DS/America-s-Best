@@ -155,6 +155,7 @@ const SearchLayout = (props: any): JSX.Element => {
     let findABranch = props.findABranch;
     let typeOfVehicles = props.typeOfVehicles;
     let _site = props._site;
+    
     const onClick = () => {
         setZoomlevel(4);
         if (navigator.geolocation) {

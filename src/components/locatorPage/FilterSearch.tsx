@@ -197,7 +197,7 @@ const FilterSearch = React.forwardRef<FilterHandle, FilterSearchProps>(
     }
 
     return (
-      // <div className={cssClasses.container}>
+      <div className={cssClasses.container}>
         <InputDropdown
           inputValue={input}
           setSearchInputValue={setSearchInputValue}
@@ -237,7 +237,7 @@ const FilterSearch = React.forwardRef<FilterHandle, FilterSearchProps>(
             );
           })}
         </InputDropdown>
-      // </div>
+      </div>
     );
   }
 );

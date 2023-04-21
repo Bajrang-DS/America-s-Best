@@ -35,6 +35,7 @@ import Footer from "../layouts/footer";
 import {
   StandardFacets,
 } from "@yext/search-ui-react";
+import InputDropdown from "./InputDropdown";
 
 var params1: any = { latitude: center_latitude, longitude: center_longitude }
 var mapzoom = 8;
@@ -217,7 +218,7 @@ const SearchLayout = (props: any): JSX.Element => {
 
 
   const onClick = () => {
-    
+
     getCoordinates('');
     if (navigator.geolocation) {
       const error = (error: any) => {
@@ -272,12 +273,12 @@ const SearchLayout = (props: any): JSX.Element => {
       }
       );
     }
- 
+
 
     // let searchKey = document.getElementsByClassName('FilterSearchInput');
     // let Search = (searchKey[0].value);
     // searchActions.setOffset(0);
-   
+
     // if (Search?.length) {
     //   setInputValue('');
     //   getCoordinates('');
@@ -294,13 +295,13 @@ const SearchLayout = (props: any): JSX.Element => {
       getCoordinates(Search);
 
     }
-    // if (locationinbuit.length == 0) {
-    //   setDisplaymsg(true)
+    if (locationinbuit.length == 0) {
+      setDisplaymsg(true)
 
-    // } else {
-    //   setDisplaymsg(false);
+    } else {
+      setDisplaymsg(false);
 
-    // }
+    }
   }
   // const Demoinput = (index: number) => {        //to search from any button
   //   getCoordinates("arnold");
@@ -585,12 +586,12 @@ const SearchLayout = (props: any): JSX.Element => {
               <input
                 id="pac-input"
                 type="text"
-              
+
                 ref={inputRef}
                 placeholder="Search with Yext or enter address..."
                 className="text-sm bg-white outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-blue-600 FilterSearchInput"
                 onChange={() => Findinput2()}
-               
+
                 onKeyDown={(evt) => {
                   if (
                     evt.key === "Backspace" ||
@@ -610,10 +611,14 @@ const SearchLayout = (props: any): JSX.Element => {
                   GO</b>
                 </span>
               </button>
+              
+              <InputDropdown
+                displaymsg={displaymsg}
+                setDisplaymsg={setDisplaymsg}
+              />
 
-
-              <FilterSearch
-                ref={filterRef}
+              {/* <FilterSearch
+                // ref={filterRef}
                 displaymsg={displaymsg}
                 setDisplaymsg={setDisplaymsg}
                 customCssClasses={{
@@ -621,10 +626,10 @@ const SearchLayout = (props: any): JSX.Element => {
                   inputElement: "FilterSearchInput pr-[90px]",
                   optionsContainer: "options"
                 }}
-                inputvalue={inputvalue}
-                setSearchInputValue={setInputValue}
-                params={params1}
-                searchOnSelect={true}
+                // inputvalue={inputvalue}
+                // setSearchInputValue={setInputValue}
+                // params={params1}
+                // searchOnSelect={true}
               // searchFields={[
               //   {
               //     entityType: "location",
@@ -660,7 +665,7 @@ const SearchLayout = (props: any): JSX.Element => {
 
               // handleInputValue={handleInputValue}
               // handleSetUserShareLocation={handleSetUserShareLocation}
-              />
+              /> */}
             </div>
             <div className="fliter-sec">
               <button className="useMyLocation" title="Search using your current location!" id="useLocation" onClick={onClick}>

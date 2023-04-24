@@ -1705,3 +1705,26 @@ div#bg-search > .w-full .w-full.h-px.bg-gray-200.my-4 {
 input#pac-input::placeholder {
   color: gray;
 }
+
+/* custom facets */
+.custom-facets.mb-4{
+  display: block;
+  box-sizing: border-box;
+}
+.custom-facets.mb-4.off {
+  box-sizing: border-box;
+  display: none;
+  height: 0px;
+  overflow: hidden;
+}
+button.font-bold.facet-heading {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  background: #024b86;
+  color: #fff;
+  padding: 5px;
+  position: relative;
+  width: 100%;
+  margin-bottom: 5px;
+  text-align: left;
+}

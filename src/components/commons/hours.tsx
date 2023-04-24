@@ -378,8 +378,8 @@ const DayRow = (props: DayRow) => {
           <td className="dayTime">
             {holidayopenintervals &&
               holidayopenintervals.map((res: any) => {
-                return res.map((openint: any) => {
-                  return openint.openIntervals.map((res: any,index:number) => {
+                return res?.map((openint: any) => {
+                  return openint.openIntervals?.map((res: any,index:number) => {
                     return (
                       <>
                         <div className="time-group" key={index}>

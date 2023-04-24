@@ -36,6 +36,8 @@ import {
   StandardFacets,
 } from "@yext/search-ui-react";
 import InputDropdown from "./InputDropdown";
+import TileFacet from "./TileFacet";
+
 
 var params1: any = { latitude: center_latitude, longitude: center_longitude }
 var mapzoom = 8;
@@ -687,6 +689,8 @@ const SearchLayout = (props: any): JSX.Element => {
                 Apply Filter
               </div>
               <div className={"fliter-sec filter-facet " + FacetValue} id="bg-search">
+              {/* <TileFacet fieldId="name" displayName="Name" />
+              <TileFacet fieldId="address.region" displayName="Region" /> */}
                 <StandardFacets
                   customCssClasses={{ container: "filter-items" }}
                   defaultExpanded={false}

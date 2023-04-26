@@ -596,7 +596,7 @@ const SearchLayout = (props: any): JSX.Element => {
 
                 onKeyDown={(evt) => {
                   if (
-                    evt.key === "Backspace" ||
+                    // evt.key === "Backspace" ||
                     evt.key === "x" ||
                     evt.key === "Delete"
                   ) {
@@ -746,11 +746,12 @@ const SearchLayout = (props: any): JSX.Element => {
                 </div> : ''} */}
                 <div className="button-bx">
                   {/* <ViewMore className={" btn notHighlight lg:!w-[132%] !mb-2 button view-more"} idName={"view-more-button"} buttonLabel={"View More"} /> */}
-                  <div className="pagination-bottom"> <Pagination /> </div>
+                 
                 </div>
 
               </div>
             </PerfectScrollbar>
+            <div className="pagination-bottom"> <Pagination /> </div>
           </div>
         </div>
       </Wrapper>

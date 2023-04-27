@@ -596,7 +596,7 @@ const SearchLayout = (props: any): JSX.Element => {
 
                 onKeyDown={(evt) => {
                   if (
-                    // evt.key === "Backspace" ||
+                    evt.key === "Backspace" ||
                     evt.key === "x" ||
                     evt.key === "Delete"
                   ) {

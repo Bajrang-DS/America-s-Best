@@ -5,23 +5,18 @@ import {
 import { useSearchActions } from "@yext/search-headless-react";
 import { useEffect, useState, useRef } from 'react';
 import * as React from "react";
-import { LocationBias, Pagination } from "@yext/search-ui-react";
+import {Pagination } from "@yext/search-ui-react";
 import {
   googleMapsConfig,
 } from "../../config/answersHeadlessConfig";
-import { Location } from "../../types/search/locations";
 import LocationCard from "./LocationCard";
-import { AnswersHeadlessProvider } from '@yext/answers-headless-react';
 import { GoogleMaps } from "./GoogleMaps";
-import { useSearchState, Result } from "@yext/search-headless-react";
+import { useSearchState } from "@yext/search-headless-react";
 import Geocode from "react-geocode";
-import Address from "../commons/Address";
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import $ from "jquery";
-import Banner from "../locationDetail/banner";
-import LoadingSpinner from "../commons/LoadingSpinner";
-import { breadcrumbhome, center_latitude, center_longitude, googleApikey, search_icn, UseMylocationsvg } from "../../../sites-global/global";
+import {center_latitude, center_longitude, googleApikey,UseMylocationsvg } from "../../../sites-global/global";
 import { StaticData } from "../../../sites-global/staticData";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import FilterSearch from "../locatorPage/FilterSearch";
@@ -29,7 +24,6 @@ import ViewMore from "./ViewMore";
 import VerticalResults from "../VerticalResults";
 import ResultsCount from "./ResultsCount";
 import useFetchResults from "../../hooks/useFetchResults";
-// import { Link } from "@mui/material";
 import { AnswerExperienceConfig } from "../../config/answersHeadlessConfig";
 import Footer from "../layouts/footer";
 import {
@@ -72,7 +66,6 @@ const SearchLayout = (props: any): JSX.Element => {
   const searchActions = useSearchActions();
   const state = useSearchState(s => s) || [];
   const [optionclick, setOptionClick] = useState(true);
-
   const loading = useSearchState(s => s.searchStatus.isLoading);
 
   var searchKey: any;
@@ -90,7 +83,6 @@ const SearchLayout = (props: any): JSX.Element => {
   }
 
   const FirstLoad = () => {
-
 
     setCheck(true);
     if (navigator.geolocation) {
@@ -220,7 +212,6 @@ const SearchLayout = (props: any): JSX.Element => {
 
 
   const onClick = () => {
-
     getCoordinates('');
     if (navigator.geolocation) {
       const error = (error: any) => {
@@ -276,7 +267,6 @@ const SearchLayout = (props: any): JSX.Element => {
       );
     }
 
-
     // let searchKey = document.getElementsByClassName('FilterSearchInput');
     // let Search = (searchKey[0].value);
     // searchActions.setOffset(0);
@@ -308,12 +298,8 @@ const SearchLayout = (props: any): JSX.Element => {
   // const Demoinput = (index: number) => {        //to search from any button
   //   getCoordinates("arnold");
   //   var target =
-  //     document.querySelector('#react-collapsed-panel-1:nth-of-type(2)').click();
-
-
+  //     document.querySelector('#react-collapsed-panel-1:nth-of-type(2)').click()
   // }
-
-
 
   const Findinput2 = () => {
     let Search = inputRef.current?.value || "";
@@ -362,7 +348,6 @@ const SearchLayout = (props: any): JSX.Element => {
         locationHub = []
       }
       searchActions.setStaticFilters(locationHub);
-
       searchActions.setOffset(0);
       searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
       searchActions.executeVerticalQuery();
@@ -382,11 +367,8 @@ const SearchLayout = (props: any): JSX.Element => {
     }
   }
 
-
   function getCoordinates(address: String) {
     setInputValue('');
-
-
     setCheck(true);
     // console.log(searchActions,"searchActions")
     searchActions.setQuery(address);
@@ -397,11 +379,8 @@ const SearchLayout = (props: any): JSX.Element => {
   }
 
   const addClass = () => {
-
     document.body.setAttribute("class", "mapView");
     // setActive('')
-
-
   }
 
   useEffect(() => {
@@ -425,9 +404,7 @@ const SearchLayout = (props: any): JSX.Element => {
     });
   }, [loading])
 
-
   const [autocomplete, setAutocomplete] = useState<google.maps.places.Autocomplete>();
-
 
   useEffect(() => {
 
@@ -438,7 +415,6 @@ const SearchLayout = (props: any): JSX.Element => {
       getCoordinates(addresssearch);
       document.getElementById("pac-input")?.setAttribute("value", addresssearch);
     }
-
 
     if (googleLib && typeof google.maps === "object") {
       let pacInput: any = document?.getElementById("pac-input");
@@ -596,7 +572,7 @@ const SearchLayout = (props: any): JSX.Element => {
 
                 onKeyDown={(evt) => {
                   if (
-                    evt.key === "Backspace" ||
+                    // evt.key === "Backspace" ||
                     evt.key === "x" ||
                     evt.key === "Delete"
                   ) {
@@ -613,7 +589,7 @@ const SearchLayout = (props: any): JSX.Element => {
                   GO</b>
                 </span>
               </button>
-              
+
               <InputDropdown
                 displaymsg={displaymsg}
                 setDisplaymsg={setDisplaymsg}
@@ -672,24 +648,19 @@ const SearchLayout = (props: any): JSX.Element => {
             <div className="fliter-sec">
               <button className="useMyLocation" title="Search using your current location!" id="useLocation" onClick={onClick}>
                 <span style={{ color: "blue" }} className="icon" dangerouslySetInnerHTML={{ __html: UseMylocationsvg }} />
-
                 <span style={{ color: "blue" }} className="underline hover:no-underline"> {StaticData.Usemylocation}</span>
               </button>
-
-
               <ResultsCount
                 customCssClasses={{ container: "mx-2 text-dark-gray text-right w-[50%]" }}
               />
 
             </div>
             <div className="facet-data">
-
-
               <div className="facet-button-class" onClick={myFunction}>
                 Apply Filter
               </div>
               <div className={"fliter-sec filter-facet " + FacetValue} id="bg-search">
-              {/* <TileFacet fieldId="name" displayName="Name" />
+                {/* <TileFacet fieldId="name" displayName="Name" />
               <TileFacet fieldId="address.region" displayName="Region" /> */}
                 <StandardFacets
                   customCssClasses={{ container: "filter-items" }}
@@ -725,28 +696,21 @@ const SearchLayout = (props: any): JSX.Element => {
           </div>
 
           <div className="left-listing">
-
             <PerfectScrollbar >
 
               <div>
-
                 <VerticalResults
                   displayAllOnNoResults={false}
                   CardComponent={LocationCard}
                   locationResults={locationResults}
-
-
-                //  CardComponent={LocationCard}
                 />
-
-
                 {/* {locationinbuit && locationinbuit.length <= 0 ?
                 <div className="browse-dir">
                   <a className="underline " href='/us.html'>Use the search above or <span className="font-second-main-font"> browse our directory</span></a>
                 </div> : ''} */}
                 <div className="button-bx">
                   {/* <ViewMore className={" btn notHighlight lg:!w-[132%] !mb-2 button view-more"} idName={"view-more-button"} buttonLabel={"View More"} /> */}
-                 
+
                 </div>
 
               </div>

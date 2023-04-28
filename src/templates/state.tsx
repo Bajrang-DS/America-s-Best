@@ -2,7 +2,7 @@ import * as React from "react";
 import Header from "../../src/components/layouts/header";
 import Footer from "../components/layouts/footer";
 import BreadCrumbs from "../components/layouts/Breadcrumb";
-import { apikey_for_entity, baseuRL, stagingBaseurl, AnalyticsEnableDebugging, AnalyticsEnableTrackingCookie, favicon } from "../../sites-global/global";
+import { stagingBaseurl, AnalyticsEnableDebugging, AnalyticsEnableTrackingCookie, favicon } from "../../sites-global/global";
 import {
   AnalyticsProvider,
   AnalyticsScopeProvider,
@@ -11,7 +11,6 @@ import "../index.css";
 import {
   Template,
   GetPath,
-  GetRedirects,
   TemplateConfig,
   TemplateProps,
   TemplateRenderProps,
@@ -19,11 +18,8 @@ import {
   HeadConfig,
 } from "@yext/pages";
 import { Link } from "@yext/pages/components";
-import { JsonLd } from "react-schemaorg";
-import PhotoSlider from "../components/locationDetail/PhotoSlider";
 
 var currentUrl = "";
-
 export const config: TemplateConfig = {
   stream: {
     $id: "states",
@@ -48,19 +44,6 @@ export const config: TemplateConfig = {
       "dm_directoryChildren.dm_directoryChildren.name",
       "dm_directoryChildren.dm_directoryChildren.slug",
       "dm_directoryChildren.dm_directoryChildren.id",
-      // "c_globalData.c_headerLinks1",
-      // "c_globalData.c_footerLinks",
-      // "c_globalData.facebookPageUrl",
-      // "c_globalData.twitterHandle",
-      // "c_globalData.instagramHandle",
-      // "c_globalData.address",
-      // "c_globalData.c_phoneNumber",
-      // "c_globalData.c_companyrn",
-      // "c_globalData.c_tikTok",
-      //seo section
-      // "c_canonical",
-      // "c_metaDescription",
-      // "c_metaTitle",
     ],
     localization: {
       locales: ["en"],
@@ -77,10 +60,8 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
     }
   });
   url += document.slug.toString();
-
   return url + '.html';
 };
-
 
 export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   relativePrefixToRoot,
@@ -114,7 +95,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: `${metaDescription}`,
         },
       },
-
       {
         type: "meta",
         attributes: {
@@ -129,7 +109,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: " America's Best",
         },
       },
-
       {
         type: "meta",
         attributes: {
@@ -137,7 +116,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: "noindex, nofollow",
         },
       },
-
       {
         type: "link",
         attributes: {
@@ -145,8 +123,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           href: ` ${canonicalURL}`,
         },
       },
-      ///og tags
-
       {
         type: "meta",
         attributes: {
@@ -154,7 +130,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: `${canonicalURL}`,
         },
       },
-
       {
         type: "meta",
         attributes: {
@@ -176,10 +151,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: `${ogmetaImage}`
         },
       },
-
-      /// twitter tag
-
-
       {
         type: "meta",
         attributes: {
@@ -226,20 +197,13 @@ const State: Template<TemplateRenderProps> = ({
 }) => {
   const {
     name,
-    description,
-    c_globalData,
     dm_directoryParents,
     dm_directoryChildren,
-    c_addressRegionDisplayName,
-    //seo section
-    c_canonical,
-    c_metaDescription,
-    c_metaTitle,
     _site,
     __meta,
     slug,
   } = document;
-console.log(dm_directoryChildren,"bajrang")
+  console.log(dm_directoryChildren, "bajrang")
   var sortedChildren = dm_directoryChildren.sort(function (a: any, b: any) {
     var a = a.name;
     var b = b.name;
@@ -254,7 +218,6 @@ console.log(dm_directoryChildren,"bajrang")
     dm_directoryChildren &&
     dm_directoryChildren.map((entity: any) => {
       let url: any = "";
-
       url = document.slug.toString();
       let url1: any = "";
       url1 = url.replace(/(\b\S.+\b)(?=.*\1)/g, "").trim();
@@ -268,7 +231,6 @@ console.log(dm_directoryChildren,"bajrang")
               <Link
                 key={entity.slug}
                 href={slug + "/" + entity.slug + "/" + entity.dm_directoryChildren[0].slug + ".html"}
-                //href={slug + "/" + entity.slug + ".html"}
                 className="text-blue hover:text-red"
                 eventName={entity.name}
               >
@@ -289,7 +251,7 @@ console.log(dm_directoryChildren,"bajrang")
           url = `${entity.dm_directoryChildren[0].id}-${finalString}.html`;
           return (
             <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4">
-              <Link key={entity.slug} href={slug + "/" + entity.slug + url } className="text-blue hover:text-red" rel="noopener noreferrer" eventName={`LocationName`}>
+              <Link key={entity.slug} href={slug + "/" + entity.slug + url} className="text-blue hover:text-red" rel="noopener noreferrer" eventName={`LocationName`}>
                 {entity.name} ({entity.dm_baseEntityCount})
               </Link>
             </div>
@@ -338,20 +300,6 @@ console.log(dm_directoryChildren,"bajrang")
   });
   return (
     <>
-      {/* <JsonLd<Organization>
-        item={{
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "Whitbread UK",
-          "url": "https://www.Whitbread.co.uk/",
-          "logo": favicon,
-          "sameAs": [
-            "https://www.twitter.com/WhitbreadUK",
-            "https://www.facebook.com/WhitbreadUK"
-          ],
-        }}
-      /> */}
-
       <AnalyticsProvider
         templateData={templateData}
         enableDebugging={AnalyticsEnableDebugging}
@@ -360,16 +308,14 @@ console.log(dm_directoryChildren,"bajrang")
         <AnalyticsScopeProvider name={""}>
           <Header _site={_site} />
           <div className="city-breadcrumb">
-          <BreadCrumbs
-            name={name}
-            parents={dm_directoryParents}
-            baseUrl={relativePrefixToRoot}
-            address={{}}
+            <BreadCrumbs
+              name={name}
+              parents={dm_directoryParents}
+              baseUrl={relativePrefixToRoot}
+              address={{}}
 
-          ></BreadCrumbs>
+            ></BreadCrumbs>
           </div>
-          {/* <PhotoSlider _site={_site} /> */}
-
           <h1 className="sec_heading m-4" style={{ textAlign: "center", color: "Highlight" }}>
             Cities in {name}, {document.dm_directoryParents[1].name}{" "}
           </h1>
@@ -382,7 +328,6 @@ console.log(dm_directoryChildren,"bajrang")
             </div>
           </div>
           <Footer _site={_site} />
-
         </AnalyticsScopeProvider>
       </AnalyticsProvider>
     </>

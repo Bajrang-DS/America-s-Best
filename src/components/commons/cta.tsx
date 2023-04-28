@@ -1,5 +1,4 @@
 import * as React from "react";
-
 type Cta = {
   buttonText: string;
   url?: string;

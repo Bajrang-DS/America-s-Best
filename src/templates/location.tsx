@@ -1,16 +1,8 @@
 import * as React from "react";
-import Banner from "../components/locationDetail/banner";
-import Cta from "../components/commons/cta";
 import Contact from "../components/locationDetail/contact";
-import ApiCall from "../Apis/ApiCall";
 import Nearby from "../components/locationDetail/Nearby";
-import { CustomFieldDebuggerReactProvider } from '@yext/custom-field-debugger';
 import { JsonLd } from "react-schemaorg";
-import Opening from "../components/commons/openClose";
 import { nearByLocation } from "../types/nearByLocation";
-// import Logo from "../images/logo-header.svg"
-// import offerBanner from "../images/offer-banner.jpg"
-import IframeMap from "../components/locationDetail/IframeMap";
 import "../index.css";
 import {
   Template,
@@ -25,34 +17,21 @@ import {
 } from "@yext/pages";
 import PageLayout from "../components/layouts/PageLayout";
 import { fetch } from "@yext/pages/util";
-import Nav from "../components/layouts/Nav";
-import Footer from "../components/layouts/footer";
-import Menu from "../components/locationDetail/Menu";
-import PhotoSlider from "../components/locationDetail/PhotoSlider";
 import PhotoGallery from "../components/locationDetail/PhotoGallery";
 import About from "../components/locationDetail/About";
-import Breadcrumb from "../components/layouts/Breadcrumb";
-import CustomMap from "../components/locationDetail/CustomMap";
 import BreadCrumbs from "../components/layouts/Breadcrumb";
-import StoreHighlight from "../components/locationDetail/SoreHighlight";
 import OpenClose from "../components/commons/openClose";
 import Faq from "../components/locationDetail/Faqs";
 import { StaticData } from "../../sites-global/staticData";
-
-import { apikey_for_entity, baseuRL, stagingBaseurl, AnalyticsEnableDebugging, AnalyticsEnableTrackingCookie, favicon } from "../../sites-global/global";
+import { stagingBaseurl, AnalyticsEnableDebugging, AnalyticsEnableTrackingCookie, favicon } from "../../sites-global/global";
 import {
   AnalyticsProvider,
   AnalyticsScopeProvider,
 } from "@yext/pages/components";
-import FeaturesBrand from "../components/locationDetail/FeaturesBrand";
-import { Fade, Slide } from "react-awesome-reveal";
-import MgmTimber from "../components/locationDetail/MgmTimber";
 import { AnswerExperienceConfig } from "../config/answersHeadlessConfig";
 import StickHeader from "../components/locationDetail/StickHeader";
 import Brands from "../components/locationDetail/Brands";
 import Offers from "../components/locationDetail/offers";
-import Faqs from "../components/locationDetail/Faqs";
-
 /**
  * Required when Knowledge Graph data is used for a template.
  */
@@ -96,7 +75,6 @@ export const config: TemplateConfig = {
     // Defines the scope of entities that qualify for this stream.
     filter: {
       entityTypes: ['location']
-
     },
     // The entity language profiles that documents will be generated for.
     localization: {
@@ -127,7 +105,7 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
   } else {
     url += `${document.slug.toString()}`;
   }
-  return url +".html";
+  return url + ".html";
 };
 /**
  * Defines a list of paths which will redirect to the path created by getPath.
@@ -162,8 +140,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: `${document.c_meta_description ? document.c_meta_description : `Find the ${document.name} Plaza Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`}`,
         },
       },
-
-
       {
         type: "meta",
         attributes: {
@@ -171,7 +147,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: StaticData.Brandname,
         },
       },
-
       {
         type: "meta",
         attributes: {
@@ -179,7 +154,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: "noindex, nofollow",
         },
       },
-
       {
         type: "link",
         attributes: {
@@ -189,7 +163,6 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
             }${document.slug ? document.slug : `${document.name.toLowerCase()}`}.html`,
         },
       },
-
       {
         type: "meta",
         attributes: {
@@ -239,37 +212,21 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: `${document.c_meta_description ? document.c_meta_description : `Find the ${document.name} America's Best Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`}`,
         },
       },
-      /// twitter tag
-
-
-
-
-
-
     ],
-
   };
 };
 type ExternalApiData = TemplateProps & { externalApiData: nearByLocation };
 export const transformProps: TransformProps<ExternalApiData> = async (
   data: any
 ) => {
-
   var location = `${data.document.yextDisplayCoordinate ? data.document.yextDisplayCoordinate.latitude : data.document.displayCoordinate.latitude},${data.document.yextDisplayCoordinate ? data.document.yextDisplayCoordinate.longitude : data.document.displayCoordinate.longitude}`;
 
   const url = `${AnswerExperienceConfig.endpoints.verticalSearch}?experienceKey=${AnswerExperienceConfig.experienceKey}&api_key=${AnswerExperienceConfig.apiKey}&v=20220511&version=${AnswerExperienceConfig.experienceVersion}&locale=${AnswerExperienceConfig.locale}&location=${location}&locationRadius=${AnswerExperienceConfig.locationRadius}&verticalKey=${AnswerExperienceConfig.verticalKey}&limit=5&retrieveFacets=true&skipSpellCheck=false&sessionTrackingEnabled=true&source=STANDARD`;
-
-  // const url = "https://liveapi-sandbox.yext.com/v2/accounts/me/entities/geosearch?api_key=b88e27af2c8b5d5b7fe52d29786f3b57&v=20230111&location=usa&radius=1000"
-  // console.log(url)
   const externalApiData = (await fetch(url).then((res: any) =>
     res.json()
-
   )) as nearByLocation;
   return { ...data, externalApiData };
 };
-
-
-
 type ExternalApiRenderData = TemplateRenderProps & {
   externalApiData: nearByLocation;
 };
@@ -344,7 +301,6 @@ const Location: Template<ExternalApiRenderData> = ({
         }
       } else {
       }
-
       hoursSchema.push(openIntervalsSchema);
     }
   }
@@ -355,14 +311,12 @@ const Location: Template<ExternalApiRenderData> = ({
           document.dm_directoryParents[index].name;
         document.dm_directoryParents[index].slug =
           document.dm_directoryParents[index].slug;
-
         breadcrumbScheme.push({
           "@type": "ListItem",
           position: index,
           item: {
             "@id":
               stagingBaseurl +
-
               document.dm_directoryParents[index].slug +
               ".html",
             name: i.name,
@@ -417,7 +371,6 @@ const Location: Template<ExternalApiRenderData> = ({
         });
       }
     });
-
   breadcrumbScheme.push({
     "@type": "ListItem",
     position: 4,
@@ -429,15 +382,10 @@ const Location: Template<ExternalApiRenderData> = ({
   let imageurl = photoGallery ? photoGallery.map((element: any) => {
     return element.image.url
   }) : null;
-  console.log(document)
-  let bannerimage = c_banner_image && c_banner_image.image.url;
-
 
   return (
-
     <>
-
-      <JsonLd<Store>
+      <JsonLd
         item={{
           "@context": "https://schema.org",
           "@type": "DepartmentStore",
@@ -461,12 +409,9 @@ const Location: Template<ExternalApiRenderData> = ({
         item={{
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
-
           itemListElement: breadcrumbScheme,
         }}
       />
-
-
 
       <AnalyticsProvider
         templateData={templateData}
@@ -476,8 +421,6 @@ const Location: Template<ExternalApiRenderData> = ({
         {" "}
         <AnalyticsScopeProvider name={""}>
           <PageLayout _site={_site}>
-
-
             <div className="hero-banner">
               <div className="hero-image hero-image2">
                 <img className="ObjectFit-image" src={c_bannerImage?.url} alt="" />
@@ -501,26 +444,18 @@ const Location: Template<ExternalApiRenderData> = ({
                   <Contact address={address}
                     phone={mainPhone} latitude={yextDisplayCoordinate ? yextDisplayCoordinate.latitude : displayCoordinate?.latitude}
                     yextDisplayCoordinate={yextDisplayCoordinate} longitude={yextDisplayCoordinate ? yextDisplayCoordinate.longitude : displayCoordinate?.longitude} hours={hours} additionalHoursText={additionalHoursText} ></Contact>
-
                 </div>
-
               </div>
-
             </div>
 
             <StickHeader _site={_site} />
             <PhotoGallery c_galleryitems={c_galleryitems} c_galleryimage={c_galleryimage} />
-
-            <Offers c_offerheading={c_offerheading} c_offers={c_offers}/>
-
+            <Offers c_offerheading={c_offerheading} c_offers={c_offers} />
             <About
               c_aboutheading={c_aboutheading} c_aboutdatas={c_aboutdatas} latitude={yextDisplayCoordinate ? yextDisplayCoordinate.latitude : displayCoordinate?.latitude}
               longitude={yextDisplayCoordinate ? yextDisplayCoordinate.longitude : displayCoordinate?.longitude} yextDisplayCoordinate={yextDisplayCoordinate} />
-
             <Brands c_branddata={c_branddata} />
-
-            <Faq c_faqs={c_faqs} c_faqtitle={c_faqtitle} c_faqsubtitle={c_faqsubtitle}/>
-
+            <Faq c_faqs={c_faqs} c_faqtitle={c_faqtitle} c_faqsubtitle={c_faqsubtitle} />
             <div className="nearby-sec">
               <div className="container">
                 <div className="sec-title"><h2 className="">{StaticData.NearStoretext}</h2></div>
@@ -530,9 +465,7 @@ const Location: Template<ExternalApiRenderData> = ({
                     : ''}
                 </div>
               </div>
-
             </div>
-
           </PageLayout>
         </AnalyticsScopeProvider>
       </AnalyticsProvider>

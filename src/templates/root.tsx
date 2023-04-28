@@ -2,22 +2,14 @@ import * as React from "react";
 import Header from "../../src/components/layouts/header";
 import Footer from "../components/layouts/footer";
 import BreadCrumbs from "../components/layouts/Breadcrumb";
-import { apikey_for_entity, baseuRL, stagingBaseurl, AnalyticsEnableDebugging, AnalyticsEnableTrackingCookie, favicon } from "../../sites-global/global";
 import "../index.css";
-import {
-
-  AnalyticsScopeProvider,
-} from "@yext/pages/components";
 import {
   Template,
   GetPath,
   TemplateConfig,
   TemplateProps,
   TemplateRenderProps,
-  GetHeadConfig,
-  HeadConfig,
 } from "@yext/pages";
-import PhotoSlider from "../components/locationDetail/PhotoSlider";
 var currentUrl = "";
 export const config: TemplateConfig = {
   stream: {
@@ -37,16 +29,7 @@ export const config: TemplateConfig = {
       "dm_directoryParents.meta.entityType",
       "dm_directoryChildren.name",
       "dm_directoryChildren.slug",
-       "dm_baseEntityCount"
-      // "c_globalData.c_headerLinks1",
-      // "c_globalData.c_footerLinks",
-      // "c_globalData.facebookPageUrl",
-      // "c_globalData.twitterHandle",
-      // "c_globalData.instagramHandle",
-      // "c_globalData.address",
-      // "c_globalData.c_phoneNumber",
-      // "c_globalData.c_companyrn",
-      // "c_globalData.c_tikTok",
+      "dm_baseEntityCount"
     ],
     localization: {
       locales: ["en"],
@@ -58,7 +41,6 @@ export const config: TemplateConfig = {
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
   currentUrl = document.slug.toString() + ".html";
   return document.slug.toString() + ".html";
-  //    return 'index.html'
 };
 
 const Root: Template<TemplateRenderProps> = ({
@@ -66,9 +48,8 @@ const Root: Template<TemplateRenderProps> = ({
   path,
   document,
 }) => {
-  const { description, dm_directoryParents, dm_directoryChildren, _site } = document;
-
-  const { name, slug, c_globalData } = document;
+  const { dm_directoryParents, dm_directoryChildren, _site } = document;
+  const { name, slug } = document;
 
   return (
     <>
@@ -80,7 +61,6 @@ const Root: Template<TemplateRenderProps> = ({
         baseUrl={relativePrefixToRoot}
         address={{}}
       ></BreadCrumbs>
-      {/* <PhotoSlider _site={_site} /> */}
       <div className="header-title ">
         <div className="directory-root py-5 lg:py-[60px]">
           <div className="container">

@@ -16,7 +16,7 @@ export const AnswerExperienceConfig = {
     verticalAutocomplete: "https://liveapi-sandbox.yext.com/v2/accounts/me/answers/vertical/autocomplete",
     filterSearch: "https://liveapi-sandbox.yext.com/v2/accounts/me/answers/filtersearch",
 
-   
+    
   }
   
 }

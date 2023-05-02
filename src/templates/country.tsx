@@ -1,22 +1,28 @@
 import * as React from "react";
 import Header from "../../src/components/layouts/header";
 import Footer from "../components/layouts/footer";
+import { JsonLd } from "react-schemaorg";
+
 import {
   AnalyticsProvider,
   AnalyticsScopeProvider,
   Link,
 } from "@yext/pages/components";
-import { stagingBaseurl, AnalyticsEnableDebugging, AnalyticsEnableTrackingCookie, favicon } from "../../sites-global/global";
+import { apikey_for_entity, baseuRL, stagingBaseurl, AnalyticsEnableDebugging, AnalyticsEnableTrackingCookie, favicon } from "../../sites-global/global";
+
 import "../index.css";
+
 import {
   Template,
   GetPath,
+  GetRedirects,
   TemplateConfig,
   TemplateProps,
   TemplateRenderProps,
   GetHeadConfig,
   HeadConfig,
 } from "@yext/pages";
+import PhotoSlider from "../components/locationDetail/PhotoSlider";
 import BreadCrumbs from "../components/layouts/Breadcrumb";
 var currentUrl = "";
 export const config: TemplateConfig = {
@@ -42,10 +48,24 @@ export const config: TemplateConfig = {
       "dm_directoryChildren.dm_directoryChildren.name",
       "dm_directoryChildren.dm_directoryChildren.id",
       "dm_directoryChildren.dm_directoryChildren.slug",
+
       "dm_directoryChildren.dm_directoryChildren.dm_directoryChildren.name",
       "dm_directoryChildren.dm_directoryChildren.dm_directoryChildren.id",
       "dm_directoryChildren.dm_directoryChildren.dm_directoryChildren.slug",
       "dm_directoryChildren.dm_directoryChildren.dm_directoryChildren.meta.entityType"
+      // "c_globalData.c_headerLinks1",
+      // "c_globalData.c_footerLinks",
+      // "c_globalData.facebookPageUrl",
+      // "c_globalData.twitterHandle",
+      // "c_globalData.instagramHandle",
+      // "c_globalData.address",
+      // "c_globalData.c_phoneNumber",
+      // "c_globalData.c_companyrn",
+      // "c_globalData.c_tikTok",
+      //seo section
+      // "c_canonical",
+      // "c_metaDescription",
+      // "c_metaTitle",
     ],
     localization: {
       locales: ["en"],
@@ -57,6 +77,7 @@ export const config: TemplateConfig = {
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
   currentUrl = "/" + document.slug.toString() + ".html";
   return `${document.slug.toString()}` + ".html";
+  //  return "index.html";
 };
 export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   relativePrefixToRoot,
@@ -88,6 +109,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: `${metaDescription}`,
         },
       },
+
       {
         type: "meta",
         attributes: {
@@ -102,6 +124,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: " America's Best",
         },
       },
+
       {
         type: "meta",
         attributes: {
@@ -109,6 +132,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: "noindex, nofollow",
         },
       },
+
       {
         type: "link",
         attributes: {
@@ -116,6 +140,8 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           href: ` ${canonicalURL}`,
         },
       },
+      ///og tags
+
       {
         type: "meta",
         attributes: {
@@ -123,6 +149,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: `${canonicalURL}`,
         },
       },
+
       {
         type: "meta",
         attributes: {
@@ -144,6 +171,8 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: `${ogmetaImage}`
         },
       },
+
+      /// twitter tag
       {
         type: "meta",
         attributes: {
@@ -151,6 +180,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: `${metaTitle}`,
         },
       },
+
       {
         type: "meta",
         attributes: {
@@ -188,19 +218,26 @@ const Country: Template<TemplateRenderProps> = ({
   path,
   document,
 }) => {
+  // const { description, dm_directoryChildren, dm_directoryParents, c_tagline, dm_baseEntityCount } = document;
   const {
     name,
     slug,
     dm_directoryChildren,
     dm_directoryParents,
+    c_globalData,
     _site,
+    c_canonical,
+    c_metaDescription,
+    c_metaTitle,
     __meta,
   } = document;
 
+  console.log(dm_directoryChildren, "bajrang1")
   const childrenDivs = dm_directoryChildren ? dm_directoryChildren.map((entity: any) => {
     var detlslug1 = "";
     var detlslug = "";
     if (entity.dm_baseEntityCount == 1) {
+      console.log(entity.dm_directoryChildren, "bajrang")
       entity.dm_directoryChildren ? entity.dm_directoryChildren.map((link: any) => {
         link.dm_directoryChildren ? link.dm_directoryChildren.map((detl: any) => {
 
@@ -211,11 +248,13 @@ const Country: Template<TemplateRenderProps> = ({
           } else {
             detlslug1 = `${slug + "/" + entity.slug + "/" + entity?.dm_directoryChildren[0]?.slug + "/" + detl.slug.toString()}`;
           }
+
           detlslug = detlslug1;
+
         }) : detlslug = detlslug1;
-      }) : "";
-    }
-    else {
+      }):"";
+      }
+      else {
       detlslug = slug + "/" + entity.slug;
     }
     return (
@@ -224,6 +263,7 @@ const Country: Template<TemplateRenderProps> = ({
           <Link
             eventName="Region"
             key={entity.slug}
+            // href={slug + "/" + entity.slug + ".html"}
             href={detlslug + ".html"}
             className="hover:text-red"
           >
@@ -233,49 +273,69 @@ const Country: Template<TemplateRenderProps> = ({
       </>
     );
   }) : "";
+  
 
-  let templateData = { document: document, __meta: __meta };
-  let breadcrumbScheme = [];
-  breadcrumbScheme.push({
-    "@type": "ListItem",
-    position: 1,
-    item: {
-      "@id": `${stagingBaseurl}${document.slug.toString()}.html`,
-      name: document.name,
-    },
-  });
-  return (
-    <>
-      <AnalyticsProvider
-        templateData={templateData}
-        enableDebugging={AnalyticsEnableDebugging}
-        enableTrackingCookie={AnalyticsEnableTrackingCookie}
-      >
-        <AnalyticsScopeProvider name={""}>
-          <Header _site={_site} />
-          <div className="city-breadcrumb">
-            <BreadCrumbs
-              name={name}
-              parents={dm_directoryParents}
-              baseUrl={relativePrefixToRoot}
-              address={{}}
-            ></BreadCrumbs>
-          </div>
-          <h1 className="sec_heading m-4" style={{ textAlign: "center", color: "Highlight" }}>
-            All Regions of {name}{" "}
-          </h1>
-          <div className="directory-country nearby-sec py-5 lg:py-[60px]">
-            <div className="container">
-              <div className="flex flex-wrap justify-center -mx-4">
-                {childrenDivs}
-              </div>
+
+
+let templateData = { document: document, __meta: __meta };
+let breadcrumbScheme = [];
+
+breadcrumbScheme.push({
+  "@type": "ListItem",
+  position: 1,
+  item: {
+    "@id": `${stagingBaseurl}${document.slug.toString()}.html`,
+    name: document.name,
+  },
+});
+return (
+  <>
+    {/* <JsonLd<Organization>
+        item={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Whitbread UK",
+          "url": "https://www.Whitbread.co.uk/",
+          "logo": favicon,
+          "sameAs": [
+            "https://www.twitter.com/WhitbreadUK",
+            "https://www.facebook.com/WhitbreadUK"
+          ],
+        }}
+      /> */}
+
+    <AnalyticsProvider
+      templateData={templateData}
+      enableDebugging={AnalyticsEnableDebugging}
+      enableTrackingCookie={AnalyticsEnableTrackingCookie}
+    >
+      <AnalyticsScopeProvider name={""}>
+        <Header _site={_site} />
+        <div className="city-breadcrumb">
+          <BreadCrumbs
+            name={name}
+            parents={dm_directoryParents}
+            baseUrl={relativePrefixToRoot}
+            address={{}}
+          ></BreadCrumbs>
+        </div>
+        {/* <PhotoSlider _site={_site} /> */}
+        <h1 className="sec_heading m-4" style={{ textAlign: "center", color: "Highlight" }}>
+          All Regions of {name}{" "}
+        </h1>
+        <div className="directory-country nearby-sec py-5 lg:py-[60px]">
+          <div className="container">
+            <div className="flex flex-wrap justify-center -mx-4">
+              {childrenDivs}
             </div>
           </div>
-          <Footer _site={_site} />
-        </AnalyticsScopeProvider>
-      </AnalyticsProvider>
-    </>
-  );
+        </div>
+        <Footer _site={_site} />
+      </AnalyticsScopeProvider>
+    </AnalyticsProvider>
+
+  </>
+);
 };
 
 export default Country;

@@ -1,6 +1,7 @@
 import * as React from "react";
 import Footer from "../components/layouts/footer";
-import {stagingBaseurl, AnalyticsEnableDebugging, AnalyticsEnableTrackingCookie, favicon } from "../../sites-global/global";
+import { apikey_for_entity, baseuRL, stagingBaseurl, AnalyticsEnableDebugging, AnalyticsEnableTrackingCookie, favicon } from "../../sites-global/global";
+import getDirectionUrl from "../components/commons/GetDirection";
 import Header from "../../src/components/layouts/header";
 import BreadCrumbs from "../components/layouts/Breadcrumb";
 import {
@@ -9,19 +10,25 @@ import {
 } from "@yext/pages/components";
 import { Link } from "@yext/pages/components";
 import "../index.css";
+var currentUrl = "";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
 import {
   Template,
   GetPath,
+  GetRedirects,
   TemplateConfig,
   TemplateProps,
   TemplateRenderProps,
   GetHeadConfig,
   HeadConfig,
 } from "@yext/pages";
+
+import { JsonLd } from "react-schemaorg";
+import PhotoSlider from "../components/locationDetail/PhotoSlider";
 import GetDirection from "../components/commons/GetDirection";
 import OpenClose from "../components/commons/openClose";
 import Address from "../components/commons/Address";
-
+var currentUrl = "";
 export const config: TemplateConfig = {
   stream: {
     $id: "city",
@@ -33,6 +40,7 @@ export const config: TemplateConfig = {
       "uid",
       "meta",
       "name",
+      // "c_addressRegionDisplayName",
       "slug",
       "dm_directoryParents.name",
       "dm_directoryParents.slug",
@@ -46,7 +54,21 @@ export const config: TemplateConfig = {
       "dm_directoryChildren.address",
       "dm_directoryChildren.hours",
       "dm_directoryChildren.mainPhone",
+      // "dm_directoryChildren.what3WordsAddress",
       "dm_directoryChildren.yextDisplayCoordinate"
+      // "c_globalData.c_headerLinks1",
+      // "c_globalData.c_footerLinks",
+      // "c_globalData.facebookPageUrl",
+      // "c_globalData.twitterHandle",
+      // "c_globalData.instagramHandle",
+      // "c_globalData.address",
+      // "c_globalData.c_phoneNumber",
+      // "c_globalData.c_companyrn",
+      // "c_globalData.c_tikTok",
+      //seo section
+      // "c_canonical",
+      // "c_metaDescription",
+      // "c_metaTitle",
     ],
     localization: {
       locales: ["en"],
@@ -55,8 +77,24 @@ export const config: TemplateConfig = {
   },
 };
 
+let slugString = "";
+// export const getPath: GetPath<TemplateProps> = ({ document }) => {
+//   document.dm_directoryParents.forEach((e: any) => {
+//     if (e.sulg != "location" && e.slug != "gb") {
+//       slugString += e.slug + "/";
+//       slugString = slugString.replace("location", "");
+//     }
+//   });
+
+//   currentUrl = slugString + document.slug + ".html";
+
+//   return slugString + document.slug + ".html";
+// };
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-var url: any = ""
+
+  // return `${document.slug.toString()}.html`;
+
+  var url: any = ""
   document.dm_directoryParents.map((i: any) => {
     if (i.meta.entityType.id == 'ce_country') {
       url = `${i.slug}`
@@ -99,7 +137,8 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: `${metaDescription}`,
         },
       },
-{
+
+      {
         type: "meta",
         attributes: {
           name: "title",
@@ -113,28 +152,33 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: " America's Best",
         },
       },
-{
+
+      {
         type: "meta",
         attributes: {
           name: "robots",
           content: "noindex, nofollow",
         },
       },
- {
+
+      {
         type: "link",
         attributes: {
           rel: "canonical",
           href: ` ${canonicalURL}`,
         },
       },
-   {
+      ///og tags
+
+      {
         type: "meta",
         attributes: {
           property: "og:url",
           content: `${canonicalURL}`,
         },
       },
-{
+
+      {
         type: "meta",
         attributes: {
           property: "og:description",
@@ -155,7 +199,10 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: `${ogmetaImage}`
         },
       },
-{
+
+      /// twitter tag
+
+      {
         type: "meta",
         attributes: {
           name: "twitter:card",
@@ -201,10 +248,16 @@ const City: Template<TemplateRenderProps> = ({
 }) => {
   const {
     name,
+    c_addressRegionDisplayName,
     dm_directoryParents,
     dm_directoryChildren,
     c_globalData,
+    c_canonical,
+    c_metaDescription,
+    c_metaTitle,
     _site,
+    timezone,
+    hours,
     __meta,
   } = document;
   var address;
@@ -221,7 +274,8 @@ const City: Template<TemplateRenderProps> = ({
     var b = b.name;
     return a < b ? -1 : a > b ? 1 : 0;
   });
-let slugString = "";
+
+  let slugString = "";
   document.dm_directoryParents.forEach((e: any) => {
     slugString += e.slug + "/";
   });
@@ -286,7 +340,8 @@ let slugString = "";
               </div>
             
             }
-         </div>
+           
+          </div>
           <div className="icon-row content-col">
             <Address address={entity.address} />
           </div>
@@ -297,15 +352,21 @@ let slugString = "";
             <Link className="btn hover:border-[1px]" href="#"
               data-ya-track={`viewstore-${entity.name}`}
               eventName={`viewstore-${entity.name}`}
-              rel="noopener noreferrer">        
+              rel="noopener noreferrer">
+              {/* <div dangerouslySetInnerHTML={{__html: View_Store}}/> */}
               SCHEDULE EXAM</Link>
-</div>
+
+
+          </div>
         </div>
         {/* </SplideSlide> */}
 
-</>
+
+      </>
     );
-});
+
+
+  });
 
   c_globalData &&
     c_globalData.map((i: any) => {
@@ -322,6 +383,7 @@ let slugString = "";
 
   let templateData = { document: document, __meta: __meta };
   let breadcrumbScheme: any = [];
+  let currentIndex: any = 0;
   dm_directoryParents &&
     dm_directoryParents.map((i: any, index: any) => {
       currentIndex = index;
@@ -362,13 +424,28 @@ let slugString = "";
   });
   return (
     <>
-<AnalyticsProvider
+      {/* <JsonLd<Organization>
+        item={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Whitbread UK",
+          "url": "https://www.whitbread.co.uk/",
+          "logo": favicon,
+          "sameAs": [
+            "https://www.twitter.com/WhitbreadUK",
+            "https://www.facebook.com/WhitbreadUK"
+          ],
+        }}
+      /> */}
+
+      <AnalyticsProvider
         templateData={templateData}
         enableDebugging={AnalyticsEnableDebugging}
         enableTrackingCookie={AnalyticsEnableTrackingCookie}
       >
         <AnalyticsScopeProvider name={""}>
-<Header _site={_site} />
+
+          <Header _site={_site} />
           <div className="city-breadcrumb">
             <BreadCrumbs
               name={name}
@@ -390,9 +467,11 @@ let slugString = "";
             </div>
           </div>
           <Footer _site={_site} />
-</AnalyticsScopeProvider>
+
+        </AnalyticsScopeProvider>
       </AnalyticsProvider>
- </>
+
+    </>
   );
 };
 export default City;

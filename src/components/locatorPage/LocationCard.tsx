@@ -115,7 +115,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                 <Model name={StaticData.Holdiay}
                   holidayHours={hours?.holidayHours}
                   c_specific_day={c_specific_day}
-                /></b> : ""}
+                /></b> : alert("hello")}
 
             <div className="icon-row content-col address-with-availablity notHighlight">
               <Address address={address} />

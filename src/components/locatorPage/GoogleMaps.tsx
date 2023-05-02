@@ -133,10 +133,10 @@ function UnwrappedGoogleMaps({
         center = {
           lat: result.rawData.yextDisplayCoordinate
             ? result.rawData.yextDisplayCoordinate.latitude
-            : result.rawData.displayCoordinate?.latitude,
+            : result.rawData.displayCoordinate.latitude,
           lng: result.rawData.yextDisplayCoordinate
             ? result.rawData.yextDisplayCoordinate.longitude
-            : result.rawData.displayCoordinate?.longitude,
+            : result.rawData.displayCoordinate.longitude,
         };
       }
     })

@@ -55,7 +55,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
     els[i].innerHTML = i + 1;
   }
 
-  // console.log(result.index, "bajrang")
+  console.log(result, "bajrang")
   return (
     <div className={`location result-list-inner-${result.id} result`} id={`result-${result.id}`} key={`result-${result.rawData.id}`}>
       <div className="result-inner ">

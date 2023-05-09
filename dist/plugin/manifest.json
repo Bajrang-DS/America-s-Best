@@ -4,7 +4,7 @@
     "city": "assets/server/city.b7506652.js",
     "country": "assets/server/country.08106cdf.js",
     "location": "assets/server/location.2eeefc0d.js",
-    "locator": "assets/server/locator.75b0e39a.js",
+    "locator": "assets/server/locator.ef9e3b8e.js",
     "robots": "assets/server/robots.822468f5.js",
     "root": "assets/server/root.a07dc93c.js",
     "state": "assets/server/state.5bca866b.js"
@@ -34,13 +34,13 @@
       "file": "assets/static/phone-ef7a7680.svg",
       "src": "src/images/phone.svg"
     },
-    "src/images/MGMpin.svg": {
-      "file": "assets/static/MGMpin-14d46efa.svg",
-      "src": "src/images/MGMpin.svg"
-    },
     "src/images/watch-icn.svg": {
       "file": "assets/static/watch-icn-de3f32de.svg",
       "src": "src/images/watch-icn.svg"
+    },
+    "src/images/MGMpin.svg": {
+      "file": "assets/static/MGMpin-14d46efa.svg",
+      "src": "src/images/MGMpin.svg"
     },
     "src/images/MGMhover1.svg": {
       "file": "assets/static/MGMhover1-164c1bae.svg",
@@ -50,25 +50,25 @@
       "file": "assets/static/map-center-1a582d64.svg",
       "src": "src/images/map-center.svg"
     },
-    "src/images/dots.svg": {
-      "file": "assets/static/dots-2757dc27.svg",
-      "src": "src/images/dots.svg"
+    "src/images/minus-sym.svg": {
+      "file": "assets/static/minus-sym-91e3bcde.svg",
+      "src": "src/images/minus-sym.svg"
     },
     "src/images/plus-sym.svg": {
       "file": "assets/static/plus-sym-e6fe9a2e.svg",
       "src": "src/images/plus-sym.svg"
     },
-    "src/images/minus-sym.svg": {
-      "file": "assets/static/minus-sym-91e3bcde.svg",
-      "src": "src/images/minus-sym.svg"
+    "src/images/shape-b.svg": {
+      "file": "assets/static/shape-b-304bb7d2.svg",
+      "src": "src/images/shape-b.svg"
+    },
+    "src/images/dots.svg": {
+      "file": "assets/static/dots-2757dc27.svg",
+      "src": "src/images/dots.svg"
     },
     "src/images/shape-t.svg": {
       "file": "assets/static/shape-t-73d392df.svg",
       "src": "src/images/shape-t.svg"
-    },
-    "src/images/shape-b.svg": {
-      "file": "assets/static/shape-b-304bb7d2.svg",
-      "src": "src/images/shape-b.svg"
     },
     "src/images/newsletter-bg.png": {
       "file": "assets/static/newsletter-bg-6b390772.png",
@@ -207,7 +207,7 @@
       ]
     },
     "dist/hydration_templates/locator.tsx": {
-      "file": "assets/hydrate/locator.a165aef7.js",
+      "file": "assets/hydrate/locator.90427cf6.js",
       "src": "dist/hydration_templates/locator.tsx",
       "isEntry": true,
       "imports": [
@@ -226,7 +226,7 @@
       ]
     },
     "src/templates/locator.tsx": {
-      "file": "assets/server/locator.75b0e39a.js",
+      "file": "assets/server/locator.ef9e3b8e.js",
       "src": "src/templates/locator.tsx",
       "isEntry": true,
       "imports": [

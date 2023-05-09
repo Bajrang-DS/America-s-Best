@@ -3,7 +3,7 @@ import * as React from "react";
 
 
 const StickHeader = (props: any) => {
-    const {c_stickheader } = props;
+    // const {c_stickheader } = props;
 
 
     return (

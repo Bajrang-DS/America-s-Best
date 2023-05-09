@@ -579,10 +579,11 @@ function UnwrappedGoogleMaps({
       url = `${countrycode + "/" + statecode + "/" + citycode + "/" + result.rawData.slug?.toString()}`;
     }
 
+    // console.log(result,"result")
     const MarkerContent = (
       <>
         {" "}
-        <div className="flex w-full flex-col max-w-[24rem] pl-4  md:w-[22.5rem] text-xs sm:text-sm lg:text-base">
+        <div className="flex w-full flex-col max-w-[24rem] pl-4  md:w-[24.5rem] text-xs sm:text-sm lg:text-base">
           <div className="location-name-miles">
             {/* <div className="icon"> <img className=" " src={mapimage} width="20" height="20"
         alt="" /></div> */}
@@ -595,7 +596,7 @@ function UnwrappedGoogleMaps({
           <div className="content-col info-window-content">
             <Address address={result.rawData.address} />
             {result.distance ? (
-              <div className="distance">
+              <div className="distance text-[green]">
                 {metersToMiles(result.distance ?? 0)}{" "}
                 <span>{StaticData.miles}</span>
               </div>

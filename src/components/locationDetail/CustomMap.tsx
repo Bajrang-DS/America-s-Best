@@ -28,6 +28,10 @@ function CustomMap(coords: props) {
       lng: coords.prop.longitude,
     };
   });
+
+  const go =()=>{
+    <a href="javascript:void"></a>
+  }
   return (
     <LoadScript googleMapsApiKey="AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18">
       {coords.prop.latitude && coords.prop.longitude?<> 
@@ -104,6 +108,7 @@ function CustomMap(coords: props) {
             lng: coords.prop && coords.prop.longitude,
           }}
           icon={marker}
+          onClick={go}
         />
       </GoogleMap></>:<></>
 

@@ -127,7 +127,7 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
   } else {
     url += `${document.slug.toString()}`;
   }
-  return url +".html";
+  return url + ".html";
 };
 /**
  * Defines a list of paths which will redirect to the path created by getPath.
@@ -511,7 +511,7 @@ const Location: Template<ExternalApiRenderData> = ({
             <StickHeader _site={_site} />
             <PhotoGallery c_galleryitems={c_galleryitems} c_galleryimage={c_galleryimage} />
 
-            <Offers c_offerheading={c_offerheading} c_offers={c_offers}/>
+            <Offers c_offerheading={c_offerheading} c_offers={c_offers} />
 
             <About
               c_aboutheading={c_aboutheading} c_aboutdatas={c_aboutdatas} latitude={yextDisplayCoordinate ? yextDisplayCoordinate.latitude : displayCoordinate?.latitude}
@@ -519,7 +519,7 @@ const Location: Template<ExternalApiRenderData> = ({
 
             <Brands c_branddata={c_branddata} />
 
-            <Faq c_faqs={c_faqs} c_faqtitle={c_faqtitle} c_faqsubtitle={c_faqsubtitle}/>
+            <Faq c_faqs={c_faqs} c_faqtitle={c_faqtitle} c_faqsubtitle={c_faqsubtitle} />
 
             <div className="nearby-sec">
               <div className="container">

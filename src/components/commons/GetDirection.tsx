@@ -1,7 +1,9 @@
 import { Link } from "@yext/pages/components";
 import * as React from "react";
 import { conversionDetailsDirection, conversionDetailsPhone, Directionsvg } from "../../../sites-global/global";
-
+import {
+  googleMapsConfig,
+} from "../../config/answersHeadlessConfig";
 type Cta = {
   buttonText: string;
   address :object;
@@ -29,13 +31,14 @@ const GetDirection = (props: GetDirection) => {
     }
     if (navigator.geolocation) {
       const error = (error: any) => {
+        confirm('Please Allow Your Location')
         var getDirectionUrl =
         "https://www.google.com/maps/dir/?api=1&destination=" +
        latitude +
         "," +
         longitude +
         "&origin=" +
-        origin +"," +'UK';
+        googleMapsConfig.centerLatitude +"," + googleMapsConfig.centerLongitude;
 
       window.open(getDirectionUrl, "_blank");
       };
@@ -57,10 +60,13 @@ const GetDirection = (props: GetDirection) => {
         },
         error,
         {
+        
           timeout: 10000,
         }
       );
-    }
+    }else{ alert('hello')}
+     
+    
   };
   const conversionDetails_direction = conversionDetailsDirection;
   // const conversionDetails_phone = conversionDetailsPhone;

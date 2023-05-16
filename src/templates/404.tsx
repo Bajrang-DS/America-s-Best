@@ -61,18 +61,23 @@ const FourOhFour: Template<TemplateRenderProps> = ({
   const {
     _site
   } = document;
-//   const array = [{ name: "John" }, { name: "bajrang" }, { name: "bajrang" }, { name: "bajrang" }];
+  //   const array = [{ name: "John" }, { name: "bajrang" }, { name: "bajrang" }, { name: "bajrang" }];
 
-//   let pp = array.filter( (ele, ind) => ind === array.findIndex( elem => elem.name === ele.name))
+  //   let pp = array.filter( (ele, ind) => ind === array.findIndex( elem => elem.name === ele.name))
 
-// console.log(pp,"gggggggggg")
+  // console.log(pp,"gggggggggg")
   return (
     <>
       <PageLayout _site={_site}>
         <div className="content-list">
           <div className="container flex">
             <div className="FourOhFour-image">
-              <img src={_site.c_404image.url} alt="" />
+              {/* <img src={_site.c_404image.url} alt="" /> */}
+              <video width="320" height="272" autoPlay loop controls={false}>
+                <source src="https://www.americasbest.com/medias/blinky.mp4?context=bWFzdGVyfHJvb3R8MjA0OTYyMHx2aWRlby9tcDR8aDZiL2hmNy85MzUzOTExNTMzNTk4L2JsaW5reS5tcDR8ZGU4ZWYwMTMyMDNlMTBkOGQyODZlMjIwMzM3Yjg1ZjRkNDA2ZDBmZTE5MTg4M2U4MDQ1NWI0MTAxZTIzMTZmMw" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+
             </div>
             <div className="sec-title text-center float-right w-[77%]">
               <h1 className="" style={{ textAlign: "center" }}>

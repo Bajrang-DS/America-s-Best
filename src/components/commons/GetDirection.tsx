@@ -64,7 +64,7 @@ const GetDirection = (props: GetDirection) => {
           timeout: 10000,
         }
       );
-    }else{ alert('hello')}
+    }
      
     
   };

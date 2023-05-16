@@ -120,7 +120,7 @@ const SearchLayout = (props: any): JSX.Element => {
           searchActions.setStaticFilters([locationFilter]);
           searchActions.setUserLocation(params1);
           searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
-          searchActions.executeVerticalQuery();
+          // searchActions.executeVerticalQuery();
         },
         function (error) {
           if (error.code == error.PERMISSION_DENIED) {
@@ -150,7 +150,7 @@ const SearchLayout = (props: any): JSX.Element => {
     searchActions.setStaticFilters([locationFilter]);
     searchActions.setUserLocation(params1);
     searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
-    searchActions.executeVerticalQuery();
+    // searchActions.executeVerticalQuery();
     setTimeout(() => {
       setIsloading(false);
       $("body").removeClass("overflow-hidden");
@@ -220,7 +220,6 @@ const SearchLayout = (props: any): JSX.Element => {
 
 
   const onClick = () => {
-
     getCoordinates('');
     if (navigator.geolocation) {
       const error = (error: any) => {
@@ -365,7 +364,7 @@ const SearchLayout = (props: any): JSX.Element => {
 
       searchActions.setOffset(0);
       searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
-      searchActions.executeVerticalQuery();
+      // searchActions.executeVerticalQuery();
       getCoordinates(Search);
     }
   };
@@ -385,23 +384,23 @@ const SearchLayout = (props: any): JSX.Element => {
 
   function getCoordinates(address: String) {
     setInputValue('');
-
-
     setCheck(true);
-    // console.log(searchActions,"searchActions")
-    searchActions.setQuery(address);
-    searchActions.setUserLocation(params1);
-    searchActions.setOffset(0);
-    searchActions.executeVerticalQuery();
+    let Search = inputRef.current?.value || "";
+    if (Search.length == 0) {
+      ''
+    } else {
+      // console.log(searchActions,"searchActions")
+      searchActions.setQuery(address);
+      searchActions.setUserLocation(params1);
+      searchActions.setOffset(0);
+      searchActions.executeVerticalQuery();
+    }
 
   }
 
   const addClass = () => {
-
     document.body.setAttribute("class", "mapView");
     // setActive('')
-
-
   }
 
   useEffect(() => {
@@ -596,7 +595,7 @@ const SearchLayout = (props: any): JSX.Element => {
 
                 onKeyDown={(evt) => {
                   if (
-                    evt.key === "Backspace" ||
+                    // evt.key === "Backspace" ||
                     evt.key === "x" ||
                     evt.key === "Delete"
                   ) {
@@ -613,7 +612,7 @@ const SearchLayout = (props: any): JSX.Element => {
                   GO</b>
                 </span>
               </button>
-              
+
               <InputDropdown
                 displaymsg={displaymsg}
                 setDisplaymsg={setDisplaymsg}
@@ -689,7 +688,7 @@ const SearchLayout = (props: any): JSX.Element => {
                 Apply Filter
               </div>
               <div className={"fliter-sec filter-facet " + FacetValue} id="bg-search">
-              {/* <TileFacet fieldId="name" displayName="Name" />
+                {/* <TileFacet fieldId="name" displayName="Name" />
               <TileFacet fieldId="address.region" displayName="Region" /> */}
                 <StandardFacets
                   customCssClasses={{ container: "filter-items" }}
@@ -740,13 +739,13 @@ const SearchLayout = (props: any): JSX.Element => {
                 />
 
 
-                {/* {locationinbuit && locationinbuit.length <= 0 ?
-                <div className="browse-dir">
-                  <a className="underline " href='/us.html'>Use the search above or <span className="font-second-main-font"> browse our directory</span></a>
-                </div> : ''} */}
+                {locationinbuit && locationinbuit.length <= 0 ?
+                  <div className="browse-dir">
+                   Use the search above or  <a className="underline " href='/us.html'><b><span className="font-second-main-font"> browse our directory</span></b></a>
+                  </div> : ''}
                 <div className="button-bx">
                   {/* <ViewMore className={" btn notHighlight lg:!w-[132%] !mb-2 button view-more"} idName={"view-more-button"} buttonLabel={"View More"} /> */}
-                 
+
                 </div>
 
               </div>

@@ -932,7 +932,7 @@ a.Link.btn.notHighligh:hover{
 .spinner-container {  position:absolute;  top:50%;  left:50%;  transform:translate(-50%,-50%);  width:50px;  height:50px;  background:transparent;  border:2px solid #fff;  border-radius:50%;  text-align:center;  line-height:150px;  font-family:sans-serif;  font-size:20px;  color:black;     z-index: 9999;  letter-spacing:4px;  text-transform:uppercase;  text-shadow:0 0 10px #eb0000;  box-shadow:0 0 20px rgba(0,0,0,.5);}
 
 .loading-spinner{  display:block;  position:absolute;  top:calc(50% - 2px);  left:50%;  width:50%;  height:4px;  background:transparent;  transform-origin:left;  animation:animate 2s linear infinite;}
-.loading-spinner:before{  content:'';  position:absolute;  width:8px;  height:8px;  border-radius:50%;  background:#eb0000;  top:-3px;  right:-4px;  box-shadow:0 0 20px #eb0000;}
+.loading-spinner:before{  content:'';  position:absolute;  width:8px;  height:8px;  border-radius:50%;  background:#024b86;  top:-3px;  right:-4px;  box-shadow:0 0 20px #eb0000;}
 .hero .hero-content h1.small-heading{  @apply text-5xl}
 .content-list{  @apply pt-7 md:pt-[3.75rem] pb-4 md:pb-8 bg-button-light bg-opacity-25 }
 /* .content-list .container{  @apply px-4;} */

@@ -2,40 +2,29 @@ import * as React from "react";
 import { CardComponent } from "@yext/search-ui-react";
 import { Location } from "../../types/search/locations";
 import GetDirection from "../commons/GetDirection";
-// import redmapimage from "../../images/red-map.svg";
 import timesvg from "../../images/watch-icn.svg"
 import Address from "../commons/Address";
 import OpenClose from "../commons/openClose";
 import { StaticData } from "../../../sites-global/staticData";
 import { Link } from "@yext/pages/components";
-// import Phonesvg from "../../images/phone.svg";
 import Model from "../locationDetail/Model";
 import { formatPhoneNumber } from "react-phone-number-input";
-import { useSearchState } from "@yext/search-headless-react";
-import useFetchResults from "../../hooks/UseFetchResults";
 
 
 const metersToMiles = (meters: number) => {
   const miles = meters * 0.001;
   return miles.toFixed(2);
 }
-let array = [];
-
-
 
 const LocationCard: CardComponent<Location> = ({ result }) => {
-  const [hoursopen, setHoursopen] = React.useState(false);
-
   function opentime(e: any) {
     //console.log(e.target);
     var closethis = e.target.closest(".lp-param-results");
     if (closethis.querySelector('.storelocation-openCloseTime').classList.contains("hidden")) {
       closethis.querySelector('.storelocation-openCloseTime').classList.remove("hidden")
-      setHoursopen(true);
     }
     else {
       closethis.querySelector('.storelocation-openCloseTime').classList.add("hidden")
-      setHoursopen(false);
     }
   }
 
@@ -49,13 +38,12 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
 
 
   var els = document.querySelectorAll('.countnumber');
-
   for (var i = 0; i < els.length; i++) {
     els[i].index = i;
     els[i].innerHTML = i + 1;
   }
 
-  console.log(result, "bajrang")
+  // console.log(els, "bajrang")
   return (
     <div className={`location result-list-inner-${result.id} result`} id={`result-${result.id}`} key={`result-${result.rawData.id}`}>
       <div className="result-inner ">
@@ -65,9 +53,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
               <div className="icon text-black relative">
 
                 <span className="map-count countnumber">
-
                   {/* {result.index} */}
-
                 </span></div>
               <h2><Link className="inline-block notHighlight"
                 data-ya-track={`viewDetail -${result.rawData.name}`}
@@ -157,9 +143,6 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
               </Link>
 
             </div>
-
-
-
           </div>
 
         </div>

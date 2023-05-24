@@ -550,14 +550,14 @@ const SearchLayout = (props: any): JSX.Element => {
     // }
     // setTimeout(updateVal, 1000)
   }, [])
-
+  const loader = isLoading ? <LoadingSpinner /> : "";
   return (
     <>
       <Wrapper
         apiKey={googleMapsConfig.googleMapsApiKey}
         libraries={["places", "geometry"]}
       >
-        {/* {loader} */}
+        {loader}
         <div className="city-breadcrumb">
           <div className="breadcrumb">
             <div className="container-custom">
@@ -595,7 +595,7 @@ const SearchLayout = (props: any): JSX.Element => {
 
                 onKeyDown={(evt) => {
                   if (
-                    // evt.key === "Backspace" ||
+                    evt.key === "Backspace" ||
                     evt.key === "x" ||
                     evt.key === "Delete"
                   ) {
@@ -688,8 +688,8 @@ const SearchLayout = (props: any): JSX.Element => {
                 Apply Filter
               </div>
               <div className={"fliter-sec filter-facet " + FacetValue} id="bg-search">
-                {/* <TileFacet fieldId="name" displayName="Name" />
-              <TileFacet fieldId="address.region" displayName="Region" /> */}
+                {/* <TileFacet fieldId="name" displayName="Name" /> */}
+                {/* <TileFacet fieldId="address.region" displayName="Region" />  */}
                 <StandardFacets
                   customCssClasses={{ container: "filter-items" }}
                   defaultExpanded={false}
@@ -738,16 +738,17 @@ const SearchLayout = (props: any): JSX.Element => {
                 //  CardComponent={LocationCard}
                 />
 
+                <div className="pt-4">
+                  {locationinbuit && locationinbuit.length <= 0 ?
+                    <div className="browse-dir">
+                      Use the search above or  <a className="underline " href='/us.html'>
+                        <b><span style={{ color: "#024b86" }} className="font-second-main-font"> browse our directory</span></b></a>
+                    </div> : ''}
+                  <div className="button-bx">
+                    {/* <ViewMore className={" btn notHighlight lg:!w-[132%] !mb-2 button view-more"} idName={"view-more-button"} buttonLabel={"View More"} /> */}
 
-                {locationinbuit && locationinbuit.length <= 0 ?
-                  <div className="browse-dir">
-                   Use the search above or  <a className="underline " href='/us.html'><b><span className="font-second-main-font"> browse our directory</span></b></a>
-                  </div> : ''}
-                <div className="button-bx">
-                  {/* <ViewMore className={" btn notHighlight lg:!w-[132%] !mb-2 button view-more"} idName={"view-more-button"} buttonLabel={"View More"} /> */}
-
+                  </div>
                 </div>
-
               </div>
             </PerfectScrollbar>
             <div className="pagination-bottom"> <Pagination /> </div>

@@ -26,21 +26,21 @@
         "_server.browser-09398b70.js"
       ]
     },
-    "src/images/phone.svg": {
-      "file": "assets/static/phone-ef7a7680.svg",
-      "src": "src/images/phone.svg"
-    },
     "src/images/map.svg": {
       "file": "assets/static/map-f18a6aa1.svg",
       "src": "src/images/map.svg"
     },
-    "src/images/MGMpin.svg": {
-      "file": "assets/static/MGMpin-14d46efa.svg",
-      "src": "src/images/MGMpin.svg"
+    "src/images/phone.svg": {
+      "file": "assets/static/phone-ef7a7680.svg",
+      "src": "src/images/phone.svg"
     },
     "src/images/watch-icn.svg": {
       "file": "assets/static/watch-icn-de3f32de.svg",
       "src": "src/images/watch-icn.svg"
+    },
+    "src/images/MGMpin.svg": {
+      "file": "assets/static/MGMpin-14d46efa.svg",
+      "src": "src/images/MGMpin.svg"
     },
     "src/images/MGMhover1.svg": {
       "file": "assets/static/MGMhover1-164c1bae.svg",
@@ -50,6 +50,10 @@
       "file": "assets/static/map-center-1a582d64.svg",
       "src": "src/images/map-center.svg"
     },
+    "src/images/dots.svg": {
+      "file": "assets/static/dots-2757dc27.svg",
+      "src": "src/images/dots.svg"
+    },
     "src/images/plus-sym.svg": {
       "file": "assets/static/plus-sym-e6fe9a2e.svg",
       "src": "src/images/plus-sym.svg"
@@ -57,10 +61,6 @@
     "src/images/minus-sym.svg": {
       "file": "assets/static/minus-sym-91e3bcde.svg",
       "src": "src/images/minus-sym.svg"
-    },
-    "src/images/dots.svg": {
-      "file": "assets/static/dots-2757dc27.svg",
-      "src": "src/images/dots.svg"
     },
     "src/images/shape-t.svg": {
       "file": "assets/static/shape-t-73d392df.svg",

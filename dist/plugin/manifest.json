@@ -4,7 +4,7 @@
     "city": "assets/server/city.7905c91d.js",
     "country": "assets/server/country.fba793f5.js",
     "location": "assets/server/location.821e9faf.js",
-    "locator": "assets/server/locator.72accf5a.js",
+    "locator": "assets/server/locator.4e732d2e.js",
     "robots": "assets/server/robots.822468f5.js",
     "root": "assets/server/root.f0e83dbe.js",
     "state": "assets/server/state.6b54c5a8.js"
@@ -34,37 +34,37 @@
       "file": "assets/static/phone-ef7a7680.svg",
       "src": "src/images/phone.svg"
     },
-    "src/images/watch-icn.svg": {
-      "file": "assets/static/watch-icn-de3f32de.svg",
-      "src": "src/images/watch-icn.svg"
-    },
-    "src/images/map-center.svg": {
-      "file": "assets/static/map-center-1a582d64.svg",
-      "src": "src/images/map-center.svg"
-    },
     "src/images/MGMpin.svg": {
       "file": "assets/static/MGMpin-14d46efa.svg",
       "src": "src/images/MGMpin.svg"
+    },
+    "src/images/watch-icn.svg": {
+      "file": "assets/static/watch-icn-de3f32de.svg",
+      "src": "src/images/watch-icn.svg"
     },
     "src/images/MGMhover1.svg": {
       "file": "assets/static/MGMhover1-164c1bae.svg",
       "src": "src/images/MGMhover1.svg"
     },
-    "src/images/shape-t.svg": {
-      "file": "assets/static/shape-t-73d392df.svg",
-      "src": "src/images/shape-t.svg"
+    "src/images/map-center.svg": {
+      "file": "assets/static/map-center-1a582d64.svg",
+      "src": "src/images/map-center.svg"
     },
     "src/images/plus-sym.svg": {
       "file": "assets/static/plus-sym-e6fe9a2e.svg",
       "src": "src/images/plus-sym.svg"
     },
-    "src/images/minus-sym.svg": {
-      "file": "assets/static/minus-sym-91e3bcde.svg",
-      "src": "src/images/minus-sym.svg"
-    },
     "src/images/dots.svg": {
       "file": "assets/static/dots-2757dc27.svg",
       "src": "src/images/dots.svg"
+    },
+    "src/images/shape-t.svg": {
+      "file": "assets/static/shape-t-73d392df.svg",
+      "src": "src/images/shape-t.svg"
+    },
+    "src/images/minus-sym.svg": {
+      "file": "assets/static/minus-sym-91e3bcde.svg",
+      "src": "src/images/minus-sym.svg"
     },
     "src/images/shape-b.svg": {
       "file": "assets/static/shape-b-304bb7d2.svg",
@@ -207,7 +207,7 @@
       ]
     },
     "dist/hydration_templates/locator.tsx": {
-      "file": "assets/hydrate/locator.d0494147.js",
+      "file": "assets/hydrate/locator.1f66fd10.js",
       "src": "dist/hydration_templates/locator.tsx",
       "isEntry": true,
       "imports": [
@@ -226,7 +226,7 @@
       ]
     },
     "src/templates/locator.tsx": {
-      "file": "assets/server/locator.72accf5a.js",
+      "file": "assets/server/locator.4e732d2e.js",
       "src": "src/templates/locator.tsx",
       "isEntry": true,
       "imports": [

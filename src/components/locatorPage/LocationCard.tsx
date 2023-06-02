@@ -12,7 +12,7 @@ import { formatPhoneNumber } from "react-phone-number-input";
 
 
 const metersToMiles = (meters: number) => {
-  const miles = meters * 0.001;
+  const miles = meters * 0.000621371;
   return miles.toFixed(2);
 }
 
@@ -63,7 +63,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
               </Link></h2>
               {typeof result.distance != "undefined" ?
                 <div className="distance">
-                  {metersToMiles(result.distance)} <span>{StaticData.kilometer}</span>
+                  {metersToMiles(result.distance)} <span>{StaticData.miles}</span>
                 </div>
                 : ''}
             </div>

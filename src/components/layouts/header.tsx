@@ -25,7 +25,7 @@ const Header = (props: any) => {
             <div className="Header-container">
               <div className="Header-wrapper Header-wrapper--middle">
                 <div className="Header-logoWrapper">
-                  <a className="Header-logoLink" href="#" data-ya-track="logo" id="brand-logo">
+                  <a className="Header-logoLink" href="/" data-ya-track="logo" id="brand-logo">
                     <img className="Header-logo" src={props?._site?.c_middleHeader.image.url} alt="" />
                   </a>
                 </div>
@@ -52,6 +52,7 @@ const Header = (props: any) => {
               </div>
             </div>
           </div>
+          {/* lower header */}
           <div className="Header-containerWrapper Header-containerWrapper--bottom">
             <div className="Header-container">
               <div className="Header-wrapper Header-wrapper--bottom">

@@ -120,7 +120,7 @@ const SearchLayout = (props: any): JSX.Element => {
           searchActions.setStaticFilters([locationFilter]);
           searchActions.setUserLocation(params1);
           searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
-          // searchActions.executeVerticalQuery();
+          searchActions.executeVerticalQuery();
         },
         function (error) {
           if (error.code == error.PERMISSION_DENIED) {
@@ -150,7 +150,7 @@ const SearchLayout = (props: any): JSX.Element => {
     searchActions.setStaticFilters([locationFilter]);
     searchActions.setUserLocation(params1);
     searchActions.setVerticalLimit(AnswerExperienceConfig.limit);
-    // searchActions.executeVerticalQuery();
+    searchActions.executeVerticalQuery();
     setTimeout(() => {
       setIsloading(false);
       $("body").removeClass("overflow-hidden");
@@ -595,7 +595,7 @@ const SearchLayout = (props: any): JSX.Element => {
 
                 onKeyDown={(evt) => {
                   if (
-                    evt.key === "Backspace" ||
+                    // evt.key === "Backspace" ||
                     evt.key === "x" ||
                     evt.key === "Delete"
                   ) {
@@ -744,10 +744,10 @@ const SearchLayout = (props: any): JSX.Element => {
                       Use the search above or  <a className="underline " href='/us.html'>
                         <b><span style={{ color: "#024b86" }} className="font-second-main-font"> browse our directory</span></b></a>
                     </div> : ''}
-                  <div className="button-bx">
-                    {/* <ViewMore className={" btn notHighlight lg:!w-[132%] !mb-2 button view-more"} idName={"view-more-button"} buttonLabel={"View More"} /> */}
+                  {/* <div className="button-bx">
+                    <ViewMore className={" btn notHighlight lg:!w-[132%] !mb-2 button view-more"} idName={"view-more-button"} buttonLabel={"View More"} />
 
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </PerfectScrollbar>
